@@ -1,0 +1,36 @@
+{
+	"dataset_name": "rag-qa-golden-dataset",
+	"version": 1,
+	"scope": "RAG answers only",
+	"source": "Discrete Mathematics textbook",
+	"status": "draft",
+	"evaluation_criteria": {
+		"must_have": [
+			"ответ по теме",
+			"содержит ключевые термины",
+			"не противоречит источнику",
+			"не выдумывает факты",
+			"достаточно полный для вопроса"
+		],
+		"status_labels": [
+			"pass",
+			"partial",
+			"fail",
+			"hallucination"
+		]
+	},
+	"test_case_template": {
+		"id": "CH1-001",
+		"chapter": "",
+		"topic": "",
+		"question": "",
+		"question_type": "definition",
+		"expected_key_points": [],
+		"expected_keywords": [],
+		"expected_answer_style": "short",
+		"must_refuse_if_missing_info": false,
+		"tags": [],
+		"notes": ""
+	},
+	"test_cases": []
+}
