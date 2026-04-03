@@ -1,6 +1,6 @@
 {
 	"dataset_name": "rag-qa-golden-dataset",
-	"version": 1,
+	"version": 2,
 	"scope": "RAG answers only",
 	"source": "Discrete Mathematics textbook",
 	"status": "draft",
@@ -27,10 +27,85 @@
 		"question_type": "definition",
 		"expected_key_points": [],
 		"expected_keywords": [],
-		"expected_answer_style": "short",
+		"expected_answer_style": "formal_academic",
 		"must_refuse_if_missing_info": false,
 		"tags": [],
 		"notes": ""
 	},
-	"test_cases": []
+	"test_cases": [
+        {
+            "id": "CH6-001",
+		    "chapter": "Глава 6. Кодирование информации",
+		    "topic": "6.1.1 Количество информации",
+		    "question": "Что такое информационная энтропия дискретного источника?",
+		    "question_type": "definition",
+		    "expected_key_points": [
+				"Это математическое ожидание информации (количества информации) дискретного источника"
+            ],
+		    "expected_keywords": [
+                "дискретный источник",
+                "информационная энтропия источника",
+                "энтропия",
+                "формула Шеннона",
+                "математическое ожидание"
+            ],
+		    "expected_answer_style": "formal_academic",
+		    "must_refuse_if_missing_info": false,
+		    "tags": [
+                "chapter6", 
+                "entropy"
+            ],
+		    "notes": "Базовый теоретический вопрос"
+        },
+        {
+            "id": "CH6-002",
+		    "chapter": "Глава 6. Кодирование информации",
+		    "topic": "6.2.3. Префиксные и постфиксные схемы",
+		    "question": "В чем заключается принципиальная разница между префиксной и постфиксной схемами кодирования?",
+		    "question_type": "comparison",
+		    "expected_key_points": [
+                "В префиксной схеме элементарный код одной буквы не является собственным началом (префиксом) кода другой буквы",
+                "В постфиксной схеме код одной буквы не является концом (постфиксом) кода другой буквы"
+            ],
+		    "expected_keywords": [
+                "схема кодирования",
+                "схема алфавитного кодирования",
+                "префиксная схема кодирования",
+                "постфиксная схема кодирования"
+            ],
+		    "expected_answer_style": "formal_academic",
+		    "must_refuse_if_missing_info": false,
+		    "tags": [
+                "chapter6", 
+                "coding_scheme"
+            ],
+		    "notes": "Базовый теоретический вопрос"
+        },
+        {
+            "id": "CH6-003",
+		    "chapter": "Глава 6. Кодирование информации",
+		    "topic": "6.3.5. Алгоритм Хаффмена",
+		    "question": "Почему алгоритм Хаффмена на практике предпочтительнее алгоритма Фано?",
+		    "question_type": "explanation",
+		    "expected_key_points": [
+                "Алгоритм Хаффмена строит оптимальное префиксное кодирование с минимальной избыточностью",
+                "Алгоритм Фано строит кодирование, которое лишь близко к оптимальному, и его цена кодирования может быть несколько хуже"
+            ],
+		    "expected_keywords": [
+                "Алгоритм Хаффмена",
+                "Алгоритм Фано",
+                "оптимальное кодирование",
+                "цена кодирования"
+            ],
+		    "expected_answer_style": "formal_academic",
+		    "must_refuse_if_missing_info": false,
+		    "tags": [
+                "chapter6", 
+                "huffman_algorithm", 
+                "fano_algorithm", 
+                "optimal_coding"
+            ],
+		    "notes": "Базовый теоретический вопрос"
+        }
+    ]
 }
