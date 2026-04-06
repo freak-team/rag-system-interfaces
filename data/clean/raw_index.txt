@@ -1,0 +1,2308 @@
+
+
+[Страница 1676]
+Предметный указатель
+n-ка (n-tuple), 158
+Автоматическое
+доказательство
+теорем
+(automatic theorem proving), 800
+Автоморфизм (automorphism), 345
+графов (of graphs), 1175
+Аддитивность (additivity)
+меры (of measure), 982
+Адекватность (adequacy), 683
+Азбука Морзе (Morse alphabet), 1069
+Аксиома (axiom)
+выбора (of choice), 284
+двойственная (dual), 479
+логическая (logical), 678
+метрики (of metric), 1103
+регулярности (of regularity), 66
+симметрии (of symmetry), 1103
+собственная (proper), 678
+тождества (of identity), 1103
+формальной теории (of formal theory),
+
+Аксиоматизируемость
+(axiomatizability),
+683, 741
+конечная (finite), 740
+Алгебра (algebra), 74, 321
+ -алгебра ( -algebra), 980
+Ли (Lie), 468
+Линденбаума Тарского
+(Lindenbaum Tarski), 552
+
+[Страница 1677]
+булева (boolean), 493
+булевых функций (of boolean functions),
+
+высказываний
+(propositional
+algebra),
+
+конечно-порожденная (finitely generated),
+
+многоосновная (multi-based), 322
+над полем (over a field), 472
+подмножеств (of subsets), 103, 323
+свободная (free), 327
+термов свободная (free algebra of terms),
+
+универсальная (universal), 321
+Алгоритм (algorithm), 748
+A (A-star), 1405
+Беллмана Форда (Bellman Ford), 1378
+Дейкстры (Dijkstra), 1381
+Джонсона (Jonson), 1399
+Евклида (Euclid), 417
+Кнута Бендикса (Knuth Bendix), 366
+Косарайю (Kosaraju), 1358
+Краскала (Kruskal), 1543
+Лемпела-Зива (Lempel-Ziv), 1135
+Прима (Prim), 1546
+Уоршалла (Warshall), 193
+Фано (Fano), 1077
+Флойда Уоршалла
+(Floyd Warshall),
+
+Хаффмена (Huffman), 1086
+Эдмондса (Edmonds), 1325
+восстановления упорядоченного ордере
+
+[Страница 1678]
+ва по коду (of construction of ordered
+directed tree by code), 1448
+вставки узла в дерево сортировки (node
+insertion in sorting tree), 1490
+всюду
+отличающийся
+(everywhere
+different), 775
+выделения компонент сильной связности
+(finding strongly connectivity component),
+
+вычисления значения функции по сокращённому дереву решений (evaluation of
+function using the decision tree), 629
+вычисления номера кортежа в установленном порядке (evaluation of tuple s
+number in established order) , 590
+вычисления
+объединения
+слиянием
+(finding union by merge), 142
+вычисления
+пересечения
+слиянием
+(finding intersection by merge), 145
+вычитания
+итераторов
+(subtraction
+of
+iterators), 151
+генерации всех подмножеств (generating
+of all subsets), 127
+генерации перестановок (generation of
+permutations), 861
+генерации подмножеств (generation of
+subsets), 906
+деления
+вычитанием
+(of
+division
+by
+subtraction), 410
+детерминированный (deterministic), 770
+жадный (greedy), 317, 511
+интерпретации (interpretation), 538, 777
+
+[Страница 1679]
+линейный (linear), 511
+метода
+резолюций
+(of
+a
+resolution
+technique), 820
+нахождения максимального потока (for
+maximum flow problem), 1337
+недетерминированный (non-deterministic),
+
+неэффективный (inefficient), 1613
+нормальный Маркова (Markov normal),
+
+объединения дизъюнктных итераторов
+(union of disjunctive iterators), 152
+определения расстояний от источника
+(finding distances from source), 1376
+пересечения итераторов (intersection of
+iterators), 150
+перечисления
+конечных
+подмножеств
+натурального ряда, 88
+перечисляющий (enumerating), 758
+поиска (search)
+бинарного (binary), 874
+в глубину (depth first), 1243
+в ширину (breadth first), 1243
+с возвратами (backtracking), 1610
+последовательного
+раскрашивания
+(sequential coloring), 1645
+последовательного
+раскрашивания
+(улучшенный)
+(improved
+sequential
+coloring), 1646
+построения
+СДНФ
+(implementation
+of
+perfect DNF), 593
+построения
+бинарного
+кода
+Грея
+
+[Страница 1680]
+(generating of binary Grey code), 131
+построения кода Прюфера (generating of
+Pr ufer s code), 1441
+построения кода упорядоченного ордерева (generating of shortest spanning tree)
+, 1447
+построения
+кратчайшего
+остова
+(minimum spanning tree), 1541
+построения
+максимальных
+независимых множеств (generating of maximal
+independent sets), 1617
+построения эйлерова цикла (for eulerian
+cycle problem), 1576
+приближённый (approximate), 1644
+применимый (applicable), 773
+проверки включения слиянием (checking
+inclusion by merge), 140
+проверки правильности скобочной структуры
+(checking
+parenthesis
+structure
+accuracy), 1455
+равносильный (equivalent), 774
+распаковки кода Прюфера (unpacking
+Pr ufer s code), 1442
+слияния (merge), 139
+состоятельный (wealthy), 1407
+топологической сортировки (topological
+sorting), 267
+удаления узла из дерева сортировки
+(node removal from sorting tree), 1494
+универсальный (universal), 779
+унификации (unification), 809
+условно равный (conventionally equal),
+
+[Страница 1681]
+функционально эквивалентный
+(functionally equivalent), 753
+эвристический (heuristic), 1404, 1607
+эффективный (efficient), 1613
+Алфавит (alphabet), 69
+формальной теории (of formal theory),
+
+Анализ (analysis)
+дискриминантный (discriminant), 307
+комбинаторный (combinatorial), 829
+Аргумент (argument), 753
+функции (of function), 212
+Арифметика (arithmetic), 74, 406, 791
+высшая (higher), 406
+двоичная (binary), 398
+машинная (machine), 394
+модулярная (modular), 442
+формальная (formal), 737
+Арифметическая
+сумма
+мультимножеств
+(arithmetic sum of multisets), 306
+Арность отношения (arity of relation), 169
+Ассоциативность (associativity)
+объединения (of union), 107
+пересечения (of intersection), 107
+Атом (atom), 721, 792
+Базис (base), 537
+орграфа (of digraph), 1363
+Базис (basis)
+векторного пространства (of vector space),
+
+матроида (of matroid), 504
+
+[Страница 1682]
+пространства коциклов (of cocyclic space),
+
+пространства циклов (of cycle space),
+
+Беспорядок (disorder), 946
+Биграф (bigraph), 1212
+Биекция (bijection), 215
+Бином Ньютона (binomial theorem), 892
+Бит (bit), 116, 1026
+чётности (parity), 1096
+Битовая шкала (bit scale), 116
+ошибок (of error), 1122
+Блок (block)
+графа (of graph), 1273
+разбиения (of partition), 98, 923
+сообщения (code), 1095
+тривиальный (trivial), 1278
+Брат узла (sibling node), 1429
+Буква (letter), 69
+Булеан (power set), 103
+Бэктрекинг (backtracking), 1610
+Валентность
+вершины
+(vertex
+valence),
+
+Вектор (vector), 68, 236, 452, 466
+двоичный (binary), 116
+циклический (cyclic vector), 1561
+Величина (variable)
+случайная (aleatory, random), 1000
+Величина потока (value of flow), 1331
+Вероятность
+условная, 1039
+Вероятность (probability), 984, 985, 988
+
+[Страница 1683]
+апостериорная (posterior), 996, 1040
+априорная (prior), 996, 1040
+распределение (distribution), 985
+биномиальное (binomial), 994
+геометрическое (geometric), 993
+отрицательное биномиальное (negative
+binomial), 995
+равномерное (uniform), 989
+условная (conditional), 996
+Вершина (vertex)
+висячая (pendant), 1185
+графа (of graph), 1166
+достижимая (reachable), 1265
+изолированная (isolated), 1185
+концевая (leaf), 1185
+откладывание (laying off), 1199
+покрывающая (covering), 1593
+разделяющая (cut), 1273
+связанная (bound), 1190
+центральная (central), 1195
+Вес (weight)
+дуги (of arc), 1368
+Ветвь ордерева (branch of directed tree),
+
+Включение (inclusion)
+множеств (of sets), 77
+мультимножеств (of multisets), 305
+Вложение (injection)
+множества (of set), 79
+Вместимость отношения (arity of relation),
+
+Вхождение (occurrence), 69
+
+[Страница 1684]
+определяющее (defining), 40
+переменной (variable)
+свободное (free), 722
+связанное (bound), 722
+Выборка (sample), 836
+Выводимость (inference), 679
+непосредственная (direct), 679
+Выполнение (execution), 750
+Выполнимость (satisfiability)
+системы булевых функций (system of
+Boolean functions), 567
+формулы (of formula), 681, 728
+Выразимость множества (expressiveness of
+set), 790
+Вырезка (slice), 129
+Вырезка из массива (slice from array), 1527
+Высказывание (statement, proposition)
+простое (atomic), 654
+универсальное (universal), 665
+экзистенциальное (existential), 666
+Высота (height)
+дерева (of tree), 1429
+множества (of set), 262
+Вычисления (evaluation)
+по Маккарти (McCarthy), 596
+по короткой схеме (short-circuit), 596
+Гамма шифра (cypher gamma), 1145
+Генеральная
+совокупность
+(general
+population), 836
+Гиперграф (hypergraph), 1172
+Гипердуга (hyperarc), 1172
+Гиперорграф (hyperorgraph), 1172
+
+[Страница 1685]
+Гиперребро (hyperedge), 1172
+Гипотеза (hypothesis), 680
+Римана (Riemann), 880
+Гомоморфизм (homomorphism), 246, 344
+Граница (bound)
+верхняя (upper), 270, 484
+наименьшая (least), 485
+нижняя (low), 484
+наибольшая (greatest), 485
+нижняя (lower), 270
+Грань (bound)
+решётки (lattice)
+верхняя (upper), 480
+нижняя (low), 480
+Грань (face)
+графа (of graph), 1656
+Граф (graph), 1166
+n-связный (n-connected), 1285
+Герца (Herz), 1355
+абстрактный (abstract), 1176
+ациклический (acyclic), 1188, 1413
+взвешенный (weighted), 1368
+вполне несвязный (totally disconnected),
+
+гамильтонов (hamiltonian), 1580
+генеалогический (genealogical), 1429
+геодезический (geodesic), 1192
+гомеоморфный (homeomorphic), 1660
+двудольный (bipartite), 1212
+полный (complete), 1212
+двусвязный (biconnected), 1287
+древочисленный (tree-numerical), 1413
+
+[Страница 1686]
+звёздный (star), 1216
+инциденций (of incidence), 1260
+к-дольный (k-partite), 1215
+нагруженный (weighted), 1172
+несвязный (disconnected), 1190
+нумерованный (numbered), 1172, 1577
+ориентированный (directed), 1171
+планарный (planar), 1656
+плоский (flat), 1656
+поиска (search), 1404
+полный (complete), 1210
+полугамильтонов
+(semi-hamiltonian),
+
+полуэйлеров (semi-eulerian), 1571
+помеченный (labeled), 1166, 1172
+пустой (empty), 1210
+регулярный (regular), 1184
+рёберный (line), 1229
+с петлями (with loops), 1171
+связный (connected), 1190
+субциклический (subcyclic), 1413
+тривиальный (trivial), 1210
+чётный (even), 1212
+эйлеров (eulerian), 1571
+График (graph)
+отношения (of relation), 166
+Группа (group), 376
+абелева (abelian), 379, 738
+делимая (divisible), 739
+компактная (compact), 619
+избыточная (excess), 625
+максимальная (maximal), 620
+
+[Страница 1687]
+перестановок (of permutations), 383, 385
+периодическая (periodic), 740
+порядка n (n-order), 739
+симметрическая (symmetric), 383, 385
+Группоид (groupoid), 352
+Двойственность (duality), 109, 266
+Дедуктика (deduction), 785
+адекватная (adequate), 787
+непротиворечивая (consistent), 787
+полная (complete), 787
+Действие группы (group action)
+на множестве (on set), 380
+Декодирование (decoding), 1019
+Делитель (divisor), 410, 415
+собственный (proper), 411
+тривиальный (trivial), 411
+Делитель нуля (zero divisor), 395
+левый (left), 395
+правый (right), 395
+Делится на (divisible by), 410
+Дельта-окрестность (delta neighborhood),
+
+Дерево (tree), 1413
+m-ичное (m-ary), 1437
+И ИЛИ (and-or), 1263
+АВЛ-дерево (AVL-tree), 1508
+бинарное (binary), 1032, 1436
+полное (full), 1506
+вывода (derivation), 816
+выровненное (aligned tree), 1505
+двоичное (binary), 1436
+заполненное (thick), 1505
+
+[Страница 1688]
+игровое (game), 1263
+классификации (classification)
+выровненное (aligned), 309
+кодовое (coding), 1032
+корневое (rooted), 1425
+кратчайших путей (of shortest paths),
+
+ориентированное (directed), 1425
+отрезков (of segments), 1527
+подровненное (balanced), 1508
+поиска (search), 1468
+прошитое (threaded), 1466
+решений (decision), 627
+сбалансированное
+по
+весу
+(weight
+balanced), 1508
+сбалансированное
+по
+высоте
+(height
+balanced), 1508
+свободное (free), 1413
+семантическое (semantic), 627
+сортировки (sorting), 1468, 1473
+стягивающее (spanning), 1539
+упорядоченное (ordered), 1431
+упорядочивания (sorting), 1468
+Дешифрация (decoding), 1143
+Дешифрование (decoding), 1143
+Дзета-функция Римана
+(Riemann zeta-function), 880
+Диагональ (diagonal)
+прямого произведения (of direct product),
+
+Диаграмма (diagram), 44
+Вейча (Veitch), 607
+
+[Страница 1689]
+Венна (John Venn), 95
+Хассе (Hasse), 201
+графа (of graph), 1170
+информационных потоков (of information
+flow), 1054
+коммутативная (commutative), 347
+переходов (of transitions), 1047
+решений (decision)
+бинарная (binary), 630
+Диаметр графа (graph diameter), 1194
+Дивергенция (divergence), 1330
+Дизъюнкт (clause), 803
+резольвируемый (resolvable), 807
+родительский (parent), 807
+Дизъюнкция (disjunction), 116
+Дилемма
+заключенного, 1007
+Диполь (dipole), 1216
+Дисперсия (variance), 1004
+Дистанция (distance)
+редактирования (edit), 1104
+Дистрибутивность (distributivity)
+объединения относительно пересечения
+(of union over intersection), 107
+пересечения относительно объединения
+(of intersection over union), 107
+Дисциплина имён (naming convention), 418
+Длина (length)
+дуги (of arc), 1368
+кодирования (of coding)), 1074
+кратчайшего пути (of shortest path), 1368
+маршрута (of walk), 1192
+
+[Страница 1690]
+набора (of tuple), 159
+последовательности (of sequence), 262
+пути (of path), 1368
+слова (of word), 69
+цикла (of cycle), 177, 851, 1188
+Добавление (adding)
+вершины (of vertex), 1221
+ребра (of edge), 1221
+Доказательство (proof), 784, 785
+Доля (part), 1212
+Доминирование (domination)
+сильное (strong), 1006
+слабое (weak), 1006
+Дополнение (complement), 482
+графа (of graph), 1168
+множества (of a set), 94
+нечёткое (fuzzy), 311
+Достоверность
+декодирования
+(decoding
+fidelity), 1100
+Дуга (arc), 1171
+насыщенная (saturated), 1331
+Единица (identity)
+моноида (of monoid), 373
+решётки (of lattice), 480
+Заголовок (header)
+алгоритма (of algorithm), 752
+Задача (problem)
+NP-полная (NP-complete), 1583
+Штейнера (Jacob Steiner), 1549
+комбинаторная (combinatorial), 831
+коммивояжёра
+(travelling
+salesman),
+
+[Страница 1691]
+минимизации
+дизъюнктивной
+формы
+(minimum disjunctive form), 584
+о
+Кёнигсбергских
+мостах
+(K onigsberg
+bridge problem), 1162
+о восьми ферзях (eight queens), 1619
+о
+выборе
+переводчиков
+(translator
+choice), 1629
+о наименьшем покрытии (of minimum
+vertex cover), 1620, 1626
+о пяти ферзях (five queens), 1621
+о развозке (transshipment), 1629
+о свадьбах (marriage), 1302
+о трёх домах и трёх колодцах (three
+houses, three utilities), 1163
+о четырёх красках (four color), 1164
+переборная (search), 909
+сортировки (of sorting), 858
+Заключение правила вывода (conclusion of
+inference rule), 679
+Законы де Моргана (de Morgan laws), 107
+Замена (replacement)
+буквальная (literal), 604
+Замена переменной (substitution), 373
+Замыкание (closure), 189, 636
+множества (of a set), 324
+отношения (of relation), 191
+формулы (of formula), 729
+Запись (notation)
+префиксная (prefix), 212
+Запись (record), 1470
+Зашифровка (enciphering), 1143
+Значение (value)
+
+[Страница 1692]
+истинностное (truth value), 654
+функции (of function), 212
+Золотое сечение (golden ratio), 967
+Игра (game)
+Антогонистическая (antagonist)
+с нулевой суммой (zero-sum), 1013
+в нормальной форме in normal form, 1006
+Идемпотентность (idempotency)
+объединения (of union), 107
+пересечения (of intersection), 107
+Избыточность
+источника, 1029
+относительная, 1029
+Изграф (izgraph), 1183
+Измельчение
+разбиения
+(refinement
+of
+partition), 234, 923
+Изоморфизм (isomorphism), 247, 345
+алгебр (of algebras), 348, 552
+вполне
+упорядоченных
+множеств
+(of
+well-ordered sets), 282
+графов (of graphs), 1174
+рёберный (line), 1176
+линейно упорядоченных множеств (of
+linear ordered sets), 281
+таблиц Кэли (of Cayley tables), 342
+Изоморфные (isomorphic)
+множества (sets), 247
+Импликанта (implicant), 621
+Инвариант (invariant)
+графа (of graph), 1175
+Инверсия (inversion), 858
+Инвертирование (inversing), 116
+
+[Страница 1693]
+Инволютивность (involutivity)
+дополнения (of a complement), 107
+Индикатор (indicator), 67
+Интерпретация (interpretation)
+исчисления
+предикатов
+(of
+predicate
+calculus), 727
+представления (of implementation), 1370
+формальной теории (of formal theory),
+
+формулы (of formula), 658
+Инфимум (infimum), 270
+Информация (information), 1016
+взаимная (mutual), 1040
+условная (conditional), 1041
+Инцидентность (incidence), 1167
+Инъекция (injection), 215
+Исключающее ИЛИ (exclusive or), 116
+Искусственный
+интеллект
+(artificial
+intelligence)
+символический (symbolic), 1263
+Испытание (test)
+Бернулли (Bernoulli), 990
+Истина (truth), 784
+Истинностное значение (truth value), 290,
+
+Источник (source), 1219
+двоичный (binary), 1030
+информации (of information)
+дискретный (discrete), 1024
+Исход (outcome), 984, 985
+Исчисление (calculus)
+высказываний (propositions calculus), 688
+
+[Страница 1694]
+предикатов (predicates calculus), 720
+высшего порядка (higher order), 726
+первого порядка (first order), 720, 726
+прикладное (applied), 726
+с равенством (with equality), 738
+чистое (pure), 720, 726
+Итератор (iterator), 148
+Канал (channel)
+двоичный
+симметричный
+(binary
+symmetric), 1099
+связи (communication)
+без памяти (memoryless), 1046
+дискретный (discrete), 1046
+с помехами (noisy), 1091
+Каркас (spanner), 1539
+Карта (map), 1164
+Карта Карно (Karnaugh map), 607
+Квадрант (quadrant), 291
+Квадрат (square)
+латинский (Latin), 342, 1306
+ортогональный (orthogonal), 1308
+логический (logical), 669
+Квазигруппа (quasi-group), 356
+полностью
+антисимметричная
+(totally
+anti-symmetric), 356
+Квантор (quantifier)
+всеобщности (universal), 665, 720
+существования (existential), 666, 720
+существования
+и
+единственности
+(existence and uniqueness), 668
+Китайская теорема об остатках (chinese
+remainder theorem), 440
+
+[Страница 1695]
+Класс (class), 62
+алгоритмов (of algorithm)
+представительный (representative), 776
+вычетов по модулю (of residue modulo),
+
+замкнутый (closed), 636
+множеств (of sets)
+арифметических (arithmetic), 793
+одноцветный (unicolored), 1637
+полный (complete), 641
+толерантности (of tolerance), 243
+функций (of function)
+монотонных (monotonic), 637
+самодвойственных (self-dual), 636
+сохраняющих 0 (0-preserving), 636
+сохраняющих 1 (1-preserving), 636
+эквивалентности (of equivalence), 231
+Классификатор (classifier), 289, 291, 307
+иерархический (hierarchical), 309
+неполный (incomplete), 291
+фасетный (faceted), 308
+Классификация (classification)
+универсальная
+десятичная
+(universal
+decimal), 310
+Клика (clique), 1211
+Ключ (key)
+ассоциативной памяти (content-addressable
+memory), 1470
+шифра (of encryption), 1143
+Код (code)
+Грея (Gray), 131
+левый зеркальный (left mirror), 134
+
+[Страница 1696]
+Прюфера (Pr ufer), 1441
+Хэмминга (Hamming), 1122
+двоичный (binary), 116, 121
+множества (of set), 117
+сообщения (of message), 1019
+элементарный (elementary), 1061
+Кодерево (cotree), 1558
+Кодирование (coding), 1019
+m-ичное (m-ary), 1019
+Схема (scheme), 1031
+алфавитное (alphabetic), 1031, 1061
+безызбыточное (breakeven), 1112
+двоично-десятичное
+(binary
+coded
+decimal), 1061
+двоичное (binary), 1019
+информации (of information), 1017
+однозначное (unique), 1020
+оптимальное (optimal), 1075
+побуквенное (alphabetic), 1061
+помехоустойчивое (antinoise), 1093
+равномерное (uniform), 1075
+с исправлением ошибок (error correction),
+
+с
+минимальной
+избыточностью
+(with
+minimal redundancy), 1075
+самокорректирующееся (self-correcting),
+
+цена (price), 1074
+Кодирование (encoding)
+систематическое (systematic), 1119
+Кодовое слово (code word), 1031, 1061
+Количество (amount)
+
+[Страница 1697]
+информации (of information), 1025
+Количество (quantaty)
+информации (of information), 1017
+Коллизия (collision), 1477
+Коллинеарность (co-linear), 236
+Кольцо (ring), 392
+вырожденный случай (degenerate case),
+
+коммутативное (commutative), 392
+с единицей (with identity), 392
+целых чисел (of integer numbers), 323
+Комбинаторика (combinatorics), 829
+Комментарии (comment), 418
+Коммутативность (commutativity)
+объединения (of union), 107
+пересечения (of intersection), 107
+Коммутатор (commutator), 471, 473
+Композиция (composition)
+отношений (of relations), 170
+подстановок (of substitutions), 373
+Компонента (component)
+связности (of connectivity), 1190
+сильной связности (of strong connectivity),
+
+Конденсация
+орграфа
+(condensation
+of
+digraph), 1355
+Конец цепи (circuit end), 1187
+Константа (constant), 792
+предметная (object), 720
+Конституента единицы (unit constituent),
+
+Контекст (context), 1614
+
+[Страница 1698]
+Контрадикторность (contradictory), 669
+Контрарность (contrary), 669
+Контур (contour), 1189
+Конфигурация (configuration)
+комбинаторная (combinatorial), 833
+Конъюнкция (conjunction), 116
+допустимая (admissible), 585
+максимальная (maximal), 586
+Координаты (coordinates), 457
+декартовы (Cartesian), 1017
+Корень ордерева (root of directed tree),
+
+Корень уравнения (root of equation), 276
+Кортеж (tuple), 158, 169
+Коцикл (cocycle), 1562
+Коэффициент (coefficient)
+Безу (Bezout), 421
+биномиальный (binomial), 892
+расширенный (extended), 910
+мультиномиальный (multinomial), 915
+сжатия (of compression), 1131
+Криптография (cryptography), 1144
+Криптостойкость (cryptostability), 1144
+Крона ордерева (tree top), 1429
+Лес (forest), 1413
+остовный (spanning), 1539
+Линейная комбинация (linear combination),
+
+Линия (line), 47
+Лист ордерева (leaf of directed tree), 1429
+Литерал (literal), 724
+контрарный (contrary), 807
+
+[Страница 1699]
+Логика (logic)
+нечёткая (fuzzy), 296
+Логическое отрицание (logical negation),
+
+Лупа (loop), 375
+Магма (magma), 352
+Макстерм (maxterm), 567
+Маршрут (walk), 1187
+замкнутый (closed), 1187
+открытый (open), 1187
+Массив (array), 836
+ассоциативный массив (associative), 1470
+дуг (of arcs), 1242
+рёбер (of edges), 1242
+Математика (mathematics)
+идемпотентная (idempotent), 400
+тропическая (tropical), 400
+Математическое
+ожидание
+(expected
+value), 1000
+Матрица
+выигрышей, 1007
+Матрица (matrix)
+булева (boolean), 184
+вычитание (subtraction), 184
+дизъюнкция (disjunction), 184
+длин дуг (of arc s length), 1369
+длин путей (of path s length), 1369
+инверсия (inversion), 184
+инциденций (incidence), 1240
+перестановочная (of permutation), 387
+переходных вероятностей, 1046
+подстановки (of substitution), 387
+
+[Страница 1700]
+порождающая (generator), 1117
+предшествования (precedence), 1369
+проверочная (parity check), 1118
+смежности (adjacency), 1239
+смежности рёбер (adjacency of edges),
+
+стохастическая (stochastic), 1045
+транспонирование (transposition), 184
+умножение (multiplication), 184
+Матричная игра, 1013
+Матроид (matroid), 498, 507
+разбиений (of partitions), 515
+свободный (free), 515
+трансверсалей (of transversals), 516
+Матрёшка (nest), 841
+Машина (Machine)
+Поста (Post), 749
+Тьюринга (Turing), 749
+Медиана (median), 869
+множества (of set), 1077
+Медиана (медиана), 1003
+Мера (measure), 982
+вероятностная (probabilistic), 984
+нормированная (normalized), 984
+Метатеорема (metatheorem), 680
+Метод (method)
+включений и исключений
+(of inclusion and exclusion), 938
+резолюций (of resolutions), 798, 801
+Метрика (metric), 1103
+Минтерм (minterm), 566
+Многозначная ассоциация (multimap), 1472
+
+[Страница 1701]
+Множество (set), 61
+аксиом (of axiom)
+независимое (independent), 683
+арифметическое (arithmetic), 793
+бесконечное (infinite), 64, 82
+вершин (of vertex)
+внешне устойчивое (externally stable),
+
+внутренне
+устойчивое
+(internally
+stable), 1595
+доминирующее (dominating), 1621
+независимое (independent), 1595
+разделяющее (dividing), 1293
+вполне
+упорядоченное
+(well-ordered),
+
+зависимое (dependent), 498
+заданное (defined by)
+перечислением элементов (enumeration)
+
+порождающей процедурой (generating
+procedure), 63
+характеристическим
+предикатом
+(characteristic predicate), 63
+замкнутое (closed), 323
+игроков (of players), 1005
+инцендентности
+вершин
+(of
+vertex
+incidence), 1168
+истин (of truths), 785
+арифметики (of arithmetic), 793
+конечное (finite), 64, 82
+линейно зависимое (linearly dependent),
+
+[Страница 1702]
+линейно независимое
+(linearly independent), 455
+линейно полное (completely ordered), 271
+линейно
+упорядоченное
+(linearly
+ordered), 257
+минимальное (minimal), 1621, 1622
+наименьшее (least), 1621, 1622
+независимое (independent), 498
+максимальное (maximal), 500
+несущее (support), 321
+несчётное (countless), 87
+образующих (of generators), 457
+перечислимое (enumerable), 758
+пометок (of labels), 1172
+порождающее (generating), 326, 457
+пустое (empty), 61
+разрезов (of cuts)
+независимое (independent), 1567
+рёбер (of edges)
+внешне устойчивое (externally stable),
+
+доминирующее (dominating), 1622
+независимое (independent), 1301, 1596
+разделяющее (separate), 1293
+смежности (adjacency), 1167
+сопряжённое (conjugate), 793
+счётное (countable), 84
+узлов (of nodes)
+доминирующее (dominating), 1624
+независимое (independent), 1624
+порождающее (generative), 1363
+уровня (level), 242
+
+[Страница 1703]
+характеристик (of characteristics), 289
+циклов (of cycles)
+независимое (independent), 1567
+частично
+упорядоченное
+(partially
+ordered), 257
+Модель (model), 321
+множества формул (of a set of formulas),
+
+множества формул (of set of formulas),
+
+формальной теории (of formal theory),
+
+Модуль (module), 466
+левый (left), 467
+правый (right), 467
+Моноид (monoid), 373
+Мономорфизм (monomorphism), 345
+Мост (bridge), 1273
+Мощность (cardinality)
+строго больше (strictly bigger), 105
+множества (of set), 81
+конечного (finite), 92
+мультимножества (of multiset), 67, 305
+Мощность (power)
+кодирования (of encoding), 1110
+Мультиграф (multigraph), 1171
+Мультимножество (multiset), 67
+Набор (tuple), 158
+Надмножество (superset), 77
+собственное (proper), 78
+Наибольший
+общий
+делитель
+(greatest
+common divisor), 415
+
+[Страница 1704]
+Наименьшее общее кратное (least common
+multiple), 420
+Направленный отрезок (directed interval),
+
+Нат, 1026
+Натуральное
+отображение
+(natural
+representation), 240
+Неподвижная точка (fixed point), 276
+наименьшая (least), 277
+перестановки (of permutation), 850
+Неполное частное (quotient), 410
+Непротиворечивость (consistency)
+семантическая (semantic), 682
+формальная (formal), 682
+Неравенство (inequality)
+Коши-Буняковского
+(Cauchy Bunyakovsky Schwarz), 1603
+Крафта (Kraft McMillan), 1034
+Макмиллана (Kraft McMillan), 1034, 1065
+полумодулярности (submodularity), 502
+треугольника (of triangle), 1369
+треугольника (triangle), 1103
+Нечёткое множество (fuzzy set), 296
+абсолютная разность (absolute difference),
+
+алгебраическая сумма (algebraic sum),
+
+алгебраическое
+умножение
+(algebraic
+multiplication), 314
+Нильпотентность (nilpotency), 468
+Носитель (support), 74, 321
+интерпретации (of interpretation), 727
+
+[Страница 1705]
+мультимножества (of multiset), 67
+Нуль
+группы (group identity), 379
+решётки (lattice identity), 480
+Нуль-вектор (nill vector), 452
+Нумерация множества (numbering of set),
+
+Область (domain)
+интерпретации (of interpretation), 681
+целостности (integral), 396
+Область
+действия
+квантора
+(scope
+of
+quantifier), 724
+Область значений (image, range)
+отношения (of relation), 167
+функции (of function), 213
+Область определения (domain)
+отношения (of relation), 167
+функции (of function), 213
+Область отправления (domain, source range)
+отношения (of relation), 166
+функции (of function), 212
+Область прибытия (codomain, target range)
+отношения (of relation), 166
+функции (of function), 212
+Обобщённая континуум-гипотеза
+(generalized continuum-hypothesis), 106
+Образ (image), 220
+Обфускация (obfuscation), 1492
+Обход дерева (traverse of tree)
+внутренний (inorder), 1462
+инфиксный (inorder), 1462
+концевой (postorder), 1462
+
+[Страница 1706]
+левый (preorder), 1462
+по уровням (breadth-first search), 1463
+постфиксный (postorder), 1462
+правый (postorder), 1462
+прямой (preorder), 1435, 1462
+симметричный (inorder), 1462
+Общее кратное (common multiple), 420
+Объединение (union)
+графов (of graphs), 1220
+множеств (of sets), 94
+дизъюнктивное (disjunctive), 163
+размеченное (tagged), 163
+мультимножеств (of multisets), 305
+нечёткое (fuzzy), 311
+Объектно-ориентированное программирование (object-oriented programming)
+cвойство (property), 147
+метод (method), 147
+Ограничение (constraint), 327
+Окрестность (neighborhood)
+вершины (of vertex), 1167
+метрическая (metric), 1103
+ошибок (of errors), 1097
+Онтология (ontology), 44
+Оператор (operator)
+линейный (linear), 475
+Оператор (statement)
+возврата (return), 227
+структурного перехода (structural go to),
+
+Операция (operation), 74
+n-арная (n-ary), 321
+
+[Страница 1707]
+антикоммутативная
+(anticommutativе),
+
+ассоциативная (associative), 329
+билинейная (bilinear), 468
+вариаргументная (varyadic), 545
+внешняя (outermost), 537
+главная (principal), 537
+групповая (group), 97, 545
+дистрибутивная (distributive), 329
+добавления элемента (of element adding),
+
+идемпотентная (idempotent), 329
+коммутативная (commutative), 329
+конечноместная (finitude), 321
+конкатенации (of concatenation), 70, 355
+кососимметричная (skew-symmetric), 468
+кратная (multiple), 545
+первичная (primary), 147
+пересечения (of intersection), 70
+подразбиения (subpartition), 1660
+разрешимая (resolvable), 334
+с памятью (with memory), 335
+связывания квантором (of binding by
+quantifier)
+всеобщности (universal), 665
+существования (existential), 666
+существования
+и
+единственности
+(existence and uniqueness), 667
+скобка Ли (Lie bracket), 468
+сократимая (cancellation), 332
+сравнения (of comparison), 74
+сцепления (of concatenation), 70
+
+[Страница 1708]
+удаления элемента (of element removal),
+
+Опровержение
+методом
+резолюций
+(refutation by resolution method), 813
+Орбита (orbit), 852
+Орбита элемента (element orbit), 380
+Орграф (digraph), 1171
+антисимметричный (antisymmetric), 1219
+направленный (directed), 1219
+обратный (reverse), 1256
+Ордерево (directed tree), 1425
+Ортогонализация (orthogonalization), 604
+формулы (formula), 604
+Ортогональная система булевых функций
+(Orthogonal system of Boolean functions),
+
+Ослабление (relaxation), 1372
+Основа (base), 321, 322
+Основание (moduli set)
+системы остаточных классов (system of
+residue number), 442
+Основание (radix), 124
+Остаток от деления (remainder), 410
+Остов (spanner), 1539
+кратчайший (shortest), 1539
+Отец узла (node parent), 1429
+Отношение (relation)
+n-арное (n-ary), 169
+n-местное (n-place), 169
+антирефлексивное (antireflexive), 173
+антисимметричное (antisymmetric), 173
+ациклическое (acyclic), 178
+
+[Страница 1709]
+бинарное (binary), 166
+делимости (of divisibility), 413
+дополнительное (complement), 168
+изоморфности (isomorphy), 248
+квазипорядка (quasiorder), 254
+линейное (linear), 173
+на множестве (on set), 167
+обратное (converse), 168
+однозначное (single-value), 212
+переписывания (of rewriting), 362
+полное (complete), 173
+порядка (order), 256
+антилексикографического
+(antilexicographical), 861
+лексикографического (lexicographical),
+
+линейного (linear), 256
+нестрогого (non-strict), 256
+строгого (strict), 256
+частичного (partial), 256
+предпорядка (preorder), 254
+строгого (strict), 255
+равномощности (of equivalence), 81
+редукции (of reduction), 362
+рефлексивное (reflexive), 173
+симметричное (symmentic), 173
+тождественное (identical), 169
+толерантности (of tolerance)
+строгой (strict), 419
+толерантности (tolerance), 243
+транзитивное (transitive), 173
+универсальное (universal), 168
+
+[Страница 1710]
+функциональное (functional), 212
+частичное (partial), 173
+эквивалентности (of equivalence), 231
+Отрезок (segment)
+массива (of array), 1527
+Отступы (tabbing), 418
+Очередь (queue)
+с приоритетом (priority), 1524
+Память ассоциативная
+(content-addressable memory), 1470
+Парадокс (paradox), 65
+Кантора (Cantor), 106
+Рассела (Bertrand Arthur William Rassel),
+
+дней рождения (birthday), 1478
+Параметр (parameter)
+терма (of term), 792
+Парето-доминирование, 1006
+Паросочетание (matching), 1301, 1596
+максимальное (maximal), 1596
+наибольшее (maximum), 1596
+максимальное (maximal), 1301
+наибольшее (maximum), 1301
+неустойчивое (unstable), 1309
+полное (complete), 1321
+совершенное (perfect), 1302
+устойчивое (stable), 1309
+Передатчик (transmitter), 1046
+Переменная (variable)
+несущественная (inessential), 526
+предметная (object), 720
+пропозициональная (propositional), 654,
+
+[Страница 1711]
+связанная (bounded), 722
+существенная (essential), 526
+фиктивная (inessential), 526
+Переписывание термов (term rewriting),
+
+за один шаг (one-step), 362
+Пересечение (intersection)
+множеств (of sets), 94
+мультимножеств (of multisets), 305
+нечёткое (fuzzy), 311
+Перестановка (permutation), 383
+Стирлинга (Stirling), 867
+обратная (inverse), 384
+тождественная (identity), 384
+циклическая (cyclic), 852
+Период (period), 224
+Петля (loop), 178, 851, 1171
+Побочный эффект (side-effect), 541
+Поглощение (absorption), 107, 329
+Подалгебра (subalgebra), 323
+Подвижная точка (moving point)
+перестановки (of permutation), 850
+Подграф (subgraph), 1183
+остовный (spanning), 1183, 1539
+правильный (regular), 1183
+собственный (proper), 1183
+Поддерево (subtree), 1425
+Подмножество (subset), 77
+разрешимое (solvable), 765
+собственное (proper), 78
+Подстановка (substitution), 373, 383, 850
+
+[Страница 1712]
+Подформула (subformula), 537
+Поиск (search)
+бинарный (binary), 874
+в глубину (depth first), 1243
+в ширину (breadth first), 1243
+двоичный (binary), 874
+от данных (from data), 828
+от целей (from target), 828
+полнотекстовый (full text), 1133
+Показатель элемента (index of element), 67
+Покрытие (covering), 98
+вершинное (vertex), 1593
+минимальное (minimal)
+вершинное (vertex), 1593
+рёберное (edge), 1594
+наименьшее (minimum)
+вершинное (vertex), 1593
+рёберное (edge), 1594
+рёберное (edge), 1594
+тупиковое (irredundant), 625
+Поле (field), 397
+Галуа (Galois), 461
+веществественных
+чисел
+(of
+real
+numbers), 323
+конечное (finite), 461
+рациональных
+чисел
+(of
+rational
+numbers), 323
+Полином (polynomial)
+арифметический (arithmetic), 599
+хроматический (chromatic), 1651
+Полином Жегалкина (Zhegalkin polynomial),
+
+[Страница 1713]
+Полнота (completeness)
+системы булевых функций (of boolean
+functions set), 641
+формальной теории (of formal theory),
+
+Полный перебор (exhaustive search), 1583
+Полугруппа (semi-group), 355
+свободная (free), 357
+циклическая (cyclic), 355
+Полукольцо (semiring), 404
+Полуполе (semifield), 401
+Полуразрешимость
+формальной
+теории
+(semi-solvability of formal theory), 683
+Полурешётка (semi-lattice), 489
+ограниченная (bounded), 490
+Полустепень захода (in-degree), 1185
+Полустепень исхода (out-degree), 1185
+Польская запись (polish notation), 1461
+обратная (postfix), 1462
+прямая (prefix), 1462
+Помехоустойчивость
+(noise-immunity),
+
+Порядок (order)
+группы (of group), 376
+перестановки (of permutation), 856
+установленный (established), 524
+Последовательность (sequence), 68
+возрастающая (increasing), 262
+графовая (of graph), 1197
+заключительно периодическая (eventially
+periodic), 224
+конечная (finite), 158
+
+[Страница 1714]
+остаточная (residual), 1199
+периодическая (periodic), 224
+степенная (of degrees), 1197
+строго монотонно возрастающая (strictly
+monotone increasing), 262
+Постоянная (constant)
+Капрекар (Kaprekar), 225
+Эйлера (Euler), 879
+Постфикс (postfix), 70
+Посылка правила вывода (hypothesis of
+rule), 679
+Поток (flow), 1331
+Потомок узла (ancestor node), 1429
+Правило (axiom)
+производная (derived), 700
+Правило (rule)
+введения дизъюнкции (introduction of
+disjunction), 699
+введения импликации (introduction of
+implication), 699
+вращения (rotation)
+двойного (double), 1513
+простого (single), 1511
+вывода (inference)
+производное (derived), 699
+формальной теории (of formal theory),
+
+замены (of replacement), 547
+отделения (of detachment), 689
+подстановки (of substitution), 547
+правой руки (right-hand), 469
+произведения (product), 834
+
+[Страница 1715]
+резолюции (resolution), 807
+сечения (cut), 704
+склеивания расщепления
+(clutching splitting), 572
+сложения (addition), 834
+суммы (sum), 834
+транзитивности (of transitivity), 704
+умножения (multiplication), 834
+Предикат (predicate), 290, 720
+n-местный (n-arity), 664
+n-местный (n-place), 720
+n-местный (n-place), 720
+одноместный (unary), 664
+Предложение (clause), 805
+Предобработка (pre-processing), 1527
+Предок узла (ancestor node), 1429
+Представление (representation), 758
+алгоритма (of algorithm), 776
+двоичное (binary), 121
+отношения (of relation)
+минимальное (minimal), 195
+функции (of function), 754
+чисел (of numbers), 124
+Преобразование (transformation), 214
+линейное (linear), 475
+над множеством (on set), 374
+эквивалентное (equivalent), 572
+Префикс (prefix), 70
+Приведение
+подобных
+(collecting
+like
+terms), 575
+Признаки (criteria)
+делимости (divisibility), 412
+
+[Страница 1716]
+Принадлежность (membership), 61
+Принцип (principle)
+Дирихле (Dirichlet), 835
+Дирихле (Dirichlet), 92
+двойственности (of duality), 479, 558
+индукции (of induction), 283
+Приёмник (receiver), 1046
+Проблема (problem)
+алгоритмически неразрешимая
+(algorithmically unsolvable), 360
+Программа (programme), 776
+остаточная (residual), 775
+Продолжение (extension)
+всюду
+определённое
+(completely
+defined), 782
+функции (of function), 213
+Продолжительность (duration)
+дуги (of arc), 1346
+Проекция (projection)
+алгоритма (algorithm), 775
+каноническая (canonical), 240
+Произведение (product)
+векторное (cross), 469
+декартово (Cartesian), 161
+перестановок (of permutations), 383
+прямое (direct), 161
+скалярное (scalar), 388
+Прообраз (preimage), 220
+Пропускная способность
+информационная, 1055
+операционная, 1056
+Пропускная способность (capacity)
+
+[Страница 1717]
+дуги (of arc), 1330
+разреза (of cut), 1332
+Пространство (space)
+векторное (vector), 452
+бесконечномерное (infinite-dimensional),
+
+конечномерное
+(finite-dimensional),
+
+вероятностное (probabilistic), 984
+дискретное (discrete), 985
+линейное (linear), 475
+поиска (search), 909
+Протаскивание
+отрицаний
+(dragging
+of
+negations), 573, 803
+Противоречие (contradiction), 658
+Протокол выполнения (execution protocol),
+
+Прямая сумма множеств (direct sum of sets),
+
+Прямой доступ (direct access), 876
+Прямоугольник (rectangle)
+латинский (Latin), 1306
+Псевдограф (pseudograph), 1171
+Путь (path), 1189
+критический (critical), 1344, 1346
+Равенство (equality)
+графов (of graphs), 1166
+множеств (of sets), 77
+мультимножеств (of multisets), 305
+упорядоченных пар (of ordered pairs), 158
+Равновесие (equilibrium), 1006
+Равновесие Нэша, 1006
+
+[Страница 1718]
+Радиус графа (radius of graph), 1194
+Разбиение (partition), 98
+Разделение
+связанных
+переменных
+(splitting of bounded variables), 804
+Размерность (dimension), 505
+векторного пространства (of vector space),
+
+Размножение
+вершины
+(duplication
+of
+vertex), 1222
+Разность (difference)
+множеств (of sets), 94
+симметрическая (symmetric), 94
+Разрез (cut), 1293, 1553
+правильный (regular), 1554
+простой (simple), 1556
+фундаментальный (fundamental), 1562
+Разрешимость
+по доминированию, 1009
+Разрешимость (solvability)
+класса формул (for formulas class), 568
+формальной теории (of formal theory),
+
+Разряд (digit)
+информационный (information), 1119
+контрольный (control), 1113, 1119
+проверочный (check), 1119
+Разряд (place), 116
+Ранг (rank)
+алгебры (of algebra), 327
+конъюнкции (of conjunction), 581
+коциклический (cocycle), 1562
+множества (of a set), 501
+
+[Страница 1719]
+циклический (cycle), 1558
+Раскраска графа (coloring of graph), 1637
+Раскрытие скобок (removal of brackets), 574
+Распознавание образов (pattern recognition),
+
+Расстояние (distance), 1103, 1192
+манхэттенское (Manhatten), 1409
+Левенштейна (Levenshtein), 1104
+Хэмминга (Hamming), 1106
+Чебышёва (Chebyshev), 1409
+евклидово (Euclidean), 1103
+кодовое (code), 1107
+Расширение (dilation)
+поля (field), 461
+Расшифровка (deciphering), 1143
+Расшифровывание (deciphering), 1143
+Расщепление (splitting), 572
+переменных (variables), 574
+Реализация (implementation)
+алгоритма (of algorithm), 776
+Реализация функции (implementation of
+function), 542
+Реализация
+функции
+(realization
+of
+function)
+алгоритмом (by algorithm), 753
+Ребро (edge)
+графа (of graph), 1166
+кратное (multiple), 1171
+покрывающее (covering), 1593
+Редукция (reduction)
+отношения (of relation), 189
+транзитивная (transitive), 195
+
+[Страница 1720]
+Резольвента (resolvent), 807
+Результат (result), 753
+Рекорд пути (path record), 1384
+Рекуррентное
+соотношение
+(recurrence
+ratio), 901
+Рекуррентные
+вычисления
+(recurrent
+computing), 137
+Релаксация (relaxation), 1372
+Решето Эратосфена (Sieve of Eratosthenes),
+
+Решётка (lattice), 479
+дистрибутивная (distributive), 480
+ограниченная (bounded), 480
+полная (complete), 487
+с дополнением (complement), 482
+Родитель узла (parent node), 1429
+Ряд (series)
+гармонический (harmonic), 961
+Свойство (property), 945
+Чёрча Россера (Church Rosser), 364
+Связанность узлов (connectivity of nodes)
+односторонняя (one-way), 1353
+сильная (strong), 1353
+слабая (weak), 1353
+Связка (connective)
+логическая (logical), 654, 688
+Связность (connectivity)
+вершинная (vertex), 1285
+односторонняя (one-way), 1353
+рёберная (edge), 1285
+сильная (strong), 1353
+слабая (weak), 1353
+
+[Страница 1721]
+Связь (link), 217
+Семантика (semantics), 778
+Семейство (family)
+равномощных подмножеств (of equipotent
+subsets), 104
+дизъюнктное (disjunct), 98
+множеств (of sets), 61
+Сеть (network), 1219
+Сжатие (compression), 1131
+адаптивное (adaptive), 1135
+с потерями (lossy), 1100
+Сигнатура (signature), 321
+формальной теории (of formal theory),
+
+Символ (symbol), 69
+Синдром (syndrome), 1122
+Синтаксис (syntax), 778
+Система (system)
+вычетов по модулю (of residue modulo)
+полная (complete), 436
+приведённая (reduced), 438
+наименьших неотрицательных вычетов
+(smallest non-negative residues), 436
+образующих (generating), 326
+остаточных классов (of residue number),
+
+подстановок термов (of term rewriting),
+362, 579
+конфлюэнтная (confluent), 364
+терминирующая (terminating), 363
+правил
+переписывания
+(of
+rewriting
+rules), 362, 579
+
+[Страница 1722]
+различных представителей (of distinct
+representatives), 1302
+разрезов (of cuts)
+фундаментальная (fundamental), 1562
+циклов (of cycles)
+фундаментальная (fundamental), 1558
+Система (system)
+подстановок термов (of term rewriting)
+остановочная (stopping), 363
+Система
+счисления
+(number
+language,
+notation, numeration, number system), 124
+остаточных классов (of residual classes),
+
+биномиальная (binomial), 124
+позиционная (positional), 124
+смешанная (mixed), 124
+факториальная (factorial), 124
+фибоначчиева (fibonacci), 124
+Система счисления (number system)
+позиционная (positional)
+десятичная (decimal), 1017
+Система счисления (number system, number
+language, notation, numeration)
+k-биномиальная (k-binomial), 918
+Систематика (systematics), 307
+Скаляр (scalar), 452, 466
+Склеивание (clutching), 572
+Сколемизация (sk olemization), 804
+Следствие логическое (logical consequence),
+660, 682, 733
+Словарь (dictionary), 1132, 1470
+Слово (word), 69, 1132
+
+[Страница 1723]
+машинное (machine), 116
+начало (prefix), 70
+окончание (postfix), 70
+пустое (empty), 69
+Сложение (addition)
+логическое (logical), 116
+по модулю 2 (by modulo 2), 116
+Сложность (complexity)
+временн ая (time), 831
+емкостн ая (space), 831
+по времени (time), 831
+по памяти (space), 831
+Случай (case)
+лучший (best), 831
+худший (worst), 831
+Смежность (adjacency)
+вершин (vertex), 1167
+рёбер (edge), 1167
+Смешанные вычисления
+(mixed computations), 541
+Смешанные стратегии, 1011
+Событие (event), 980, 984, 985, 1024
+достоверное (certain), 987
+невозможное (impossible), 987
+независимое (independent), 991, 998
+позднее время свершения (late date),
+
+раннее время свершения (early date),
+
+элементарное (elementary), 987
+Совершенный одночлен (perfect monomial),
+
+[Страница 1724]
+Содержится (contain), 77
+Соединение графов (join of graphs), 1220
+Сокращение (restriction)
+отношения (of relation), 189
+симметричное (symmetric), 208
+транзитивное (transitive), 195
+Сообщение (message), 1019
+шифрованное (coded), 1143
+Соответствие (correspondence), 79
+взаимно-однозначное
+(one-to-one
+correspondence), 80
+Соотношение (identity)
+Безу (Bezout), 421
+Соотношение (relationship)
+определяющее (defining), 327, 357
+Сортировка (sorting), 859
+быстрая (quick), 868
+пузырьком (bubble), 859
+формулы (formula), 575
+Состав (compound)
+мультимножества (of multiset), 67
+последовательности (of sequence), 913
+Список (list)
+двусвязный (double linked), 146
+закольцованный (looped), 146
+линейный (linear), 138
+односвязный (singly linked), 138
+смежности (adjacency), 1241
+элементов (of elements), 138
+Способность (capacity)
+пропускная (сhannel), 1100
+Сравнение (comparison), 432
+
+[Страница 1725]
+по модулю (modulo), 432
+Степень (degree)
+вершины (of vertex), 1184
+максимальная (maximal), 1184
+минимальная (minimal), 1184
+множества (of set), 162
+отношения (of relation), 177
+функции (of function), 223
+элемента (of element), 217
+Стиль программирования (coding standard),
+
+Стирание (erasing)
+символа (of symbol), 1058
+Сток (sink), 1219
+Стратегия (strategy)
+игрока (of player), 1005
+метода резолюций (of resolution method),
+
+неполная (incomplete), 823
+полная (complete), 823
+насыщения уровня (level saturation), 824
+отрицательная (negative), 828
+Стрелка Пирса (Pierce arrow), 109
+Структура
+алгебраическая
+(algebraic
+structure), 321
+Стягивание
+подграфа
+(shrinkage
+of
+subgraph), 1222
+Субконтрарность (subcontrary), 669
+Субфакториал (sub-factorial), 946
+Суждение (judgement), 793
+Сужение (constriction)
+поля (field), 461
+
+[Страница 1726]
+Сужение функции (restriction of function),
+
+Суперпозиция (superposition), 222
+Супремум (supremum), 270
+Схема (scheme)
+аксиомы (of axiom), 678, 688
+кодирования (coding), 1061
+алфавитная (alphabetic), 1033
+постфиксная (postfix), 1064
+правила вывода (of inference rule), 688
+префиксная (prefix), 1033, 1063
+равномерная (uniform), 1064
+разделимая, 1037
+разделимая (separable), 1062
+Схема Горнера (Horner s method), 591
+Сын узла (child node), 1429
+Сюръекция (surjection), 215
+Таблица (table)
+Кэли (Cayley), 338
+истинности (of truth values), 523
+кодов (of codes), 1061
+расстановки (hash), 1468, 1473, 1476
+хэш (hash), 1473
+Тавтология (tautology), 658, 682
+Тайнопись (cryptogram), 1144
+Тег (tag), 165
+Тезис (thesis)
+Тьюринга Чёрча (Church Turing), 749
+Тело (body)
+алгоритма (of algorithm), 752
+Тело (skew-field), 396
+Теорема (theorem), 785
+
+[Страница 1727]
+Гёделя (Kurt Friedrich G odel), 743, 744
+Кантора Бернштейна (Schr oder Bernstein),
+
+Куратовского
+(Kazimierz
+Kuratowski),
+
+Кёнига (K onig), 1604
+Менгера (Menger), 1295
+Поста (Emil Leon Post), 644
+Радо-Эдмондса (Rado Edmonds theorem),
+
+Ферма, малая (Fermat s little theorem),
+
+Форда Фалкерсона
+(Ford Fulkerson),
+
+Холла (Philip Hall), 1304
+формальной теории (of formal theory),
+
+Теория (theory)
+алгоритмов (of algorithms)
+наивная (naive), 750
+вероятности (of probability), 988
+групп (group), 738
+игр (of games), 1005
+информации (of information), 1016
+категорий (of category), 350
+полуразрешимая (semisolvable), 813
+равенства (of equality), 735
+формальная (formal), 677
+формальной
+арифметики
+(formal
+arithmetic), 737
+чисел (of numbers), 406
+элементарная (elementary), 407
+
+[Страница 1728]
+Терм (term), 328, 362, 721, 792
+минимальный (minimal), 566
+не редуцируемый (non-reducable), 363
+редуцируемый (reducable), 363
+свободный для переменной в формуле
+(free for variable in formula), 724
+Тип (type), 69, 321, 757
+Тождество (identity)
+Якоби (Jacobi), 468
+Точка Штейнера (Steiner point), 1549
+Точка сочленения (articulation point), 1273
+Траектория элемента (element trajectory),
+
+Трансверсаль (transversal), 1302
+частичная (partial), 516
+Транспозиция (transposition), 851
+Трансфинитный (transfinite), 93
+Треугольник (triangle), 178
+Треугольник Белла (Bell s triangle), 933
+Треугольник Паскаля (Pascal s triangle), 894
+Треугольник Паскаля (Pascal s triangle)
+расширенный (extended), 911
+Трудоёмкость
+алгоритма
+в
+среднем
+(average labor intensity), 874
+Турнир (tournament), 1219
+Удаление (removal)
+вершины (of vertex), 1220
+нулей (of zeros), 574
+ребра (of edge), 1221
+Узел (node), 1171
+Укладка графа (graph flattering), 1656
+Улучшение перебора (search improvement),
+
+[Страница 1729]
+Умножение (multiplication)
+вектора на скаляр (of vector on scalar),
+
+логическое (logical), 116
+Унар (unary algebra), 352
+Универсум (universe), 65
+Унификатор (unifier), 690
+наиболее общий (most general), 691
+общий (general), 691
+Упаковка (packing), 1131
+Упорядоченная пара (ordered couple), 158
+Уравнение (equation)
+диофантово (diophantine), 424
+Уровень опровержения (rebuttal level), 824
+Уровень узла (level of node), 1429
+Утечка (leak)
+информации (of information), 1054
+Фактор-граф (quotient graph), 1355
+Факториал (factorial)
+возрастающий (raising), 846
+убывающий (falling) , 838
+Факториал двойной (double factorial), 866
+Факторизация (factorization), 240
+функции (of function), 240
+Фактормножество (factor set), 239
+Форма (form), 538
+Дизъюнктивная (disjunctive), 538
+дизъюнктивная (disjunctive), 574, 581
+нормальная (normal), 568
+терма (term), 364
+нормальная
+сокращённая
+(normal
+
+[Страница 1730]
+reduced)
+дизъюнктивная (disjunctive), 586
+общая нормальная (general normal)
+терма (term), 364
+совершенная
+нормальная
+(perfect
+normal)
+дизъюнктивная (disjunctive), 568
+конъюнктивная (conjunctive), 571
+Форма записи (notation)
+инфиксная (infix), 167, 321
+постфиксная (postfix), 321
+префиксная (prefix), 321
+Формализация (formalization), 674
+Формализуемость (formalizability), 683
+Формула (formula), 536, 537, 793
+Байеса (Bayes), 1039
+Бине (Binet), 966
+Коши (Augustin Louis Cauchy), 889
+Хартли (Hartly), 1029
+Шеннона (Shannon), 1027
+Эйлера (Leonard Euler), 1658
+атомарная (atomic), 721
+бескванторная (quantifier-free), 734
+в предварённой форме (prenex form), 734
+включений и исключений
+(inclusion-exclusion), 941
+выполнимая (satisfiable), 658
+замкнутая (closed), 723
+истинная (true), 729
+ложная (false), 729
+невыполнимая (unsatisfiable), 658
+общезначимая (valid), 658, 682, 730
+
+[Страница 1731]
+открытая (open), 729
+пропозициональная (propositional), 656
+простых чисел (of prime numbers), 429
+противоречивая (contradictory), 682
+пустая (empty), 802
+равносильная (equivalent), 544
+унифицируемая (unificated), 691
+формальной теории (of formal theory),
+
+элементарная (elementary), 792
+Функциональный
+символ
+(functional
+symbol), 720
+n-местный (n-place), 720
+Функция (function), 212
+k-значной логики (k-valued logic), 532
+n-местная (n-place), 214
+n аргументов (n arguments), 214
+непрерывная по Скотту (Scott-continuous),
+
+Шеннона (Shannon), 1030
+Эйлера (Euler), 444
+аддитивная (additive), 444
+арифметическая (arithmetic), 445
+алгебры логики (of boolean algebra), 523
+биективная (bijective), 215
+булева (boolean), 523
+весовая (weight), 510
+взаимно-однозначная (one-to-one), 215
+вполне аддитивная (completely additive),
+
+вполне мультипликативная (completely
+multiplicative), 445
+
+[Страница 1732]
+вычислимая (computable), 753
+двойственная (dual), 554
+дистрибутивная (distributive), 490
+извлечения
+доказанного
+(proven
+extraction), 785
+индуцированная (induced), 240
+инъективная (injective), 215
+мажоритарная (majority), 556
+многозначная (multifunction), 212
+монотонная (monotone), 272
+монотонно
+возрастающая
+(monotone
+increasing), 272
+монотонно
+убывающая
+(monotone
+decreasing), 272
+мультипликативная (multiplicative), 444
+обратная (inverse), 216
+отождествления (identification), 240
+перехода к образам (image), 221
+перехода к прообразам (preimage), 221
+производящая (course-of-value), 958
+распределения вероятности (probability
+distribution), 989
+самодвойственная (self-dual), 555
+симметрическая (symmetric), 560
+строго монотонная (strictly monotone),
+
+строго монотонно возрастающая (strictly
+monotone increasing), 272
+строго монотонно убывающая (strictly
+monotone decreasing), 272
+сюръективная (surjective), 215
+тотальная (total), 213
+
+[Страница 1733]
+универсальная (universal), 779
+характеристическая (characteristic), 286
+нечёткая (fuzzy), 296
+хэш (hash), 1476, 1477
+частичная (partial), 213
+Функция выигрыша, 1005
+Характеристика канала (channel characteristic),
+
+Характеристика поля (field characteristic),
+
+Характеристическая функция (characteristic
+function), 289
+бинарная (binary), 289
+множества (of set), 290
+мультимножества (of multiset), 305
+неотрицательно целочисленная
+(integer-valued non-negative), 289
+нечёткая (fuzzy), 289
+отношения (of relation), 290
+Хорда (chord), 1413, 1558
+Хорновский дизъюнкт (Horn clause), 828
+Хэш (hash), 1477
+Цена кодирования (price of coding), 1031
+Центр (center)
+графа (of graph), 1195
+звезды (of star), 1216
+Цепочка (chain), 262
+множеств (of sets), 840
+полная (complete), 840
+Цепочка (string), 69
+Цепь (chain)
+гамильтонова (hamiltonian), 1580
+
+[Страница 1734]
+Цепь (circuit), 1187
+аугментальная (augmenting), 1335
+вершинно-непересекающаяся
+(pairwise
+vertex-independent), 1293
+простая (simple), 1187
+рёберно-непересекающаяся
+(pairwise
+edge-independent), 1293
+эйлерова (eulerian), 1571
+Цепь (line)
+Геодезическая (geodesic), 1192
+Цикл (cycle), 177, 851, 1188
+гамильтонов (hamiltonian), 1580
+матроида (of matroid), 506
+простой (simple), 1188, 1553
+фундаментальный (fundamental), 1558
+эйлеров (eulerian), 1571
+Цифра (digit), 124
+Цифровая подпись (digital signature), 1154
+Цифры (numerals)
+римские (roman), 1017
+Частное (quotient), 410
+Частный случай (instance)
+набора формул (set of formulas), 691
+наборов формул (set of formulas)
+совместный (shared), 691
+совместный (shared), 690
+формулы (formula), 690
+Частота (frequency)
+относительная (relative), 1043
+Часть графа (section of graph), 1183
+Числа (numbers)
+Стирлинга (Stirling)
+
+[Страница 1735]
+второго рода (of second kind), 926
+первого рода (of first kind), 926
+взаимно простые (coprime), 415
+обобщенные гармонические (generalized
+harmonic), 880
+Число (number)
+Белла (Eric Temple Bell), 932
+Евклида (Euclid), 426
+Каталана (Catalan), 968
+Моргана (Morgan), 926
+Фибоначчи (Fibonacci), 964
+вершинного
+покрытия
+(of
+vertex
+covering), 1593
+вещественное (real), 61
+гармоническое (harmonic), 879
+инверсий (of inversions), 858
+кардинальное (cardinal), 93
+кликовое (clique), 1211
+коцикломатическое (cocyclomatic), 1562
+кратное (multiple), 410
+натуральное (natural), 61, 326
+независимости (of independence)
+вершинное (vertex), 1595
+рёберное (edge), 1596
+перестановок (of permutations), 840
+простое (prime), 61, 425
+псевдослучайное (pseudorandom), 1145
+размещений (of menage), 837
+размещений без повторений (of simple
+menage), 838
+рёберного покрытия (of edge covering),
+
+[Страница 1736]
+совершенное (perfect), 414
+составное (composite), 425
+сочетаний (of combination), 842
+сочетаний с повторениями (of combination
+with repetition), 845
+треугольное (triangular), 84
+хроматическое (chromatic), 1637
+целое (integer), 61
+цикломатическое (cyclomatic), 1558
+чётное (even), 348
+Числовая ось (number line), 260
+Чистые стратегии, 1011
+Шар (ball), 1103
+Ширина ветвления (branch-width), 309
+Шифр (cipher), 1143
+надёжный (robust), 1144
+раскрытие (decoding), 1143
+с открытым ключом (public key), 1149
+симметричный (symmetric), 1146
+Шифрование (enciphering), 1143
+Шифровка (coded message), 1143
+Штрих Шеффера (Scheffer stroke), 109
+Шум (noise)
+информационный (infomation), 1054
+Эвристика (heuristic), 1404
+Эвристика(heuristic)
+допустимая (valid), 1407
+Эйлерова характеристика
+(Euler characteristic), 1658
+Эквивалентность
+логическая
+(logical
+equivalence), 660, 733
+Экземпляр класса (instance of class), 1225
+
+[Страница 1737]
+Экономичность системы счисления (radix
+efficiency), 125
+Эксцентриситет (eccentricity)
+вершины (of vertex), 1194
+Электронная подпись (digital signature),
+
+Элемент (element)
+максимальный (maximal), 266
+минимальный (minimal), 264
+множества (of set), 61
+наибольший (greatest), 266
+наименьший (least), 265
+нейтральный (neutral), 331
+аддитивный (additive), 452
+мультипликативный
+(multiplicative),
+
+относительно операции (for operation),
+
+обратный (inverse), 333
+опорный (pivot), 868
+Элиминация (elimination)
+импликации (of implication), 803
+квантора
+всеобщности
+(of
+universal
+quantifier), 805
+квантора существования (of existential
+quantifier), 804
+конъюнкции (of conjunction), 805
+операции (of operation), 573
+Эндоморфизм (endomorphism), 345
+Энтропия (entropy), 1027
+информационная ((information)), 1027
+совместная (joint), 1042, 1050
+
+[Страница 1738]
+условная (conditional), 1042, 1050
+Эпиморфизм (epimorphism), 345
+Эффективность
+кодирования
+(coding
+efficiency), 1031
+Ядро (kernel)
+графа (of graph), 1623
+орграфа (of digraph), 1624
+отношения (of relation), 181
+Язык (language), 70
+Пролог (Prolog), 828
+формальной теории (of formal theory),
+
+Ярус (tier), 1193
+дерева (of tree), 1429

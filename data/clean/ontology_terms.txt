@@ -1,0 +1,146 @@
+Азбука Морзе (Morse alphabet) -> 1069
+Аксиома (axiom) (метрики (of metric)) -> 1103
+Аксиома (axiom) (симметрии (of symmetry)) -> 1103
+Аксиома (axiom) (тождества (of identity)) -> 1103
+Лемпела-Зива (Lempel-Ziv) -> 1135
+Фано (Fano) -> 1077
+Хаффмена (Huffman) -> 1086
+Бит (bit) -> 1026
+Бит (bit) (чётности (parity)) -> 1096
+Битовая шкала (bit scale) (ошибок (of error)) -> 1122
+Блок (block) (сообщения (code)) -> 1095
+Вероятность (условная) -> 1039
+[Страница 1683] (апостериорная (posterior)) -> 1040
+[Страница 1683] (априорная (prior)) -> 1040
+Гамма шифра (cypher gamma) -> 1145
+Декодирование (decoding) -> 1019
+АВЛ-дерево (AVL-tree) (бинарное (binary)) -> 1032
+классификации (classification) (кодовое (coding)) -> 1032
+Дешифрация (decoding) -> 1143
+Дешифрование (decoding) -> 1143
+информационных потоков (of information (flow)) -> 1054
+информационных потоков (of information (переходов (of transitions)) -> 1047
+Дистанция (distance) (редактирования (edit)) -> 1104
+Длина (length) (кодирования (of coding))) -> 1074
+(decoding (fidelity)) -> 1100
+Зашифровка (enciphering) -> 1143
+Избыточность (источника) -> 1029
+Избыточность (относительная) -> 1029
+Информация (information) -> 1016
+Информация (information) (взаимная (mutual)) -> 1040
+Информация (information) (условная (conditional)) -> 1041
+Источник (source) (двоичный (binary)) -> 1030
+информации (of information) (дискретный (discrete)) -> 1024
+(binary (symmetric)) -> 1099
+связи (communication) (без памяти (memoryless)) -> 1046
+связи (communication) (дискретный (discrete)) -> 1046
+связи (communication) (с помехами (noisy)) -> 1091
+ассоциативной памяти (content-addressable (шифра (of encryption)) -> 1143
+Хэмминга (Hamming) -> 1122
+Хэмминга (Hamming) (сообщения (of message)) -> 1019
+Хэмминга (Hamming) (элементарный (elementary)) -> 1061
+Кодирование (coding) -> 1019
+Кодирование (coding) (m-ичное (m-ary)) -> 1019
+Схема (scheme) -> 1031
+Схема (scheme) (алфавитное (alphabetic)) -> 1031
+Схема (scheme) (алфавитное (alphabetic)) -> 1061
+Схема (scheme) (безызбыточное (breakeven)) -> 1112
+coded (decimal)) -> 1061
+coded (двоичное (binary)) -> 1019
+coded (информации (of information)) -> 1017
+coded (однозначное (unique)) -> 1020
+coded (оптимальное (optimal)) -> 1075
+coded (побуквенное (alphabetic)) -> 1061
+coded (помехоустойчивое (antinoise)) -> 1093
+coded (равномерное (uniform)) -> 1075
+(with (minimal redundancy)) -> 1075
+самокорректирующееся (self-correcting), (цена (price)) -> 1074
+Кодирование (encoding) (систематическое (systematic)) -> 1119
+Кодовое слово (code word) -> 1031
+Кодовое слово (code word) -> 1061
+[Страница 1697] (информации (of information)) -> 1025
+Количество (quantaty) (информации (of information)) -> 1017
+Координаты (coordinates) (декартовы (Cartesian)) -> 1017
+Безу (Bezout) (сжатия (of compression)) -> 1131
+Криптография (cryptography) -> 1144
+Криптостойкость (cryptostability) -> 1144
+Матрица (matrix) (переходных вероятностей) -> 1046
+[Страница 1700] (порождающая (generator)) -> 1117
+[Страница 1700] (проверочная (parity check)) -> 1118
+смежности рёбер (adjacency of edges), (стохастическая (stochastic)) -> 1045
+Медиана (median) (множества (of set)) -> 1077
+Метрика (metric) -> 1103
+Мощность (power) (кодирования (of encoding)) -> 1110
+Нат -> 1026
+Крафта (Kraft McMillan) -> 1034
+Макмиллана (Kraft McMillan) -> 1034
+Макмиллана (Kraft McMillan) -> 1065
+Макмиллана (Kraft McMillan) (треугольника (triangle)) -> 1103
+Окрестность (neighborhood) (метрическая (metric)) -> 1103
+Окрестность (neighborhood) (ошибок (of errors)) -> 1097
+Передатчик (transmitter) -> 1046
+Поиск (search) (полнотекстовый (full text)) -> 1133
+Приёмник (receiver) -> 1046
+Пропускная способность (информационная) -> 1055
+Пропускная способность (операционная) -> 1056
+Разряд (digit) (информационный (information)) -> 1119
+Разряд (digit) (контрольный (control)) -> 1113
+Разряд (digit) (контрольный (control)) -> 1119
+Разряд (digit) (проверочный (check)) -> 1119
+Расстояние (distance) -> 1103
+Левенштейна (Levenshtein) -> 1104
+Хэмминга (Hamming) -> 1106
+Чебышёва (Chebyshev) (евклидово (Euclidean)) -> 1103
+Чебышёва (Chebyshev) (кодовое (code)) -> 1107
+Расшифровка (deciphering) -> 1143
+Расшифровывание (deciphering) -> 1143
+Сжатие (compression) -> 1131
+Сжатие (compression) (адаптивное (adaptive)) -> 1135
+Сжатие (compression) (с потерями (lossy)) -> 1100
+Синдром (syndrome) -> 1122
+позиционная (positional) (десятичная (decimal)) -> 1017
+Словарь (dictionary) -> 1132
+Слово (word) -> 1132
+Событие (event) -> 1024
+Сообщение (message) -> 1019
+Сообщение (message) (шифрованное (coded)) -> 1143
+Способность (capacity) (пропускная (сhannel)) -> 1100
+Стирание (erasing) (символа (of symbol)) -> 1058
+Схема (scheme) (кодирования (coding)) -> 1061
+Схема (scheme) (алфавитная (alphabetic)) -> 1033
+Схема (scheme) (постфиксная (postfix)) -> 1064
+Схема (scheme) (префиксная (prefix)) -> 1033
+Схема (scheme) (префиксная (prefix)) -> 1063
+Схема (scheme) (равномерная (uniform)) -> 1064
+Схема (scheme) (разделимая) -> 1037
+Схема (scheme) (разделимая (separable)) -> 1062
+Кэли (Cayley) (кодов (of codes)) -> 1061
+Тайнопись (cryptogram) -> 1144
+алгоритмов (of algorithms) (информации (of information)) -> 1016
+Упаковка (packing) -> 1131
+Утечка (leak) (информации (of information)) -> 1054
+Байеса (Bayes) -> 1039
+Хартли (Hartly) -> 1029
+Шеннона (Shannon) -> 1027
+Шеннона (Shannon) -> 1030
+Цена кодирования (price of coding) -> 1031
+Цифровая подпись (digital signature) -> 1154
+Цифры (numerals) (римские (roman)) -> 1017
+Частота (frequency) (относительная (relative)) -> 1043
+независимости (of independence) (псевдослучайное (pseudorandom)) -> 1145
+Шар (ball) -> 1103
+Шифр (cipher) -> 1143
+Шифр (cipher) (надёжный (robust)) -> 1144
+Шифр (cipher) (раскрытие (decoding)) -> 1143
+Шифр (cipher) (с открытым ключом (public key)) -> 1149
+Шифр (cipher) (симметричный (symmetric)) -> 1146
+Шифрование (enciphering) -> 1143
+Шифровка (coded message) -> 1143
+Шум (noise) (информационный (infomation)) -> 1054
+Энтропия (entropy) -> 1027
+Энтропия (entropy) (информационная ((information))) -> 1027
+Энтропия (entropy) (совместная (joint)) -> 1042
+Энтропия (entropy) (совместная (joint)) -> 1050
+[Страница 1738] (условная (conditional)) -> 1042
+[Страница 1738] (условная (conditional)) -> 1050
+(coding (efficiency)) -> 1031
