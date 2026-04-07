@@ -95,6 +95,14 @@ def validate_dataset_structure(dataset: dict) -> list[str]:
 				f"В кейсе №{index} указан недопустимый тип вопроса: {question_type}"
 			)
 
+		chapter = test_case.get("chapter")
+		if not isinstance(chapter, str) or not chapter.strip():
+			errors.append(f"Поле chapter в кейсе №{index} должно быть непустой строкой")
+
+		question = test_case.get("question")
+		if not isinstance(question, str) or not question.strip():
+			errors.append(f"Поле question в кейсе №{index} должно быть непустой строкой")
+
 		must_refuse_if_missing_info = test_case.get("must_refuse_if_missing_info")
 		if not isinstance(must_refuse_if_missing_info, bool):
 			errors.append(
