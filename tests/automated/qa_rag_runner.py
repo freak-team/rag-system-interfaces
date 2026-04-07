@@ -157,6 +157,23 @@ def keyword_in_ontology(keyword: str, ontology_terms: set[str]) -> bool:
     return False
 
 
+def build_case_ontology_coverage(test_case: dict, ontology_terms: set[str]) -> dict:
+    """Формирует покрытие онтологией для одного тест-кейса."""
+    expected_keywords = test_case.get("expected_keywords", [])
+    covered_keywords = [
+        keyword for keyword in expected_keywords if keyword_in_ontology(keyword, ontology_terms)
+    ]
+    missing_keywords = [
+        keyword for keyword in expected_keywords if keyword not in covered_keywords
+    ]
+
+    return {
+        "ontology_keywords_total": len(expected_keywords),
+        "ontology_keywords_covered": len(covered_keywords),
+        "ontology_missing_keywords": missing_keywords,
+    }
+
+
 def build_ontology_coverage_summary(case_results: list[dict]) -> dict:
     """Формирует сводку покрытия ключевых слов терминами онтологии."""
     total_keywords = 0
@@ -291,13 +308,7 @@ def run_cases(
                 "Причина: текущая retrieval-архитектура не поддерживает reasoning-проверки "
                 "для negative/ambiguous без LLM"
             )
-            expected_keywords = test_case.get("expected_keywords", [])
-            covered_keywords = [
-                keyword for keyword in expected_keywords if keyword_in_ontology(keyword, ontology_terms)
-            ]
-            missing_keywords = [
-                keyword for keyword in expected_keywords if keyword not in covered_keywords
-            ]
+            coverage_data = build_case_ontology_coverage(test_case=test_case, ontology_terms=ontology_terms)
 
             case_results.append(
                 {
@@ -306,22 +317,14 @@ def run_cases(
                     "run_status": "blocked",
                     "verdict": "blocked",
                     "block_reason": "reasoning_not_supported_without_llm",
-                    "ontology_keywords_total": len(expected_keywords),
-                    "ontology_keywords_covered": len(covered_keywords),
-                    "ontology_missing_keywords": missing_keywords,
+                    **coverage_data,
                 }
             )
             continue
 
         if dry_run:
             print("DRY-RUN: вызов backend пропущен")
-            expected_keywords = test_case.get("expected_keywords", [])
-            covered_keywords = [
-                keyword for keyword in expected_keywords if keyword_in_ontology(keyword, ontology_terms)
-            ]
-            missing_keywords = [
-                keyword for keyword in expected_keywords if keyword not in covered_keywords
-            ]
+            coverage_data = build_case_ontology_coverage(test_case=test_case, ontology_terms=ontology_terms)
 
             case_results.append(
                 {
@@ -329,9 +332,7 @@ def run_cases(
                     "question_type": question_type,
                     "run_status": "skipped",
                     "verdict": "skipped",
-                    "ontology_keywords_total": len(expected_keywords),
-                    "ontology_keywords_covered": len(covered_keywords),
-                    "ontology_missing_keywords": missing_keywords,
+                    **coverage_data,
                 }
             )
             continue
@@ -348,13 +349,7 @@ def run_cases(
         except RuntimeError as error:
             print(f"Ошибка: {error}")
             run_errors += 1
-            expected_keywords = test_case.get("expected_keywords", [])
-            covered_keywords = [
-                keyword for keyword in expected_keywords if keyword_in_ontology(keyword, ontology_terms)
-            ]
-            missing_keywords = [
-                keyword for keyword in expected_keywords if keyword not in covered_keywords
-            ]
+            coverage_data = build_case_ontology_coverage(test_case=test_case, ontology_terms=ontology_terms)
             case_results.append(
                 {
                     "id": case_id,
@@ -362,9 +357,7 @@ def run_cases(
                     "run_status": "error",
                     "verdict": "error",
                     "error": str(error),
-                    "ontology_keywords_total": len(expected_keywords),
-                    "ontology_keywords_covered": len(covered_keywords),
-                    "ontology_missing_keywords": missing_keywords,
+                    **coverage_data,
                 }
             )
             continue
@@ -385,16 +378,8 @@ def run_cases(
                 **evaluation,
             }
         )
-        expected_keywords = test_case.get("expected_keywords", [])
-        covered_keywords = [
-            keyword for keyword in expected_keywords if keyword_in_ontology(keyword, ontology_terms)
-        ]
-        missing_keywords = [
-            keyword for keyword in expected_keywords if keyword not in covered_keywords
-        ]
-        case_results[-1]["ontology_keywords_total"] = len(expected_keywords)
-        case_results[-1]["ontology_keywords_covered"] = len(covered_keywords)
-        case_results[-1]["ontology_missing_keywords"] = missing_keywords
+        coverage_data = build_case_ontology_coverage(test_case=test_case, ontology_terms=ontology_terms)
+        case_results[-1].update(coverage_data)
 
         if include_answers:
             case_results[-1]["plain_answer"] = plain_answer
