@@ -21,6 +21,7 @@ REQUIRED_TEST_CASE_KEYS = (
 	"notes",
 )
 ALLOWED_QUESTION_TYPES = ("definition", "comparison", "explanation", "application", "negative", "ambiguous")
+ALLOWED_EXPECTED_ANSWER_STYLES = ("formal_academic", "short")
 
 
 def load_dataset(file_path: Path) -> dict:
@@ -102,6 +103,12 @@ def validate_dataset_structure(dataset: dict) -> list[str]:
 		question = test_case.get("question")
 		if not isinstance(question, str) or not question.strip():
 			errors.append(f"Поле question в кейсе №{index} должно быть непустой строкой")
+
+		expected_answer_style = test_case.get("expected_answer_style")
+		if expected_answer_style not in ALLOWED_EXPECTED_ANSWER_STYLES:
+			errors.append(
+				f"В кейсе №{index} указан недопустимый стиль ответа: {expected_answer_style}"
+			)
 
 		must_refuse_if_missing_info = test_case.get("must_refuse_if_missing_info")
 		if not isinstance(must_refuse_if_missing_info, bool):
