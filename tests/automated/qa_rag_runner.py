@@ -337,6 +337,13 @@ def run_cases(
         except RuntimeError as error:
             print(f"Ошибка: {error}")
             run_errors += 1
+            expected_keywords = test_case.get("expected_keywords", [])
+            covered_keywords = [
+                keyword for keyword in expected_keywords if keyword_in_ontology(keyword, ontology_terms)
+            ]
+            missing_keywords = [
+                keyword for keyword in expected_keywords if keyword not in covered_keywords
+            ]
             case_results.append(
                 {
                     "id": case_id,
@@ -344,6 +351,9 @@ def run_cases(
                     "run_status": "error",
                     "verdict": "error",
                     "error": str(error),
+                    "ontology_keywords_total": len(expected_keywords),
+                    "ontology_keywords_covered": len(covered_keywords),
+                    "ontology_missing_keywords": missing_keywords,
                 }
             )
             continue
@@ -374,9 +384,9 @@ def run_cases(
         case_results[-1]["ontology_keywords_total"] = len(expected_keywords)
         case_results[-1]["ontology_keywords_covered"] = len(covered_keywords)
         case_results[-1]["ontology_missing_keywords"] = missing_keywords
-        case_results[-1]["plain_answer"] = plain_answer
 
         if include_answers:
+            case_results[-1]["plain_answer"] = plain_answer
             case_results[-1]["backend_answer"] = backend_answer
 
     report_data = {
