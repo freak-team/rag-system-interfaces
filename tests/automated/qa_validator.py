@@ -52,10 +52,18 @@ def validate_dataset_structure(dataset: dict) -> list[str]:
 		errors.append("Поле test_cases должно быть списком")
 		return errors
 
+	seen_ids = set()
+
 	for index, test_case in enumerate(test_cases, start=1):
 		if not isinstance(test_case, dict):
 			errors.append(f"Кейс №{index} должен быть объектом JSON")
 			continue
+
+		test_case_id = test_case.get("id")
+		if test_case_id in seen_ids:
+			errors.append(f"Найден дублирующийся id в кейсе №{index}: {test_case_id}")
+		elif test_case_id is not None:
+			seen_ids.add(test_case_id)
 
 		for required_key in REQUIRED_TEST_CASE_KEYS:
 			if required_key not in test_case:
