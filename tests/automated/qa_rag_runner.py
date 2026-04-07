@@ -83,7 +83,10 @@ def normalize_text(text: str) -> str:
 
 def strip_html_tags(text: str) -> str:
     """Удаляет HTML-теги из ответа backend для корректной текстовой оценки."""
-    return re.sub(r"<[^>]+>", " ", text)
+    # Срезаем только конструкции, похожие на реальные теги, чтобы не портить выражения вида <=>.
+    text_without_tags = re.sub(r"</?[A-Za-z][^<>]*?>", " ", text)
+    text_without_tags = re.sub(r"<![^<>]*?>", " ", text_without_tags)
+    return text_without_tags
 
 
 def evaluate_answer(test_case: dict, answer: str) -> dict:
@@ -133,6 +136,7 @@ def load_ontology_terms(file_path: Path) -> set[str]:
                 continue
 
             term_part = line.split("->", maxsplit=1)[0].strip()
+            term_part = re.sub(r"^(?:\[[^\]]+\]\s*)+", "", term_part).strip()
             if not term_part:
                 continue
 
@@ -205,13 +209,20 @@ def print_verdict_summary(verdict_summary: dict) -> None:
         print(f"- {verdict}: {count}")
 
 
-def calculate_exit_code(run_errors: int, verdict_summary: dict, strict_exit: bool) -> int:
+def calculate_exit_code(run_errors: int, verdict_summary: dict, strict_exit: bool, total_cases: int) -> int:
     """Вычисляет код завершения прогона с учетом строгого режима."""
     if run_errors > 0:
         return 1
 
     if not strict_exit:
         return 0
+
+    if total_cases == 0:
+        print(
+            "Строгий режим контроля активирован: после применения фильтров не осталось кейсов, "
+            "поэтому запуск завершается с кодом 1"
+        )
+        return 1
 
     strict_failure_verdicts = ("error", "fail", "partial")
     has_strict_failures = any(verdict_summary.get(verdict, 0) > 0 for verdict in strict_failure_verdicts)
@@ -417,6 +428,7 @@ def run_cases(
         run_errors=run_errors,
         verdict_summary=report_data["summary"]["verdicts"],
         strict_exit=strict_exit,
+        total_cases=len(test_cases),
     )
 
 
