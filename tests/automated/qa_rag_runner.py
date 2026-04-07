@@ -144,9 +144,15 @@ def run_cases(
     response_answer_field: str,
     timeout_seconds: int,
     question_type_filter: str,
+    case_ids_filter: list[str],
 ) -> int:
     """Запускает кейсы из датасета и возвращает код завершения."""
     test_cases = dataset.get("test_cases", [])
+
+    if case_ids_filter:
+        case_id_set = set(case_ids_filter)
+        test_cases = [test_case for test_case in test_cases if test_case.get("id") in case_id_set]
+
     if question_type_filter:
         test_cases = [
             test_case for test_case in test_cases if test_case.get("question_type") == question_type_filter
@@ -222,6 +228,7 @@ def run_cases(
         "dry_run": dry_run,
         "endpoint": endpoint,
         "question_type_filter": question_type_filter,
+        "case_ids_filter": case_ids_filter,
         "results": case_results,
         "summary": {
             "verdicts": build_verdict_summary(case_results),
@@ -265,11 +272,29 @@ def parse_args() -> argparse.Namespace:
         help="Фильтр по типу вопроса (definition/comparison/explanation/application/negative/ambiguous)",
     )
     parser.add_argument(
+        "--case-ids",
+        default="",
+        help="Список id кейсов через запятую (пример: CH6-001,CH6-005)",
+    )
+    parser.add_argument(
         "--report-path",
         default=str(DEFAULT_REPORT_PATH),
         help="Путь к JSON-отчету прогона",
     )
     return parser.parse_args()
+
+
+def parse_case_ids(case_ids_argument: str) -> list[str]:
+    """Преобразует аргумент case ids в список идентификаторов."""
+    if not case_ids_argument.strip():
+        return []
+
+    case_ids = [case_id.strip() for case_id in case_ids_argument.split(",") if case_id.strip()]
+    for case_id in case_ids:
+        if not re.fullmatch(r"CH\d+-\d{3}", case_id):
+            raise ValueError(f"Недопустимый формат id в --case-ids: {case_id}")
+
+    return case_ids
 
 
 def main() -> None:
@@ -281,6 +306,12 @@ def main() -> None:
             "Ошибка: недопустимое значение --question-type. "
             f"Допустимые значения: {', '.join(ALLOWED_QUESTION_TYPES)}"
         )
+        sys.exit(1)
+
+    try:
+        case_ids_filter = parse_case_ids(args.case_ids)
+    except ValueError as error:
+        print(f"Ошибка: {error}")
         sys.exit(1)
 
     try:
@@ -302,6 +333,7 @@ def main() -> None:
         response_answer_field=args.response_answer_field,
         timeout_seconds=args.timeout_seconds,
         question_type_filter=args.question_type,
+        case_ids_filter=case_ids_filter,
     )
     sys.exit(exit_code)
 
