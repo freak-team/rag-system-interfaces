@@ -101,6 +101,14 @@ def validate_dataset_structure(dataset: dict) -> list[str]:
 
 		if not isinstance(test_case.get("tags", []), list):
 			errors.append(f"Поле tags в кейсе №{index} должно быть списком")
+		elif not test_case.get("tags"):
+			errors.append(f"Поле tags в кейсе №{index} не должно быть пустым")
+		else:
+			for tag_index, tag in enumerate(test_case.get("tags", []), start=1):
+				if not isinstance(tag, str):
+					errors.append(
+						f"В кейсе №{index} элемент tags №{tag_index} должен быть строкой"
+					)
 
 		question_type = test_case.get("question_type")
 		if question_type not in ALLOWED_QUESTION_TYPES:
