@@ -87,6 +87,12 @@ def validate_dataset_structure(dataset: dict) -> list[str]:
 				f"В кейсе №{index} указан недопустимый тип вопроса: {question_type}"
 			)
 
+		must_refuse_if_missing_info = test_case.get("must_refuse_if_missing_info")
+		if not isinstance(must_refuse_if_missing_info, bool):
+			errors.append(
+				f"Поле must_refuse_if_missing_info в кейсе №{index} должно быть булевым значением"
+			)
+
 	return errors
 
 
