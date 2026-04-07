@@ -158,6 +158,7 @@ def run_cases(
     dataset: dict,
     endpoint: str,
     dry_run: bool,
+    include_answers: bool,
     limit: int,
     report_path: Path,
     request_question_field: str,
@@ -243,10 +244,13 @@ def run_cases(
                 **evaluation,
             }
         )
+        if include_answers:
+            case_results[-1]["backend_answer"] = backend_answer
 
     report_data = {
         "total_cases": len(test_cases),
         "dry_run": dry_run,
+        "include_answers": include_answers,
         "strict_exit": strict_exit,
         "endpoint": endpoint,
         "question_type_filter": question_type_filter,
@@ -291,6 +295,11 @@ def parse_args() -> argparse.Namespace:
         help="Таймаут HTTP-запроса к backend в секундах",
     )
     parser.add_argument("--dry-run", action="store_true", help="Запуск без реального вызова backend")
+    parser.add_argument(
+        "--include-answers",
+        action="store_true",
+        help="Сохранять в отчёте исходные ответы backend для ручного академического разбора",
+    )
     parser.add_argument(
         "--strict-exit",
         action="store_true",
@@ -358,6 +367,7 @@ def main() -> None:
         dataset=dataset,
         endpoint=args.endpoint,
         dry_run=args.dry_run,
+        include_answers=args.include_answers,
         limit=args.limit,
         report_path=Path(args.report_path),
         request_question_field=args.request_question_field,
