@@ -230,6 +230,7 @@ def run_cases(
     endpoint: str,
     dry_run: bool,
     include_answers: bool,
+    block_reasoning_cases: bool,
     limit: int,
     report_path: Path,
     request_question_field: str,
@@ -272,6 +273,34 @@ def run_cases(
         question_type = test_case.get("question_type", "unknown")
         print(f"[{index}] {case_id}")
         print(f"Вопрос: {question}")
+
+        if block_reasoning_cases and question_type in ("negative", "ambiguous"):
+            print(
+                "Статус кейса: blocked. "
+                "Причина: текущая retrieval-архитектура не поддерживает reasoning-проверки "
+                "для negative/ambiguous без LLM"
+            )
+            expected_keywords = test_case.get("expected_keywords", [])
+            covered_keywords = [
+                keyword for keyword in expected_keywords if keyword_in_ontology(keyword, ontology_terms)
+            ]
+            missing_keywords = [
+                keyword for keyword in expected_keywords if keyword not in covered_keywords
+            ]
+
+            case_results.append(
+                {
+                    "id": case_id,
+                    "question_type": question_type,
+                    "run_status": "blocked",
+                    "verdict": "blocked",
+                    "block_reason": "reasoning_not_supported_without_llm",
+                    "ontology_keywords_total": len(expected_keywords),
+                    "ontology_keywords_covered": len(covered_keywords),
+                    "ontology_missing_keywords": missing_keywords,
+                }
+            )
+            continue
 
         if dry_run:
             print("DRY-RUN: вызов backend пропущен")
@@ -354,6 +383,7 @@ def run_cases(
         "total_cases": len(test_cases),
         "dry_run": dry_run,
         "include_answers": include_answers,
+        "block_reasoning_cases": block_reasoning_cases,
         "strict_exit": strict_exit,
         "verify_ssl": verify_ssl,
         "endpoint": endpoint,
@@ -415,6 +445,11 @@ def parse_args() -> argparse.Namespace:
         "--strict-exit",
         action="store_true",
         help="Завершать запуск кодом 1 при наличии вердиктов fail/partial/error",
+    )
+    parser.add_argument(
+        "--disable-reasoning-block",
+        action="store_true",
+        help="Не блокировать кейсы negative/ambiguous (использовать только при согласованной LLM-архитектуре)",
     )
     parser.add_argument("--limit", type=int, default=0, help="Ограничить число кейсов (0 = все)")
     parser.add_argument(
@@ -495,6 +530,7 @@ def main() -> None:
         endpoint=args.endpoint,
         dry_run=args.dry_run,
         include_answers=args.include_answers,
+        block_reasoning_cases=not args.disable_reasoning_block,
         limit=args.limit,
         report_path=Path(args.report_path),
         request_question_field=args.request_question_field,
