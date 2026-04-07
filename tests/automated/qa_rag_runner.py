@@ -5,6 +5,7 @@ from pathlib import Path
 import argparse
 import json
 import re
+import ssl
 import sys
 from urllib import error as urllib_error
 from urllib import request as urllib_request
@@ -14,6 +15,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DATASET_PATH = PROJECT_ROOT / "tests" / "data" / "golden_dataset.json"
 DEFAULT_REPORT_PATH = PROJECT_ROOT / "tests" / "automated" / "reports" / "qa_rag_runner_report.json"
 DEFAULT_ONTOLOGY_TERMS_PATH = PROJECT_ROOT / "data" / "clean" / "ontology_terms.txt"
+DEFAULT_SEARCH_ENDPOINT = "https://127.0.0.1:8000/api/search"
 ALLOWED_QUESTION_TYPES = ("definition", "comparison", "explanation", "application", "negative", "ambiguous")
 
 
@@ -29,6 +31,7 @@ def call_rag_backend(
     request_question_field: str,
     response_answer_field: str,
     timeout_seconds: int,
+    verify_ssl: bool,
 ) -> str:
     """Вызывает backend API и возвращает текст ответа модели."""
     request_payload = {request_question_field: question}
@@ -40,8 +43,12 @@ def call_rag_backend(
         method="POST",
     )
 
+    ssl_context = None
+    if not verify_ssl:
+        ssl_context = ssl._create_unverified_context()
+
     try:
-        with urllib_request.urlopen(request_object, timeout=timeout_seconds) as response:
+        with urllib_request.urlopen(request_object, timeout=timeout_seconds, context=ssl_context) as response:
             response_body = response.read().decode("utf-8")
     except urllib_error.HTTPError as error:
         raise RuntimeError(
@@ -72,6 +79,11 @@ def call_rag_backend(
 def normalize_text(text: str) -> str:
     """Нормализует текст для простых сравнений."""
     return re.sub(r"\s+", " ", text.lower()).strip()
+
+
+def strip_html_tags(text: str) -> str:
+    """Удаляет HTML-теги из ответа backend для корректной текстовой оценки."""
+    return re.sub(r"<[^>]+>", " ", text)
 
 
 def evaluate_answer(test_case: dict, answer: str) -> dict:
@@ -223,6 +235,7 @@ def run_cases(
     request_question_field: str,
     response_answer_field: str,
     timeout_seconds: int,
+    verify_ssl: bool,
     question_type_filter: str,
     case_ids_filter: list[str],
     strict_exit: bool,
@@ -255,7 +268,7 @@ def run_cases(
 
     for index, test_case in enumerate(test_cases, start=1):
         case_id = test_case.get("id", "unknown")
-        question = test_case.get("question", "")
+        question = str(test_case.get("question", "")).strip()
         question_type = test_case.get("question_type", "unknown")
         print(f"[{index}] {case_id}")
         print(f"Вопрос: {question}")
@@ -290,6 +303,7 @@ def run_cases(
                 request_question_field=request_question_field,
                 response_answer_field=response_answer_field,
                 timeout_seconds=timeout_seconds,
+                verify_ssl=verify_ssl,
             )
         except RuntimeError as error:
             print(f"Ошибка: {error}")
@@ -306,7 +320,8 @@ def run_cases(
             continue
 
         print(f"Ответ backend: {backend_answer}")
-        evaluation = evaluate_answer(test_case=test_case, answer=backend_answer)
+        plain_answer = strip_html_tags(backend_answer)
+        evaluation = evaluate_answer(test_case=test_case, answer=plain_answer)
         print(
             "Оценка: "
             f"{evaluation['verdict']} "
@@ -330,6 +345,7 @@ def run_cases(
         case_results[-1]["ontology_keywords_total"] = len(expected_keywords)
         case_results[-1]["ontology_keywords_covered"] = len(covered_keywords)
         case_results[-1]["ontology_missing_keywords"] = missing_keywords
+        case_results[-1]["plain_answer"] = plain_answer
 
         if include_answers:
             case_results[-1]["backend_answer"] = backend_answer
@@ -339,6 +355,7 @@ def run_cases(
         "dry_run": dry_run,
         "include_answers": include_answers,
         "strict_exit": strict_exit,
+        "verify_ssl": verify_ssl,
         "endpoint": endpoint,
         "question_type_filter": question_type_filter,
         "case_ids_filter": case_ids_filter,
@@ -366,7 +383,7 @@ def run_cases(
 def parse_args() -> argparse.Namespace:
     """Парсит аргументы командной строки."""
     parser = argparse.ArgumentParser(description="Прогон QA-кейсов для RAG")
-    parser.add_argument("--endpoint", default="http://localhost:8000/ask", help="URL endpoint backend")
+    parser.add_argument("--endpoint", default=DEFAULT_SEARCH_ENDPOINT, help="URL endpoint backend")
     parser.add_argument(
         "--request-question-field",
         default="question",
@@ -382,6 +399,11 @@ def parse_args() -> argparse.Namespace:
         type=int,
         default=15,
         help="Таймаут HTTP-запроса к backend в секундах",
+    )
+    parser.add_argument(
+        "--insecure-local-ssl",
+        action="store_true",
+        help="Отключить проверку SSL-сертификата для локального HTTPS (только для тестовой среды)",
     )
     parser.add_argument("--dry-run", action="store_true", help="Запуск без реального вызова backend")
     parser.add_argument(
@@ -478,6 +500,7 @@ def main() -> None:
         request_question_field=args.request_question_field,
         response_answer_field=args.response_answer_field,
         timeout_seconds=args.timeout_seconds,
+        verify_ssl=not args.insecure_local_ssl,
         question_type_filter=args.question_type,
         case_ids_filter=case_ids_filter,
         strict_exit=args.strict_exit,
