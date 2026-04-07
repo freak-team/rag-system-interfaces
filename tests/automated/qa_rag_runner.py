@@ -5,6 +5,8 @@ import argparse
 import json
 import re
 import sys
+from urllib import error as urllib_error
+from urllib import request as urllib_request
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
@@ -18,14 +20,50 @@ def load_dataset(file_path: Path) -> dict:
         return json.load(file_handle)
 
 
-def call_rag_backend(question: str, endpoint: str) -> str:
-    """Заглушка вызова backend API.
-
-    HTTP-запрос к backend.
-    """
-    raise NotImplementedError(
-        f"Вызов backend пока не реализован. Вопрос: {question}. Endpoint: {endpoint}"
+def call_rag_backend(
+    question: str,
+    endpoint: str,
+    request_question_field: str,
+    response_answer_field: str,
+    timeout_seconds: int,
+) -> str:
+    """Вызывает backend API и возвращает текст ответа модели."""
+    request_payload = {request_question_field: question}
+    request_bytes = json.dumps(request_payload, ensure_ascii=False).encode("utf-8")
+    request_object = urllib_request.Request(
+        url=endpoint,
+        data=request_bytes,
+        headers={"Content-Type": "application/json; charset=utf-8"},
+        method="POST",
     )
+
+    try:
+        with urllib_request.urlopen(request_object, timeout=timeout_seconds) as response:
+            response_body = response.read().decode("utf-8")
+    except urllib_error.HTTPError as error:
+        raise RuntimeError(
+            f"HTTP ошибка backend: {error.code} {error.reason}"
+        ) from error
+    except urllib_error.URLError as error:
+        raise RuntimeError(
+            f"Ошибка подключения к backend: {error.reason}"
+        ) from error
+
+    try:
+        response_payload = json.loads(response_body)
+    except json.JSONDecodeError as error:
+        raise RuntimeError("Backend вернул невалидный JSON") from error
+
+    if not isinstance(response_payload, dict):
+        raise RuntimeError("Backend вернул JSON не в формате объекта")
+
+    backend_answer = response_payload.get(response_answer_field)
+    if not isinstance(backend_answer, str):
+        raise RuntimeError(
+            f"В ответе backend отсутствует строковое поле: {response_answer_field}"
+        )
+
+    return backend_answer
 
 
 def normalize_text(text: str) -> str:
@@ -77,7 +115,16 @@ def save_report(report_path: Path, report_data: dict) -> None:
         json.dump(report_data, file_handle, ensure_ascii=False, indent=2)
 
 
-def run_cases(dataset: dict, endpoint: str, dry_run: bool, limit: int, report_path: Path) -> int:
+def run_cases(
+    dataset: dict,
+    endpoint: str,
+    dry_run: bool,
+    limit: int,
+    report_path: Path,
+    request_question_field: str,
+    response_answer_field: str,
+    timeout_seconds: int,
+) -> int:
     """Запускает кейсы из датасета и возвращает код завершения."""
     test_cases = dataset.get("test_cases", [])
     if limit > 0:
@@ -108,8 +155,14 @@ def run_cases(dataset: dict, endpoint: str, dry_run: bool, limit: int, report_pa
             continue
 
         try:
-            backend_answer = call_rag_backend(question=question, endpoint=endpoint)
-        except NotImplementedError as error:
+            backend_answer = call_rag_backend(
+                question=question,
+                endpoint=endpoint,
+                request_question_field=request_question_field,
+                response_answer_field=response_answer_field,
+                timeout_seconds=timeout_seconds,
+            )
+        except RuntimeError as error:
             print(f"Ошибка: {error}")
             run_errors += 1
             case_results.append(
@@ -157,6 +210,22 @@ def parse_args() -> argparse.Namespace:
     """Парсит аргументы командной строки."""
     parser = argparse.ArgumentParser(description="Прогон QA-кейсов для RAG")
     parser.add_argument("--endpoint", default="http://localhost:8000/ask", help="URL endpoint backend")
+    parser.add_argument(
+        "--request-question-field",
+        default="question",
+        help="Название поля вопроса в request JSON",
+    )
+    parser.add_argument(
+        "--response-answer-field",
+        default="answer",
+        help="Название поля ответа в response JSON",
+    )
+    parser.add_argument(
+        "--timeout-seconds",
+        type=int,
+        default=15,
+        help="Таймаут HTTP-запроса к backend в секундах",
+    )
     parser.add_argument("--dry-run", action="store_true", help="Запуск без реального вызова backend")
     parser.add_argument("--limit", type=int, default=0, help="Ограничить число кейсов (0 = все)")
     parser.add_argument(
@@ -186,6 +255,9 @@ def main() -> None:
         dry_run=args.dry_run,
         limit=args.limit,
         report_path=Path(args.report_path),
+        request_question_field=args.request_question_field,
+        response_answer_field=args.response_answer_field,
+        timeout_seconds=args.timeout_seconds,
     )
     sys.exit(exit_code)
 
