@@ -168,7 +168,7 @@ def main() -> None:
 		print("Найдены ошибки в структуре датасета:")
 		for error_message in validation_errors:
 			print(f"- {error_message}")
-		return
+		sys.exit(1)
 
 	print_dataset_summary(dataset)
 	print("Структура датасета в порядке")
