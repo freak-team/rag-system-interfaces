@@ -13,6 +13,7 @@ from urllib import request as urllib_request
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DATASET_PATH = PROJECT_ROOT / "tests" / "data" / "golden_dataset.json"
 DEFAULT_REPORT_PATH = PROJECT_ROOT / "tests" / "automated" / "reports" / "qa_rag_runner_report.json"
+DEFAULT_ONTOLOGY_TERMS_PATH = PROJECT_ROOT / "data" / "clean" / "ontology_terms.txt"
 ALLOWED_QUESTION_TYPES = ("definition", "comparison", "explanation", "application", "negative", "ambiguous")
 
 
@@ -110,6 +111,64 @@ def evaluate_answer(test_case: dict, answer: str) -> dict:
     }
 
 
+def load_ontology_terms(file_path: Path) -> set[str]:
+    """Загружает термины онтологии из текстового файла."""
+    ontology_terms = set()
+    with file_path.open("r", encoding="utf-8") as file_handle:
+        for raw_line in file_handle:
+            line = raw_line.strip()
+            if not line:
+                continue
+
+            term_part = line.split("->", maxsplit=1)[0].strip()
+            if not term_part:
+                continue
+
+            ontology_terms.add(normalize_text(term_part))
+
+    return ontology_terms
+
+
+def keyword_in_ontology(keyword: str, ontology_terms: set[str]) -> bool:
+    """Проверяет, покрывается ли ключевое слово терминами онтологии."""
+    normalized_keyword = normalize_text(keyword)
+    for ontology_term in ontology_terms:
+        if normalized_keyword == ontology_term:
+            return True
+        if normalized_keyword in ontology_term or ontology_term in normalized_keyword:
+            return True
+
+    return False
+
+
+def build_ontology_coverage_summary(case_results: list[dict]) -> dict:
+    """Формирует сводку покрытия ключевых слов терминами онтологии."""
+    total_keywords = 0
+    covered_keywords = 0
+
+    for result in case_results:
+        total_keywords += result.get("ontology_keywords_total", 0)
+        covered_keywords += result.get("ontology_keywords_covered", 0)
+
+    coverage_ratio = 0.0
+    if total_keywords > 0:
+        coverage_ratio = covered_keywords / total_keywords
+
+    return {
+        "total_keywords": total_keywords,
+        "covered_keywords": covered_keywords,
+        "coverage_ratio": round(coverage_ratio, 3),
+    }
+
+
+def print_ontology_coverage_summary(ontology_summary: dict) -> None:
+    """Печатает сводку покрытия онтологией в академическом формате."""
+    print("Сводка покрытия ключевых слов терминами онтологии:")
+    print(f"- Всего ключевых слов: {ontology_summary['total_keywords']}")
+    print(f"- Покрыто онтологией: {ontology_summary['covered_keywords']}")
+    print(f"- Доля покрытия: {ontology_summary['coverage_ratio']}")
+
+
 def save_report(report_path: Path, report_data: dict) -> None:
     """Сохраняет отчёт прогона в JSON-файл."""
     report_path.parent.mkdir(parents=True, exist_ok=True)
@@ -167,6 +226,7 @@ def run_cases(
     question_type_filter: str,
     case_ids_filter: list[str],
     strict_exit: bool,
+    ontology_terms: set[str],
 ) -> int:
     """Запускает кейсы из датасета и возвращает код завершения."""
     test_cases = dataset.get("test_cases", [])
@@ -202,12 +262,23 @@ def run_cases(
 
         if dry_run:
             print("DRY-RUN: вызов backend пропущен")
+            expected_keywords = test_case.get("expected_keywords", [])
+            covered_keywords = [
+                keyword for keyword in expected_keywords if keyword_in_ontology(keyword, ontology_terms)
+            ]
+            missing_keywords = [
+                keyword for keyword in expected_keywords if keyword not in covered_keywords
+            ]
+
             case_results.append(
                 {
                     "id": case_id,
                     "question_type": question_type,
                     "run_status": "skipped",
                     "verdict": "skipped",
+                    "ontology_keywords_total": len(expected_keywords),
+                    "ontology_keywords_covered": len(covered_keywords),
+                    "ontology_missing_keywords": missing_keywords,
                 }
             )
             continue
@@ -249,6 +320,17 @@ def run_cases(
                 **evaluation,
             }
         )
+        expected_keywords = test_case.get("expected_keywords", [])
+        covered_keywords = [
+            keyword for keyword in expected_keywords if keyword_in_ontology(keyword, ontology_terms)
+        ]
+        missing_keywords = [
+            keyword for keyword in expected_keywords if keyword not in covered_keywords
+        ]
+        case_results[-1]["ontology_keywords_total"] = len(expected_keywords)
+        case_results[-1]["ontology_keywords_covered"] = len(covered_keywords)
+        case_results[-1]["ontology_missing_keywords"] = missing_keywords
+
         if include_answers:
             case_results[-1]["backend_answer"] = backend_answer
 
@@ -263,11 +345,13 @@ def run_cases(
         "results": case_results,
         "summary": {
             "verdicts": build_verdict_summary(case_results),
+            "ontology_coverage": build_ontology_coverage_summary(case_results),
         },
     }
     save_report(report_path=report_path, report_data=report_data)
 
     print_verdict_summary(report_data["summary"]["verdicts"])
+    print_ontology_coverage_summary(report_data["summary"]["ontology_coverage"])
 
     print(f"Отчет сохранен: {report_path}")
 
@@ -326,6 +410,11 @@ def parse_args() -> argparse.Namespace:
         default=str(DEFAULT_REPORT_PATH),
         help="Путь к JSON-отчету прогона",
     )
+    parser.add_argument(
+        "--ontology-terms-path",
+        default=str(DEFAULT_ONTOLOGY_TERMS_PATH),
+        help="Путь к файлу терминов онтологии",
+    )
     return parser.parse_args()
 
 
@@ -368,6 +457,17 @@ def main() -> None:
         print(f"Ошибка: не удалось разобрать JSON ({error.msg})")
         sys.exit(1)
 
+    ontology_terms_path = Path(args.ontology_terms_path)
+    try:
+        ontology_terms = load_ontology_terms(ontology_terms_path)
+    except FileNotFoundError:
+        print(f"Ошибка: файл терминов онтологии не найден: {ontology_terms_path}")
+        sys.exit(1)
+
+    if not ontology_terms:
+        print("Ошибка: файл терминов онтологии пуст или не содержит корректных терминов")
+        sys.exit(1)
+
     exit_code = run_cases(
         dataset=dataset,
         endpoint=args.endpoint,
@@ -381,6 +481,7 @@ def main() -> None:
         question_type_filter=args.question_type,
         case_ids_filter=case_ids_filter,
         strict_exit=args.strict_exit,
+        ontology_terms=ontology_terms,
     )
     sys.exit(exit_code)
 
