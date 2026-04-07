@@ -135,6 +135,10 @@ def validate_dataset_structure(dataset: dict) -> list[str]:
 			errors.append(
 				f"Поле must_refuse_if_missing_info в кейсе №{index} должно быть булевым значением"
 			)
+		elif question_type == "negative" and not must_refuse_if_missing_info:
+			errors.append(
+				f"В negative-кейсе №{index} поле must_refuse_if_missing_info должно быть true"
+			)
 
 	return errors
 
