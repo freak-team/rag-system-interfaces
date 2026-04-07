@@ -1,0 +1,202 @@
+from collections import Counter
+from pathlib import Path
+from re import fullmatch
+import json
+import sys
+
+
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+DATASET_PATH = PROJECT_ROOT / "tests" / "data" / "golden_dataset.json"
+REQUIRED_DATASET_KEYS = ("dataset_name", "version", "scope", "source", "status", "test_cases")
+REQUIRED_TEST_CASE_KEYS = (
+	"id",
+	"chapter",
+	"topic",
+	"question",
+	"question_type",
+	"expected_key_points",
+	"expected_keywords",
+	"expected_answer_style",
+	"must_refuse_if_missing_info",
+	"tags",
+	"notes",
+)
+ALLOWED_QUESTION_TYPES = ("definition", "comparison", "explanation", "application", "negative", "ambiguous")
+ALLOWED_EXPECTED_ANSWER_STYLES = ("formal_academic", "short")
+
+
+def load_dataset(file_path: Path) -> dict:
+	"""Загружает JSON-датасет из файла."""
+	with file_path.open("r", encoding="utf-8") as file_handle:
+		return json.load(file_handle)
+
+
+def print_dataset_summary(dataset: dict) -> None:
+	"""Печатает короткую сводку по датасету."""
+	test_cases = dataset.get("test_cases", [])
+	question_type_counter = Counter(
+		test_case.get("question_type", "unknown") for test_case in test_cases
+	)
+
+	print(f"Кейсов всего: {len(test_cases)}")
+	for question_type in sorted(question_type_counter):
+		print(f"{question_type}: {question_type_counter[question_type]}")
+
+
+def validate_dataset_structure(dataset: dict) -> list[str]:
+	"""Проверяет базовую структуру датасета."""
+	if not isinstance(dataset, dict):
+		return ["Корневой JSON датасета должен быть объектом"]
+
+	errors = []
+
+	for required_key in REQUIRED_DATASET_KEYS:
+		if required_key not in dataset:
+			errors.append(f"В датасете отсутствует обязательное поле: {required_key}")
+
+	dataset_name = dataset.get("dataset_name")
+	if not isinstance(dataset_name, str) or not dataset_name.strip():
+		errors.append("Поле dataset_name должно быть непустой строкой")
+
+	version = dataset.get("version")
+	if not isinstance(version, int) or version <= 0:
+		errors.append("Поле version должно быть положительным целым числом")
+
+	for field_name in ("scope", "source", "status"):
+		field_value = dataset.get(field_name)
+		if not isinstance(field_value, str) or not field_value.strip():
+			errors.append(f"Поле {field_name} должно быть непустой строкой")
+
+	test_cases = dataset.get("test_cases", [])
+	if not isinstance(test_cases, list):
+		errors.append("Поле test_cases должно быть списком")
+		return errors
+	if not test_cases:
+		errors.append("Поле test_cases не должно быть пустым")
+		return errors
+
+	seen_ids = set()
+
+	for index, test_case in enumerate(test_cases, start=1):
+		if not isinstance(test_case, dict):
+			errors.append(f"Кейс №{index} должен быть объектом JSON")
+			continue
+
+		for required_key in REQUIRED_TEST_CASE_KEYS:
+			if required_key not in test_case:
+				errors.append(
+					f"В кейсе №{index} отсутствует обязательное поле: {required_key}"
+				)
+
+		test_case_id = test_case.get("id")
+		if not isinstance(test_case_id, str) or not fullmatch(r"CH\d+-\d{3}", test_case_id):
+			errors.append(f"В кейсе №{index} недопустимый формат id: {test_case_id}")
+		elif test_case_id in seen_ids:
+			errors.append(f"Найден дублирующийся id в кейсе №{index}: {test_case_id}")
+		else:
+			seen_ids.add(test_case_id)
+
+		if "expected_key_points" in test_case:
+			expected_key_points = test_case.get("expected_key_points")
+			if not isinstance(expected_key_points, list):
+				errors.append(f"Поле expected_key_points в кейсе №{index} должно быть списком")
+			elif not expected_key_points:
+				errors.append(f"Поле expected_key_points в кейсе №{index} не должно быть пустым")
+			else:
+				for point_index, expected_point in enumerate(expected_key_points, start=1):
+					if not isinstance(expected_point, str):
+						errors.append(
+							f"В кейсе №{index} элемент expected_key_points №{point_index} должен быть строкой"
+						)
+
+		if "expected_keywords" in test_case:
+			expected_keywords = test_case.get("expected_keywords")
+			if not isinstance(expected_keywords, list):
+				errors.append(f"Поле expected_keywords в кейсе №{index} должно быть списком")
+			elif not expected_keywords:
+				errors.append(f"Поле expected_keywords в кейсе №{index} не должно быть пустым")
+			else:
+				for keyword_index, expected_keyword in enumerate(expected_keywords, start=1):
+					if not isinstance(expected_keyword, str):
+						errors.append(
+							f"В кейсе №{index} элемент expected_keywords №{keyword_index} должен быть строкой"
+						)
+
+		if "tags" in test_case:
+			tags = test_case.get("tags")
+			if not isinstance(tags, list):
+				errors.append(f"Поле tags в кейсе №{index} должно быть списком")
+			elif not tags:
+				errors.append(f"Поле tags в кейсе №{index} не должно быть пустым")
+			else:
+				for tag_index, tag in enumerate(tags, start=1):
+					if not isinstance(tag, str):
+						errors.append(
+							f"В кейсе №{index} элемент tags №{tag_index} должен быть строкой"
+						)
+
+		question_type = test_case.get("question_type")
+		if question_type not in ALLOWED_QUESTION_TYPES:
+			errors.append(
+				f"В кейсе №{index} указан недопустимый тип вопроса: {question_type}"
+			)
+
+		chapter = test_case.get("chapter")
+		if not isinstance(chapter, str) or not chapter.strip():
+			errors.append(f"Поле chapter в кейсе №{index} должно быть непустой строкой")
+
+		topic = test_case.get("topic")
+		if not isinstance(topic, str) or not topic.strip():
+			errors.append(f"Поле topic в кейсе №{index} должно быть непустой строкой")
+
+		question = test_case.get("question")
+		if not isinstance(question, str) or not question.strip():
+			errors.append(f"Поле question в кейсе №{index} должно быть непустой строкой")
+
+		notes = test_case.get("notes")
+		if not isinstance(notes, str):
+			errors.append(f"Поле notes в кейсе №{index} должно быть строкой")
+
+		expected_answer_style = test_case.get("expected_answer_style")
+		if expected_answer_style not in ALLOWED_EXPECTED_ANSWER_STYLES:
+			errors.append(
+				f"В кейсе №{index} указан недопустимый стиль ответа: {expected_answer_style}"
+			)
+
+		must_refuse_if_missing_info = test_case.get("must_refuse_if_missing_info")
+		if not isinstance(must_refuse_if_missing_info, bool):
+			errors.append(
+				f"Поле must_refuse_if_missing_info в кейсе №{index} должно быть булевым значением"
+			)
+		elif question_type == "negative" and not must_refuse_if_missing_info:
+			errors.append(
+				f"В negative-кейсе №{index} поле must_refuse_if_missing_info должно быть true"
+			)
+
+	return errors
+
+
+def main() -> None:
+	"""Точка входа для проверки датасета."""
+	try:
+		dataset = load_dataset(DATASET_PATH)
+	except FileNotFoundError:
+		print(f"Ошибка: файл датасета не найден: {DATASET_PATH}")
+		sys.exit(1)
+	except json.JSONDecodeError as error:
+		print(f"Ошибка: не удалось разобрать JSON ({error.msg})")
+		sys.exit(1)
+
+	validation_errors = validate_dataset_structure(dataset)
+	if validation_errors:
+		print("Найдены ошибки в структуре датасета:")
+		for error_message in validation_errors:
+			print(f"- {error_message}")
+		sys.exit(1)
+
+	print_dataset_summary(dataset)
+	print("Структура датасета в порядке")
+
+
+if __name__ == "__main__":
+	main()
