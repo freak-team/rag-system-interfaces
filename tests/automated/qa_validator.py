@@ -1,5 +1,6 @@
 from collections import Counter
 from pathlib import Path
+from re import fullmatch
 import json
 
 
@@ -65,6 +66,9 @@ def validate_dataset_structure(dataset: dict) -> list[str]:
 			errors.append(f"Найден дублирующийся id в кейсе №{index}: {test_case_id}")
 		elif test_case_id is not None:
 			seen_ids.add(test_case_id)
+
+		if not isinstance(test_case_id, str) or not fullmatch(r"CH\d+-\d{3}", test_case_id):
+			errors.append(f"В кейсе №{index} недопустимый формат id: {test_case_id}")
 
 		for required_key in REQUIRED_TEST_CASE_KEYS:
 			if required_key not in test_case:
