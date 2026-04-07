@@ -13,6 +13,7 @@ from urllib import request as urllib_request
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DATASET_PATH = PROJECT_ROOT / "tests" / "data" / "golden_dataset.json"
 DEFAULT_REPORT_PATH = PROJECT_ROOT / "tests" / "automated" / "reports" / "qa_rag_runner_report.json"
+ALLOWED_QUESTION_TYPES = ("definition", "comparison", "explanation", "application", "negative", "ambiguous")
 
 
 def load_dataset(file_path: Path) -> dict:
@@ -142,9 +143,15 @@ def run_cases(
     request_question_field: str,
     response_answer_field: str,
     timeout_seconds: int,
+    question_type_filter: str,
 ) -> int:
     """Запускает кейсы из датасета и возвращает код завершения."""
     test_cases = dataset.get("test_cases", [])
+    if question_type_filter:
+        test_cases = [
+            test_case for test_case in test_cases if test_case.get("question_type") == question_type_filter
+        ]
+
     if limit > 0:
         test_cases = test_cases[:limit]
 
@@ -214,6 +221,7 @@ def run_cases(
         "total_cases": len(test_cases),
         "dry_run": dry_run,
         "endpoint": endpoint,
+        "question_type_filter": question_type_filter,
         "results": case_results,
         "summary": {
             "verdicts": build_verdict_summary(case_results),
@@ -252,6 +260,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--dry-run", action="store_true", help="Запуск без реального вызова backend")
     parser.add_argument("--limit", type=int, default=0, help="Ограничить число кейсов (0 = все)")
     parser.add_argument(
+        "--question-type",
+        default="",
+        help="Фильтр по типу вопроса (definition/comparison/explanation/application/negative/ambiguous)",
+    )
+    parser.add_argument(
         "--report-path",
         default=str(DEFAULT_REPORT_PATH),
         help="Путь к JSON-отчету прогона",
@@ -262,6 +275,13 @@ def parse_args() -> argparse.Namespace:
 def main() -> None:
     """Точка входа скрипта прогона."""
     args = parse_args()
+
+    if args.question_type and args.question_type not in ALLOWED_QUESTION_TYPES:
+        print(
+            "Ошибка: недопустимое значение --question-type. "
+            f"Допустимые значения: {', '.join(ALLOWED_QUESTION_TYPES)}"
+        )
+        sys.exit(1)
 
     try:
         dataset = load_dataset(DATASET_PATH)
@@ -281,6 +301,7 @@ def main() -> None:
         request_question_field=args.request_question_field,
         response_answer_field=args.response_answer_field,
         timeout_seconds=args.timeout_seconds,
+        question_type_filter=args.question_type,
     )
     sys.exit(exit_code)
 
