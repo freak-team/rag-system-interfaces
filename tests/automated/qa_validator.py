@@ -45,6 +45,9 @@ def print_dataset_summary(dataset: dict) -> None:
 
 def validate_dataset_structure(dataset: dict) -> list[str]:
 	"""Проверяет базовую структуру датасета."""
+	if not isinstance(dataset, dict):
+		return ["Корневой JSON датасета должен быть объектом"]
+
 	errors = []
 
 	for required_key in REQUIRED_DATASET_KEYS:
@@ -79,6 +82,12 @@ def validate_dataset_structure(dataset: dict) -> list[str]:
 			errors.append(f"Кейс №{index} должен быть объектом JSON")
 			continue
 
+		for required_key in REQUIRED_TEST_CASE_KEYS:
+			if required_key not in test_case:
+				errors.append(
+					f"В кейсе №{index} отсутствует обязательное поле: {required_key}"
+				)
+
 		test_case_id = test_case.get("id")
 		if not isinstance(test_case_id, str) or not fullmatch(r"CH\d+-\d{3}", test_case_id):
 			errors.append(f"В кейсе №{index} недопустимый формат id: {test_case_id}")
@@ -87,44 +96,44 @@ def validate_dataset_structure(dataset: dict) -> list[str]:
 		else:
 			seen_ids.add(test_case_id)
 
-		for required_key in REQUIRED_TEST_CASE_KEYS:
-			if required_key not in test_case:
-				errors.append(
-					f"В кейсе №{index} отсутствует обязательное поле: {required_key}"
-				)
+		if "expected_key_points" in test_case:
+			expected_key_points = test_case.get("expected_key_points")
+			if not isinstance(expected_key_points, list):
+				errors.append(f"Поле expected_key_points в кейсе №{index} должно быть списком")
+			elif not expected_key_points:
+				errors.append(f"Поле expected_key_points в кейсе №{index} не должно быть пустым")
+			else:
+				for point_index, expected_point in enumerate(expected_key_points, start=1):
+					if not isinstance(expected_point, str):
+						errors.append(
+							f"В кейсе №{index} элемент expected_key_points №{point_index} должен быть строкой"
+						)
 
-		if not isinstance(test_case.get("expected_key_points", []), list):
-			errors.append(f"Поле expected_key_points в кейсе №{index} должно быть списком")
-		elif not test_case.get("expected_key_points"):
-			errors.append(f"Поле expected_key_points в кейсе №{index} не должно быть пустым")
-		else:
-			for point_index, expected_point in enumerate(test_case.get("expected_key_points", []), start=1):
-				if not isinstance(expected_point, str):
-					errors.append(
-						f"В кейсе №{index} элемент expected_key_points №{point_index} должен быть строкой"
-					)
+		if "expected_keywords" in test_case:
+			expected_keywords = test_case.get("expected_keywords")
+			if not isinstance(expected_keywords, list):
+				errors.append(f"Поле expected_keywords в кейсе №{index} должно быть списком")
+			elif not expected_keywords:
+				errors.append(f"Поле expected_keywords в кейсе №{index} не должно быть пустым")
+			else:
+				for keyword_index, expected_keyword in enumerate(expected_keywords, start=1):
+					if not isinstance(expected_keyword, str):
+						errors.append(
+							f"В кейсе №{index} элемент expected_keywords №{keyword_index} должен быть строкой"
+						)
 
-		if not isinstance(test_case.get("expected_keywords", []), list):
-			errors.append(f"Поле expected_keywords в кейсе №{index} должно быть списком")
-		elif not test_case.get("expected_keywords"):
-			errors.append(f"Поле expected_keywords в кейсе №{index} не должно быть пустым")
-		else:
-			for keyword_index, expected_keyword in enumerate(test_case.get("expected_keywords", []), start=1):
-				if not isinstance(expected_keyword, str):
-					errors.append(
-						f"В кейсе №{index} элемент expected_keywords №{keyword_index} должен быть строкой"
-					)
-
-		if not isinstance(test_case.get("tags", []), list):
-			errors.append(f"Поле tags в кейсе №{index} должно быть списком")
-		elif not test_case.get("tags"):
-			errors.append(f"Поле tags в кейсе №{index} не должно быть пустым")
-		else:
-			for tag_index, tag in enumerate(test_case.get("tags", []), start=1):
-				if not isinstance(tag, str):
-					errors.append(
-						f"В кейсе №{index} элемент tags №{tag_index} должен быть строкой"
-					)
+		if "tags" in test_case:
+			tags = test_case.get("tags")
+			if not isinstance(tags, list):
+				errors.append(f"Поле tags в кейсе №{index} должно быть списком")
+			elif not tags:
+				errors.append(f"Поле tags в кейсе №{index} не должно быть пустым")
+			else:
+				for tag_index, tag in enumerate(tags, start=1):
+					if not isinstance(tag, str):
+						errors.append(
+							f"В кейсе №{index} элемент tags №{tag_index} должен быть строкой"
+						)
 
 		question_type = test_case.get("question_type")
 		if question_type not in ALLOWED_QUESTION_TYPES:
@@ -136,9 +145,17 @@ def validate_dataset_structure(dataset: dict) -> list[str]:
 		if not isinstance(chapter, str) or not chapter.strip():
 			errors.append(f"Поле chapter в кейсе №{index} должно быть непустой строкой")
 
+		topic = test_case.get("topic")
+		if not isinstance(topic, str) or not topic.strip():
+			errors.append(f"Поле topic в кейсе №{index} должно быть непустой строкой")
+
 		question = test_case.get("question")
 		if not isinstance(question, str) or not question.strip():
 			errors.append(f"Поле question в кейсе №{index} должно быть непустой строкой")
+
+		notes = test_case.get("notes")
+		if not isinstance(notes, str):
+			errors.append(f"Поле notes в кейсе №{index} должно быть строкой")
 
 		expected_answer_style = test_case.get("expected_answer_style")
 		if expected_answer_style not in ALLOWED_EXPECTED_ANSWER_STYLES:
@@ -161,7 +178,15 @@ def validate_dataset_structure(dataset: dict) -> list[str]:
 
 def main() -> None:
 	"""Точка входа для проверки датасета."""
-	dataset = load_dataset(DATASET_PATH)
+	try:
+		dataset = load_dataset(DATASET_PATH)
+	except FileNotFoundError:
+		print(f"Ошибка: файл датасета не найден: {DATASET_PATH}")
+		sys.exit(1)
+	except json.JSONDecodeError as error:
+		print(f"Ошибка: не удалось разобрать JSON ({error.msg})")
+		sys.exit(1)
+
 	validation_errors = validate_dataset_structure(dataset)
 	if validation_errors:
 		print("Найдены ошибки в структуре датасета:")
