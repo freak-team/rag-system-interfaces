@@ -19,6 +19,7 @@ REQUIRED_TEST_CASE_KEYS = (
 	"tags",
 	"notes",
 )
+ALLOWED_QUESTION_TYPES = ("definition", "comparison", "explanation", "application", "negative", "ambiguous")
 
 
 def load_dataset(file_path: Path) -> dict:
@@ -79,6 +80,12 @@ def validate_dataset_structure(dataset: dict) -> list[str]:
 
 		if not isinstance(test_case.get("tags", []), list):
 			errors.append(f"Поле tags в кейсе №{index} должно быть списком")
+
+		question_type = test_case.get("question_type")
+		if question_type not in ALLOWED_QUESTION_TYPES:
+			errors.append(
+				f"В кейсе №{index} указан недопустимый тип вопроса: {question_type}"
+			)
 
 	return errors
 
