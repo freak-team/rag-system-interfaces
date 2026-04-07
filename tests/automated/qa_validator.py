@@ -81,11 +81,23 @@ def validate_dataset_structure(dataset: dict) -> list[str]:
 			errors.append(f"Поле expected_key_points в кейсе №{index} должно быть списком")
 		elif not test_case.get("expected_key_points"):
 			errors.append(f"Поле expected_key_points в кейсе №{index} не должно быть пустым")
+		else:
+			for point_index, expected_point in enumerate(test_case.get("expected_key_points", []), start=1):
+				if not isinstance(expected_point, str):
+					errors.append(
+						f"В кейсе №{index} элемент expected_key_points №{point_index} должен быть строкой"
+					)
 
 		if not isinstance(test_case.get("expected_keywords", []), list):
 			errors.append(f"Поле expected_keywords в кейсе №{index} должно быть списком")
 		elif not test_case.get("expected_keywords"):
 			errors.append(f"Поле expected_keywords в кейсе №{index} не должно быть пустым")
+		else:
+			for keyword_index, expected_keyword in enumerate(test_case.get("expected_keywords", []), start=1):
+				if not isinstance(expected_keyword, str):
+					errors.append(
+						f"В кейсе №{index} элемент expected_keywords №{keyword_index} должен быть строкой"
+					)
 
 		if not isinstance(test_case.get("tags", []), list):
 			errors.append(f"Поле tags в кейсе №{index} должно быть списком")
