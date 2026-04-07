@@ -1,5 +1,6 @@
 """Каркас прогона QA-кейсов для RAG-системы."""
 
+from collections import Counter
 from pathlib import Path
 import argparse
 import json
@@ -115,6 +116,23 @@ def save_report(report_path: Path, report_data: dict) -> None:
         json.dump(report_data, file_handle, ensure_ascii=False, indent=2)
 
 
+def build_verdict_summary(case_results: list[dict]) -> dict:
+    """Формирует сводную статистику по итоговым вердиктам."""
+    verdict_counter = Counter(result.get("verdict", "unknown") for result in case_results)
+    return dict(sorted(verdict_counter.items()))
+
+
+def print_verdict_summary(verdict_summary: dict) -> None:
+    """Печатает сводку по вердиктам в академическом формате."""
+    print("Итоговая сводка по результатам прогона:")
+    if not verdict_summary:
+        print("- Сводка отсутствует: по данному запуску не получено ни одного результата")
+        return
+
+    for verdict, count in verdict_summary.items():
+        print(f"- {verdict}: {count}")
+
+
 def run_cases(
     dataset: dict,
     endpoint: str,
@@ -197,8 +215,13 @@ def run_cases(
         "dry_run": dry_run,
         "endpoint": endpoint,
         "results": case_results,
+        "summary": {
+            "verdicts": build_verdict_summary(case_results),
+        },
     }
     save_report(report_path=report_path, report_data=report_data)
+
+    print_verdict_summary(report_data["summary"]["verdicts"])
 
     print(f"Отчет сохранен: {report_path}")
 
