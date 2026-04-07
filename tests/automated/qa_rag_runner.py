@@ -22,7 +22,16 @@ ALLOWED_QUESTION_TYPES = ("definition", "comparison", "explanation", "applicatio
 def load_dataset(file_path: Path) -> dict:
     """Загружает JSON-датасет из файла."""
     with file_path.open("r", encoding="utf-8") as file_handle:
-        return json.load(file_handle)
+        dataset = json.load(file_handle)
+
+    if not isinstance(dataset, dict):
+        raise RuntimeError("Датасет должен быть JSON-объектом верхнего уровня")
+
+    test_cases = dataset.get("test_cases")
+    if not isinstance(test_cases, list):
+        raise RuntimeError("Датасет должен содержать ключ test_cases со списком кейсов")
+
+    return dataset
 
 
 def call_rag_backend(
@@ -519,6 +528,9 @@ def main() -> None:
         sys.exit(1)
     except json.JSONDecodeError as error:
         print(f"Ошибка: не удалось разобрать JSON ({error.msg})")
+        sys.exit(1)
+    except RuntimeError as error:
+        print(f"Ошибка: {error}")
         sys.exit(1)
 
     ontology_terms_path = Path(args.ontology_terms_path)
