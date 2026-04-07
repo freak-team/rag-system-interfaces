@@ -134,6 +134,26 @@ def print_verdict_summary(verdict_summary: dict) -> None:
         print(f"- {verdict}: {count}")
 
 
+def calculate_exit_code(run_errors: int, verdict_summary: dict, strict_exit: bool) -> int:
+    """Вычисляет код завершения прогона с учетом строгого режима."""
+    if run_errors > 0:
+        return 1
+
+    if not strict_exit:
+        return 0
+
+    strict_failure_verdicts = ("error", "fail", "partial")
+    has_strict_failures = any(verdict_summary.get(verdict, 0) > 0 for verdict in strict_failure_verdicts)
+    if has_strict_failures:
+        print(
+            "Строгий режим контроля активирован: обнаружены вердикты fail/partial/error, "
+            "поэтому запуск завершается с кодом 1"
+        )
+        return 1
+
+    return 0
+
+
 def run_cases(
     dataset: dict,
     endpoint: str,
@@ -145,6 +165,7 @@ def run_cases(
     timeout_seconds: int,
     question_type_filter: str,
     case_ids_filter: list[str],
+    strict_exit: bool,
 ) -> int:
     """Запускает кейсы из датасета и возвращает код завершения."""
     test_cases = dataset.get("test_cases", [])
@@ -226,6 +247,7 @@ def run_cases(
     report_data = {
         "total_cases": len(test_cases),
         "dry_run": dry_run,
+        "strict_exit": strict_exit,
         "endpoint": endpoint,
         "question_type_filter": question_type_filter,
         "case_ids_filter": case_ids_filter,
@@ -241,7 +263,11 @@ def run_cases(
     print(f"Отчет сохранен: {report_path}")
 
     print("Прогон завершен")
-    return 1 if run_errors > 0 else 0
+    return calculate_exit_code(
+        run_errors=run_errors,
+        verdict_summary=report_data["summary"]["verdicts"],
+        strict_exit=strict_exit,
+    )
 
 
 def parse_args() -> argparse.Namespace:
@@ -265,6 +291,11 @@ def parse_args() -> argparse.Namespace:
         help="Таймаут HTTP-запроса к backend в секундах",
     )
     parser.add_argument("--dry-run", action="store_true", help="Запуск без реального вызова backend")
+    parser.add_argument(
+        "--strict-exit",
+        action="store_true",
+        help="Завершать запуск кодом 1 при наличии вердиктов fail/partial/error",
+    )
     parser.add_argument("--limit", type=int, default=0, help="Ограничить число кейсов (0 = все)")
     parser.add_argument(
         "--question-type",
@@ -334,6 +365,7 @@ def main() -> None:
         timeout_seconds=args.timeout_seconds,
         question_type_filter=args.question_type,
         case_ids_filter=case_ids_filter,
+        strict_exit=args.strict_exit,
     )
     sys.exit(exit_code)
 
