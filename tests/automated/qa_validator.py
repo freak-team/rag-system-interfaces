@@ -50,9 +50,25 @@ def validate_dataset_structure(dataset: dict) -> list[str]:
 		if required_key not in dataset:
 			errors.append(f"В датасете отсутствует обязательное поле: {required_key}")
 
+	dataset_name = dataset.get("dataset_name")
+	if not isinstance(dataset_name, str) or not dataset_name.strip():
+		errors.append("Поле dataset_name должно быть непустой строкой")
+
+	version = dataset.get("version")
+	if not isinstance(version, int) or version <= 0:
+		errors.append("Поле version должно быть положительным целым числом")
+
+	for field_name in ("scope", "source", "status"):
+		field_value = dataset.get(field_name)
+		if not isinstance(field_value, str) or not field_value.strip():
+			errors.append(f"Поле {field_name} должно быть непустой строкой")
+
 	test_cases = dataset.get("test_cases", [])
 	if not isinstance(test_cases, list):
 		errors.append("Поле test_cases должно быть списком")
+		return errors
+	if not test_cases:
+		errors.append("Поле test_cases не должно быть пустым")
 		return errors
 
 	seen_ids = set()
