@@ -184,6 +184,11 @@ def run_cases(
         test_cases = test_cases[:limit]
 
     print(f"К запуску кейсов: {len(test_cases)}")
+    if not test_cases:
+        print(
+            "Предупреждение: после применения фильтров не осталось ни одного кейса. "
+            "Рекомендуется проверить аргументы --question-type, --case-ids и --limit"
+        )
 
     case_results = []
     run_errors = 0
