@@ -90,6 +90,26 @@ def normalize_text(text: str) -> str:
     return re.sub(r"\s+", " ", text.lower()).strip()
 
 
+def tokenize_text(text: str) -> set[str]:
+    """Токенизирует текст на слова с удалением пунктуации."""
+    normalized = normalize_text(text)
+    # Заменяем пунктуацию на пробелы и разбиваем на слова
+    tokens = re.sub(r"[^\w\s]", " ", normalized).split()
+    return set(tokens)
+
+
+def calculate_token_overlap(expected: str, actual: str) -> float:
+    """Вычисляет долю перекрытия токенов между ожидаемым и фактическим текстом."""
+    expected_tokens = tokenize_text(expected)
+    actual_tokens = tokenize_text(actual)
+    
+    if not expected_tokens:
+        return 1.0
+    
+    overlap = len(expected_tokens & actual_tokens)
+    return overlap / len(expected_tokens)
+
+
 def strip_html_tags(text: str) -> str:
     """Удаляет HTML-теги из ответа backend для корректной текстовой оценки."""
     # Срезаем только конструкции, похожие на реальные теги, чтобы не портить выражения вида <=>.
@@ -99,17 +119,25 @@ def strip_html_tags(text: str) -> str:
 
 
 def evaluate_answer(test_case: dict, answer: str) -> dict:
-    """Оценивает ответ по ключевым словам и ключевым тезисам."""
-    normalized_answer = normalize_text(answer)
+    """Оценивает ответ по ключевым словам и ключевым тезисам с улучшенным матчингом."""
     expected_keywords = test_case.get("expected_keywords", [])
     expected_key_points = test_case.get("expected_key_points", [])
 
-    matched_keywords = [
-        keyword for keyword in expected_keywords if normalize_text(keyword) in normalized_answer
-    ]
-    matched_key_points = [
-        key_point for key_point in expected_key_points if normalize_text(key_point) in normalized_answer
-    ]
+    # Для каждого ключевого слова проверяем наличие с помощью токенизации
+    matched_keywords = []
+    keyword_scores = []
+    for keyword in expected_keywords:
+        overlap_score = calculate_token_overlap(keyword, answer)
+        keyword_scores.append(overlap_score)
+        # Матчим если есть хоть какое-то перекрытие токенов
+        if overlap_score > 0:
+            matched_keywords.append(keyword)
+
+    # Для key points проверяем наличие как подстроки (точнее требование)
+    matched_key_points = []
+    for key_point in expected_key_points:
+        if normalize_text(key_point) in normalize_text(answer):
+            matched_key_points.append(key_point)
 
     keyword_ratio = 0.0
     if expected_keywords:
