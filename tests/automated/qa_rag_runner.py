@@ -98,14 +98,11 @@ def tokenize_text(text: str) -> set[str]:
     return set(tokens)
 
 
-def calculate_token_overlap(expected: str, actual: str) -> float:
+def calculate_token_overlap(expected_tokens: set[str], actual_tokens: set[str]) -> float:
     """Вычисляет долю перекрытия токенов между ожидаемым и фактическим текстом."""
-    expected_tokens = tokenize_text(expected)
-    actual_tokens = tokenize_text(actual)
-    
     if not expected_tokens:
-        return 1.0
-    
+        return 0.0
+
     overlap = len(expected_tokens & actual_tokens)
     return overlap / len(expected_tokens)
 
@@ -122,13 +119,17 @@ def evaluate_answer(test_case: dict, answer: str) -> dict:
     """Оценивает ответ по ключевым словам и ключевым тезисам с улучшенным матчингом."""
     expected_keywords = test_case.get("expected_keywords", [])
     expected_key_points = test_case.get("expected_key_points", [])
+    normalized_answer = normalize_text(answer)
+    answer_tokens = tokenize_text(answer)
 
     # Для каждого ключевого слова проверяем наличие с помощью токенизации
     matched_keywords = []
-    keyword_scores = []
     for keyword in expected_keywords:
-        overlap_score = calculate_token_overlap(keyword, answer)
-        keyword_scores.append(overlap_score)
+        keyword_tokens = tokenize_text(keyword)
+        if not keyword_tokens:
+            continue
+
+        overlap_score = calculate_token_overlap(keyword_tokens, answer_tokens)
         # Матчим если есть хоть какое-то перекрытие токенов
         if overlap_score > 0:
             matched_keywords.append(keyword)
@@ -136,7 +137,7 @@ def evaluate_answer(test_case: dict, answer: str) -> dict:
     # Для key points проверяем наличие как подстроки (точнее требование)
     matched_key_points = []
     for key_point in expected_key_points:
-        if normalize_text(key_point) in normalize_text(answer):
+        if normalize_text(key_point) in normalized_answer:
             matched_key_points.append(key_point)
 
     keyword_ratio = 0.0
@@ -300,9 +301,8 @@ def print_stats_by_question_type(stats_by_type: dict) -> None:
         type_stats = stats_by_type[question_type]
         print(f"\n{question_type}:")
         print(f"  - всего: {type_stats['total_cases']}")
-        print(f"  - pass: {type_stats['verdicts'].get('pass', 0)}")
-        print(f"  - partial: {type_stats['verdicts'].get('partial', 0)}")
-        print(f"  - fail: {type_stats['verdicts'].get('fail', 0)}")
+        for verdict, count in type_stats["verdicts"].items():
+            print(f"  - {verdict}: {count}")
         print(f"  - pass rate: {type_stats['pass_rate']*100:.1f}%")
         print(f"  - success rate (pass+partial): {type_stats['success_rate']*100:.1f}%")
 
