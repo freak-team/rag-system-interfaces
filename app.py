@@ -138,7 +138,6 @@ def check(request: CheckRequest):
     return {
         "isCorrect": is_correct,
         "explanation": explanation
-<<<<<<< HEAD
     }
 
 @app.get("/api/question")
@@ -163,6 +162,3 @@ def get_random_question():
         raise HTTPException(status_code=500, detail=str(e))
     finally:
         conn.close()
-=======
-    }
->>>>>>> 15a811c055f11caddbcafd60a935f84aa0dac7fb
