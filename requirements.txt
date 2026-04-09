@@ -1,3 +1,6 @@
 pymupdf
 sentence-transformers 
 faiss-cpu
+fastapi
+uvicorn
+pydantic
