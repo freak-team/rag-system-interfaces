@@ -252,6 +252,30 @@ def build_verdict_summary(case_results: list[dict]) -> dict:
     return dict(sorted(verdict_counter.items()))
 
 
+def build_stats_by_question_type(case_results: list[dict]) -> dict:
+    """Формирует детальную статистику по типам вопросов."""
+    stats_by_type = {}
+    
+    for question_type in ALLOWED_QUESTION_TYPES:
+        type_results = [r for r in case_results if r.get("question_type") == question_type]
+        
+        if not type_results:
+            continue
+        
+        verdict_counts = Counter(r.get("verdict") for r in type_results)
+        
+        stats_by_type[question_type] = {
+            "total_cases": len(type_results),
+            "verdicts": dict(sorted(verdict_counts.items())),
+            "pass_rate": round(verdict_counts.get("pass", 0) / len(type_results), 3) if type_results else 0,
+            "success_rate": round(
+                (verdict_counts.get("pass", 0) + verdict_counts.get("partial", 0)) / len(type_results), 3
+            ) if type_results else 0,
+        }
+    
+    return stats_by_type
+
+
 def print_verdict_summary(verdict_summary: dict) -> None:
     """Печатает сводку по вердиктам в академическом формате."""
     print("Итоговая сводка по результатам прогона:")
@@ -261,6 +285,26 @@ def print_verdict_summary(verdict_summary: dict) -> None:
 
     for verdict, count in verdict_summary.items():
         print(f"- {verdict}: {count}")
+
+
+def print_stats_by_question_type(stats_by_type: dict) -> None:
+    """Печатает детальную статистику по типам вопросов."""
+    if not stats_by_type:
+        return
+    
+    print("\nДетальная статистика по типам вопросов:")
+    for question_type in ALLOWED_QUESTION_TYPES:
+        if question_type not in stats_by_type:
+            continue
+        
+        type_stats = stats_by_type[question_type]
+        print(f"\n{question_type}:")
+        print(f"  - всего: {type_stats['total_cases']}")
+        print(f"  - pass: {type_stats['verdicts'].get('pass', 0)}")
+        print(f"  - partial: {type_stats['verdicts'].get('partial', 0)}")
+        print(f"  - fail: {type_stats['verdicts'].get('fail', 0)}")
+        print(f"  - pass rate: {type_stats['pass_rate']*100:.1f}%")
+        print(f"  - success rate (pass+partial): {type_stats['success_rate']*100:.1f}%")
 
 
 def calculate_exit_code(run_errors: int, verdict_summary: dict, strict_exit: bool, total_cases: int) -> int:
