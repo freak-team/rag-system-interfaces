@@ -1,43 +1,78 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
-    <meta charset="utf-8">
-    <title>DM RAG - Тест бэкенда</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 40px; background: #f4f4f9; }
-        .container { max-width: 600px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-        input { width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
-        button { padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; }
-        button:hover { background: #0056b3; }
-        .result { margin-top: 20px; padding: 15px; background: #e9ecef; border-radius: 4px; min-height: 50px; line-height: 1.5; }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дискретная математика. Глава 6</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h2>База знаний. Глава 6</h2>
-        <input type="text" id="question" placeholder="Например: Что такое энтропия?">
-        <button onclick="ask()">Найти ответ</button>
-        <div id="answer" class="result">Здесь появится ответ от Nginx и твоего FastAPI...</div>
+    <div class="app-wrapper">
+        
+        <header class="top-nav">
+            <div class="logo">DM RAG</div>
+            <nav class="mode-switcher">
+                <button class="tab-btn active" data-target="chat-mode">Поиск / Чат</button>
+                <button class="tab-btn" data-target="trainer-mode">Тренажёр</button>
+            </nav>
+        </header>
+
+        <main class="main-content">
+            
+            <section id="chat-mode" class="view-section active">
+                <div class="search-layout">
+                    
+                    <div class="search-header">
+                        <h1>Кодирование информации</h1>
+                        <p>Задайте свой вопрос, и система найдет ответ в материалах курса.</p>
+                    </div>
+
+                    <div class="search-container main-search">
+                        <div class="input-group">
+                            <input type="text" id="search-input" placeholder="Например: Что такое...?" autocomplete="off">
+                            <button id="search-btn" class="search-btn" aria-label="Найти ответ">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="answer-area" class="answer-card hidden">
+                        <span class="badge">Ответ системы</span>
+                        <div id="answer-text" class="result-content">
+                            </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <section id="trainer-mode" class="view-section hidden">
+                <div class="trainer-layout">
+                    
+                    <div class="question-card">
+                        <span class="badge">Вопрос системы</span>
+                        <h2 id="trainer-question">Здесь будет выведен сгенерированный вопрос по пройденному материалу.</h2>
+                    </div>
+
+                    <div class="answer-card">
+                        <textarea id="trainer-input" rows="4" placeholder="Введите ваш ответ..."></textarea>
+                        <button id="check-btn" class="action-btn">Проверить</button>
+                    </div>
+
+                    <div id="feedback-area" class="feedback-card hidden">
+                        <h3 id="feedback-title"></h3>
+                        <p id="feedback-text"></p>
+                        <button id="next-question-btn" class="action-btn next-btn">Следующий вопрос</button>
+                    </div>
+
+                </div>
+            </section>
+
+        </main>
     </div>
 
-    <script>
-        async function ask() {
-            const q = document.getElementById('question').value;
-            document.getElementById('answer').innerHTML = "<i>Ищем ответ в базе FAISS...</i>";
-            try {
-                // Тот самый относительный путь из контракта API!
-                const response = await fetch('/api/search', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ question: q })
-                });
-                const data = await response.json();
-                // Бэкенд возвращает ответ с тегами <strong> и <br>
-                document.getElementById('answer').innerHTML = data.answer;
-            } catch (e) {
-                document.getElementById('answer').innerHTML = "<b style='color:red;'>Ошибка: " + e + "</b>";
-            }
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>

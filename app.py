@@ -139,3 +139,26 @@ def check(request: CheckRequest):
         "isCorrect": is_correct,
         "explanation": explanation
     }
+
+@app.get("/api/question")
+def get_random_question():
+    # Подключаемся к базе данных
+    conn = sqlite3.connect("data/clean/knowledge_base.db")
+    cursor = conn.cursor()
+    try:
+        # Достаем один случайный вопрос из таблицы, которую создал extract_script.py
+        cursor.execute("SELECT id, question FROM trainer_questions ORDER BY RANDOM() LIMIT 1")
+        row = cursor.fetchone()
+        
+        if not row:
+            raise HTTPException(status_code=404, detail="Вопросы не найдены")
+            
+        # Возвращаем id и текст вопроса
+        return {
+            "id": row,
+            "question": row[4]
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+    finally:
+        conn.close()
