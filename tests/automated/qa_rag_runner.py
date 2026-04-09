@@ -480,11 +480,13 @@ def run_cases(
         "summary": {
             "verdicts": build_verdict_summary(case_results),
             "ontology_coverage": build_ontology_coverage_summary(case_results),
+            "stats_by_type": build_stats_by_question_type(case_results),
         },
     }
     save_report(report_path=report_path, report_data=report_data)
 
     print_verdict_summary(report_data["summary"]["verdicts"])
+    print_stats_by_question_type(report_data["summary"]["stats_by_type"])
     print_ontology_coverage_summary(report_data["summary"]["ontology_coverage"])
 
     print(f"Отчет сохранен: {report_path}")
