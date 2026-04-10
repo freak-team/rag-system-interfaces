@@ -3,7 +3,7 @@ import os
 
 # Константы ЗАГЛАВНЫМИ БУКВАМИ
 MODEL_NAME = 'cointegrated/rubert-tiny2'
-LOCAL_SAVE_PATH = './local_model'python download_model.py
+LOCAL_SAVE_PATH = './local_model'
 
 def download_and_save_model():
     print(f"Скачиваем модель {MODEL_NAME} из интернета...")

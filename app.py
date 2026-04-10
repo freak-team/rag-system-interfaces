@@ -19,7 +19,6 @@ FAISS_INDEX = faiss.read_index(INDEX_PATH)
 print("Готово! Сервер запущен.")
 
 app = FastAPI(title="RAG Backend")
-app = FastAPI(title="RAG Backend")
 
 # === НАСТРОЙКИ CORS ДЛЯ ФРОНТЕНДА ===
 app.add_middleware(
@@ -36,6 +35,7 @@ class SearchRequest(BaseModel):
     question: str
 
 class CheckRequest(BaseModel):
+    question_id: int  # Привязка к конкретному вопросу
     answer: str
 
 # === ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ===
@@ -112,31 +112,32 @@ def check(request: CheckRequest):
     conn = get_db_connection()
     cursor = conn.cursor()
     
-    # 1. Векторизуем ответ студента
+    # 1. Вычисляем вектор ответа студента
     answer_vector = MODEL.encode([request.answer], normalize_embeddings=True).astype("float32")
     
-    # 2. Ищем самый близкий по смыслу абзац прямо в базе FAISS
-    distances, indices = FAISS_INDEX.search(answer_vector, 1)
+    # 2. Получаем reference_text для конкретного вопроса из базы
+    cursor.execute("SELECT reference_text FROM trainer_questions WHERE id = ?", (request.question_id,))
+    question_row = cursor.fetchone()
     
-    # ВАЖНО: Достаем элементы из двумерного массива (строка 0, колонка 0)
-    dist = float(distances[0, 0])
-    chunk_id = int(indices[0, 0])
+    if not question_row:
+        conn.close()
+        raise HTTPException(status_code=404, detail=f"Вопрос с id={request.question_id} не найден")
     
-    # 3. Проверяем, преодолел ли ответ порог осмысленности (0.65)
-    is_correct = bool(dist > SIMILARITY_THRESHOLD)
-    explanation = "Ответ не распознан или не относится к материалу Главы 6."
+    reference_text = question_row["reference_text"]
     
-    if is_correct:
-        # Если ответ верный, достаем абзац-исходник для пояснения
-        cursor.execute("SELECT content FROM chapter_6 WHERE id = ?", (chunk_id,))
-        row = cursor.fetchone()
-        if row:
-            explanation = row["content"]
-            
+    # 3. Векторизуем reference_text и сравниваем с ответом студента
+    reference_vector = MODEL.encode([reference_text], normalize_embeddings=True).astype("float32")
+    similarity = float(np.dot(answer_vector[0], reference_vector[0]))
+    
+    # 4. Проверяем порог сходства (0.65)
+    is_correct = bool(similarity > SIMILARITY_THRESHOLD)
+    explanation = reference_text if is_correct else "Ответ не соответствует эталонному ответу. Пожалуйста, попробуйте снова."
+    
     conn.close()
     
     return {
         "isCorrect": is_correct,
+        "similarity": round(similarity, 3),
         "explanation": explanation
     }
 
@@ -153,10 +154,10 @@ def get_random_question():
         if not row:
             raise HTTPException(status_code=404, detail="Вопросы не найдены")
             
-        # Возвращаем id и текст вопроса
+        # Возвращаем id и текст вопроса (правильные индексы: id=0, question=1)
         return {
-            "id": row,
-            "question": row[4]
+            "id": row[0],
+            "question": row[1]
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
