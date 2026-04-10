@@ -83,7 +83,6 @@ rag-system-interfaces/
 ├── Dockerfile                         # Docker образ
 ├── docker-compose.yml                 # Оркестрация контейнеров
 ├── nginx.conf                         # Конфиг веб-сервера
-├── PROJECT_STRUCTURE.md               # Детальная документация
 └── README.md                          # Этот файл
 ```
 
@@ -218,7 +217,6 @@ uvicorn app:app --reload --host 0.0.0.0 --port 8000
 
 ## 📚 Дополнительно
 
-- [Детальная структура проекта](PROJECT_STRUCTURE.md)
 - [Тестовый датасет](tests/data/golden_dataset.json) — 31 QA кейс
 
 ## 👥 Контакты / Поддержка
