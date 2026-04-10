@@ -90,6 +90,23 @@ def normalize_text(text: str) -> str:
     return re.sub(r"\s+", " ", text.lower()).strip()
 
 
+def tokenize_text(text: str) -> set[str]:
+    """Токенизирует текст на слова с удалением пунктуации."""
+    normalized = normalize_text(text)
+    # Заменяем пунктуацию на пробелы и разбиваем на слова
+    tokens = re.sub(r"[^\w\s]", " ", normalized).split()
+    return set(tokens)
+
+
+def calculate_token_overlap(expected_tokens: set[str], actual_tokens: set[str]) -> float:
+    """Вычисляет долю перекрытия токенов между ожидаемым и фактическим текстом."""
+    if not expected_tokens:
+        return 0.0
+
+    overlap = len(expected_tokens & actual_tokens)
+    return overlap / len(expected_tokens)
+
+
 def strip_html_tags(text: str) -> str:
     """Удаляет HTML-теги из ответа backend для корректной текстовой оценки."""
     # Срезаем только конструкции, похожие на реальные теги, чтобы не портить выражения вида <=>.
@@ -99,17 +116,29 @@ def strip_html_tags(text: str) -> str:
 
 
 def evaluate_answer(test_case: dict, answer: str) -> dict:
-    """Оценивает ответ по ключевым словам и ключевым тезисам."""
-    normalized_answer = normalize_text(answer)
+    """Оценивает ответ по ключевым словам и ключевым тезисам с улучшенным матчингом."""
     expected_keywords = test_case.get("expected_keywords", [])
     expected_key_points = test_case.get("expected_key_points", [])
+    normalized_answer = normalize_text(answer)
+    answer_tokens = tokenize_text(answer)
 
-    matched_keywords = [
-        keyword for keyword in expected_keywords if normalize_text(keyword) in normalized_answer
-    ]
-    matched_key_points = [
-        key_point for key_point in expected_key_points if normalize_text(key_point) in normalized_answer
-    ]
+    # Для каждого ключевого слова проверяем наличие с помощью токенизации
+    matched_keywords = []
+    for keyword in expected_keywords:
+        keyword_tokens = tokenize_text(keyword)
+        if not keyword_tokens:
+            continue
+
+        overlap_score = calculate_token_overlap(keyword_tokens, answer_tokens)
+        # Матчим если есть хоть какое-то перекрытие токенов
+        if overlap_score > 0:
+            matched_keywords.append(keyword)
+
+    # Для key points проверяем наличие как подстроки (точнее требование)
+    matched_key_points = []
+    for key_point in expected_key_points:
+        if normalize_text(key_point) in normalized_answer:
+            matched_key_points.append(key_point)
 
     keyword_ratio = 0.0
     if expected_keywords:
@@ -224,6 +253,30 @@ def build_verdict_summary(case_results: list[dict]) -> dict:
     return dict(sorted(verdict_counter.items()))
 
 
+def build_stats_by_question_type(case_results: list[dict]) -> dict:
+    """Формирует детальную статистику по типам вопросов."""
+    stats_by_type = {}
+    
+    for question_type in ALLOWED_QUESTION_TYPES:
+        type_results = [r for r in case_results if r.get("question_type") == question_type]
+        
+        if not type_results:
+            continue
+        
+        verdict_counts = Counter(r.get("verdict") for r in type_results)
+        
+        stats_by_type[question_type] = {
+            "total_cases": len(type_results),
+            "verdicts": dict(sorted(verdict_counts.items())),
+            "pass_rate": round(verdict_counts.get("pass", 0) / len(type_results), 3) if type_results else 0,
+            "success_rate": round(
+                (verdict_counts.get("pass", 0) + verdict_counts.get("partial", 0)) / len(type_results), 3
+            ) if type_results else 0,
+        }
+    
+    return stats_by_type
+
+
 def print_verdict_summary(verdict_summary: dict) -> None:
     """Печатает сводку по вердиктам в академическом формате."""
     print("Итоговая сводка по результатам прогона:")
@@ -233,6 +286,25 @@ def print_verdict_summary(verdict_summary: dict) -> None:
 
     for verdict, count in verdict_summary.items():
         print(f"- {verdict}: {count}")
+
+
+def print_stats_by_question_type(stats_by_type: dict) -> None:
+    """Печатает детальную статистику по типам вопросов."""
+    if not stats_by_type:
+        return
+    
+    print("\nДетальная статистика по типам вопросов:")
+    for question_type in ALLOWED_QUESTION_TYPES:
+        if question_type not in stats_by_type:
+            continue
+        
+        type_stats = stats_by_type[question_type]
+        print(f"\n{question_type}:")
+        print(f"  - всего: {type_stats['total_cases']}")
+        for verdict, count in type_stats["verdicts"].items():
+            print(f"  - {verdict}: {count}")
+        print(f"  - pass rate: {type_stats['pass_rate']*100:.1f}%")
+        print(f"  - success rate (pass+partial): {type_stats['success_rate']*100:.1f}%")
 
 
 def calculate_exit_code(run_errors: int, verdict_summary: dict, strict_exit: bool, total_cases: int) -> int:
@@ -408,11 +480,13 @@ def run_cases(
         "summary": {
             "verdicts": build_verdict_summary(case_results),
             "ontology_coverage": build_ontology_coverage_summary(case_results),
+            "stats_by_type": build_stats_by_question_type(case_results),
         },
     }
     save_report(report_path=report_path, report_data=report_data)
 
     print_verdict_summary(report_data["summary"]["verdicts"])
+    print_stats_by_question_type(report_data["summary"]["stats_by_type"])
     print_ontology_coverage_summary(report_data["summary"]["ontology_coverage"])
 
     print(f"Отчет сохранен: {report_path}")
