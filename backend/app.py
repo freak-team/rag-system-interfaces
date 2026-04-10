@@ -43,7 +43,6 @@ def search(request: SearchRequest):
     query = request.question
     conn = get_db_connection()
     cursor = conn.cursor()
-    
     results_content = []
 
     clean_query = query.replace("Что такое ", "").replace("?", "").strip()
@@ -69,7 +68,6 @@ def search(request: SearchRequest):
         print(f"[FTS ОШИБКА]: {e}")
 
     query_vector = MODEL.encode([query], normalize_embeddings=True).astype("float32")
-
     distances, indices = FAISS_INDEX.search(query_vector, 3)
 
     for i in range(3):
@@ -95,31 +93,31 @@ def search(request: SearchRequest):
 def check(request: CheckRequest):
     conn = get_db_connection()
     cursor = conn.cursor()
+    try:
+        answer_vector = MODEL.encode([request.answer], normalize_embeddings=True).astype("float32")
+        
+        cursor.execute("SELECT reference_text FROM trainer_questions WHERE id = ?", (request.question_id,))
+        question_row = cursor.fetchone()
     
-    answer_vector = MODEL.encode([request.answer], normalize_embeddings=True).astype("float32")
+        if not question_row:
+            raise HTTPException(status_code=404, detail=f"Вопрос с id={request.question_id} не найден")
+        
+        reference_text = question_row["reference_text"]
+    
+        reference_vector = MODEL.encode([reference_text], normalize_embeddings=True).astype("float32")
+        similarity = float(np.dot(answer_vector[0], reference_vector[0]))
 
-    cursor.execute("SELECT reference_text FROM trainer_questions WHERE id = ?", (request.question_id,))
-    question_row = cursor.fetchone()
+        is_correct = bool(similarity > SIMILARITY_THRESHOLD)
+        explanation = reference_text if is_correct else "Ответ не соответствует эталонному ответу. Пожалуйста, попробуйте снова."
     
-    if not question_row:
+    
+        return {
+            "isCorrect": is_correct,
+            "similarity": round(similarity, 3),
+            "explanation": explanation
+        }
+    finally:
         conn.close()
-        raise HTTPException(status_code=404, detail=f"Вопрос с id={request.question_id} не найден")
-    
-    reference_text = question_row["reference_text"]
-    
-    reference_vector = MODEL.encode([reference_text], normalize_embeddings=True).astype("float32")
-    similarity = float(np.dot(answer_vector[0], reference_vector[0]))
-
-    is_correct = bool(similarity > SIMILARITY_THRESHOLD)
-    explanation = reference_text if is_correct else "Ответ не соответствует эталонному ответу. Пожалуйста, попробуйте снова."
-    
-    conn.close()
-    
-    return {
-        "isCorrect": is_correct,
-        "similarity": round(similarity, 3),
-        "explanation": explanation
-    }
 
 @app.get("/api/question")
 def get_random_question():
@@ -133,8 +131,8 @@ def get_random_question():
             raise HTTPException(status_code=404, detail="Вопросы не найдены")
             
         return {
-            "id": row[0],
-            "question": row[1]
+            "question_id": row[0],
+            "text": row[1] 
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
