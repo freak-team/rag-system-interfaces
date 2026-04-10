@@ -15,7 +15,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DATASET_PATH = PROJECT_ROOT / "tests" / "data" / "golden_dataset.json"
 DEFAULT_REPORT_PATH = PROJECT_ROOT / "tests" / "automated" / "reports" / "qa_rag_runner_report.json"
 DEFAULT_ONTOLOGY_TERMS_PATH = PROJECT_ROOT / "data" / "clean" / "ontology_terms.txt"
-DEFAULT_SEARCH_ENDPOINT = "https://127.0.0.1:8000/api/search"
+DEFAULT_SEARCH_ENDPOINT = "http://127.0.0.1/api/search"
 ALLOWED_QUESTION_TYPES = ("definition", "comparison", "explanation", "application", "negative", "ambiguous")
 
 
