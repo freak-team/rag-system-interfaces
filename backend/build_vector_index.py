@@ -6,7 +6,7 @@ import os
 
 def build_faiss_index(db_path, index_path):
     print("1. Загрузка модели rubert-tiny2 (потребуется интернет на 1 раз)...")
-    model = SentenceTransformer('cointegrated/rubert-tiny2')
+    model = SentenceTransformer('./local_model')
 
     print("2. Чтение данных из SQLite...")
     conn = sqlite3.connect(db_path)

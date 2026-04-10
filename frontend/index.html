@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дискретная математика. Глава 6</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-wrapper">
+        
+        <header class="top-nav">
+            <div class="logo">DM RAG</div>
+            <nav class="mode-switcher">
+                <button class="tab-btn active" data-target="chat-mode">Поиск / Чат</button>
+                <button class="tab-btn" data-target="trainer-mode">Тренажёр</button>
+            </nav>
+        </header>
+
+        <main class="main-content">
+            
+            <section id="chat-mode" class="view-section active">
+                <div class="search-layout">
+                    
+                    <div class="search-header">
+                        <h1>Кодирование информации</h1>
+                        <p>Задайте свой вопрос, и система найдет ответ в материалах курса.</p>
+                    </div>
+
+                    <div class="search-container main-search">
+                        <div class="input-group">
+                            <input type="text" id="search-input" placeholder="Например: Что такое...?" autocomplete="off">
+                            <button id="search-btn" class="search-btn" aria-label="Найти ответ">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="answer-area" class="answer-card hidden">
+                        <span class="badge">Ответ системы</span>
+                        <div id="answer-text" class="result-content">
+                            </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <section id="trainer-mode" class="view-section hidden">
+                <div class="trainer-layout">
+                    
+                    <div class="question-card">
+                        <span class="badge">Вопрос системы</span>
+                        <h2 id="trainer-question">Здесь будет выведен сгенерированный вопрос по пройденному материалу.</h2>
+                    </div>
+
+                    <div class="answer-card">
+                        <textarea id="trainer-input" rows="4" placeholder="Введите ваш ответ..."></textarea>
+                        <button id="check-btn" class="action-btn">Проверить</button>
+                    </div>
+
+                    <div id="feedback-area" class="feedback-card hidden">
+                        <h3 id="feedback-title"></h3>
+                        <p id="feedback-text"></p>
+                        <button id="next-question-btn" class="action-btn next-btn">Следующий вопрос</button>
+                    </div>
+
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
