@@ -46,16 +46,13 @@ def save_text_to_sqlite(text_data, db_path, debug_out_path):
 
     for chunk in chunks:
         chunk = chunk.strip()
-        
-        # === ИСПРАВЛЕНИЕ ГЛАВНОГО БАГА ===
+
         if "[Страница" in chunk:
             match = re.search(r'\[Страница (\d+)\]', chunk)
             if match: 
                 current_page = int(match.group(1))
-                # Вырезаем тег страницы, но ОСТАВЛЯЕМ текст абзаца!
                 chunk = re.sub(r'\[Страница \d+\]\n*', '', chunk).strip()
         
-        # Если после вырезания тега абзац оказался пустым (или слишком коротким)
         if len(chunk) < 15: 
             continue
             
@@ -80,7 +77,6 @@ def save_text_to_sqlite(text_data, db_path, debug_out_path):
         if ru_chars < 20 and len(lines) > 0 and (short_lines / len(lines)) > 0.4:
             continue
             
-        # Если дошли сюда - чанк хороший, сохраняем!
         cursor.execute('INSERT INTO chapter_6 (page_number, content) VALUES (?, ?)', (current_page, chunk))
         saved_chunks_for_debug.append(f"[Стр. {current_page}]\n{chunk}")
 
@@ -91,7 +87,7 @@ def save_text_to_sqlite(text_data, db_path, debug_out_path):
     with open(debug_out_path, "w", encoding="utf-8") as f:
         f.write("\n\n".join(saved_chunks_for_debug))
         
-    print(f"База текста готова: {db_path} (Таблицы и мусор удалены, первый абзац страниц спасён!)")
+    print(f"База текста готова: {db_path}")
 
 def parse_index_to_sqlite(index_text, db_path, debug_out_path):
     conn = sqlite3.connect(db_path)

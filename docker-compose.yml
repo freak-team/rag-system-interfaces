@@ -1,23 +1,19 @@
 version: '3.8'
 
 services:
-  # Наш Python-бэкенд
   backend:
     build: .
     container_name: rag_backend_api
     expose:
-      - "8000" # Открываем порт только для внутренней сети Docker
+      - "8000"
 
-  # Веб-сервер Nginx
   nginx:
     image: nginx:alpine
     container_name: rag_nginx
     ports:
-      - "80:80" # Открываем наружу стандартный веб-порт
+      - "80:80"
     volumes:
-      # Прокидываем папку с фронтендом внутрь Nginx
       - ./frontend:/usr/share/nginx/html
-      # Прокидываем конфиг
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
     depends_on:
       - backend
