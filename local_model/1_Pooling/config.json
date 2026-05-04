@@ -1,10 +1,5 @@
 {
-    "word_embedding_dimension": 312,
-    "pooling_mode_cls_token": true,
-    "pooling_mode_mean_tokens": false,
-    "pooling_mode_max_tokens": false,
-    "pooling_mode_mean_sqrt_len_tokens": false,
-    "pooling_mode_weightedmean_tokens": false,
-    "pooling_mode_lasttoken": false,
+    "embedding_dimension": 312,
+    "pooling_mode": "cls",
     "include_prompt": true
 }

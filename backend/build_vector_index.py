@@ -27,7 +27,6 @@ def build_faiss_index(db_path, index_path):
         texts.append(row[1])
 
     print(f"3. Вычисление эмбеддингов для {len(texts)} абзацев...")
-    # ДОБАВЛЕНО: normalize_embeddings=True
     embeddings = model.encode(texts, show_progress_bar=True, normalize_embeddings=True)
 
     embeddings = np.array(embeddings).astype("float32")

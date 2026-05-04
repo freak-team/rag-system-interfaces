@@ -16,7 +16,10 @@ def extract_chapter(pdf_path, start_page, end_page):
     try:
         with fitz.open(pdf_path) as doc:
             chapter_text = ""
-            for i in range(start_page - 1, end_page):
+            # МАГИЯ ЗДЕСЬ: Ограничиваем конечную страницу реальным количеством страниц в PDF
+            actual_end = min(end_page, doc.page_count)
+            
+            for i in range(start_page - 1, actual_end):
                 page = doc.load_page(i)
                 page_text = page.get_text("text")
                 cleaned_page = clean_text(page_text)
@@ -25,7 +28,7 @@ def extract_chapter(pdf_path, start_page, end_page):
             return chapter_text
     except Exception as e:
         return f"Ошибка при обработке PDF: {e}"
-
+    
 def save_text_to_sqlite(text_data, db_path, debug_out_path):
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
@@ -95,10 +98,12 @@ def parse_index_to_sqlite(index_text, db_path, debug_out_path):
     cursor.execute('DROP TABLE IF EXISTS ontology')
     cursor.execute('CREATE TABLE ontology (id INTEGER PRIMARY KEY, term TEXT, page_number INTEGER)')
 
+    # 1. УБИВАЕМ АРТЕФАКТЫ: вырезаем теги страниц, чтобы они не ломали иерархию терминов
+    index_text = re.sub(r'\[Страница \d+\]\n*', '', index_text)
+    
     lines = index_text.split('\n')
     current_parent = ""
-    
-    extracted_terms = [] # Для отладки
+    extracted_terms = []
 
     for line in lines:
         line = line.strip()
@@ -112,26 +117,31 @@ def parse_index_to_sqlite(index_text, db_path, debug_out_path):
             pages = [int(p.strip()) for p in pages_raw.split(',') if p.strip().isdigit()]
             term_part = line[:match.start()].strip().rstrip(',').strip()
 
-            if term_part and term_part[0].islower() and current_parent:
-                full_term = f"{current_parent} ({term_part})"
+            # 2. ИСПРАВЛЕНИЕ: Если строчка с маленькой буквы ИЛИ начинается со скобки, это дочерний термин
+            if term_part and (term_part[0].islower() or term_part.startswith('(')) and current_parent:
+                full_term = f"{current_parent} {term_part}"
             else:
                 full_term = term_part
                 current_parent = term_part
 
             for p in pages:
+                # Ограничение по страницам 6-й главы
                 if 1016 <= p <= 1156:
                     cursor.execute('INSERT INTO ontology (term, page_number) VALUES (?, ?)', (full_term, p))
                     extracted_terms.append(f"{full_term} -> {p}")
         else:
-            current_parent = line.strip()
+            line_clean = line.strip()
+            # То же самое правило для строк без номеров страниц
+            if line_clean and (line_clean[0].islower() or line_clean.startswith('(')) and current_parent:
+                current_parent = f"{current_parent} {line_clean}"
+            else:
+                current_parent = line_clean
 
     conn.commit()
     conn.close()
     
-    # Сохраняем термины в файл
     with open(debug_out_path, "w", encoding="utf-8") as f:
         f.write("\n".join(extracted_terms))
-
 def add_is_key_column(db_path):
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
@@ -162,14 +172,33 @@ def setup_fts_search(db_path):
     cursor.execute("DROP TABLE IF EXISTS chapter_6_fts")
     cursor.execute('''
         CREATE VIRTUAL TABLE chapter_6_fts USING fts5(
+            id UNINDEXED,
             page_number,
             content,
             tokenize='unicode61 remove_diacritics 1'
         )
     ''')
-    cursor.execute("INSERT INTO chapter_6_fts (page_number, content) SELECT page_number, content FROM chapter_6")
+    cursor.execute("INSERT INTO chapter_6_fts (id, page_number, content) SELECT id, page_number, content FROM chapter_6")
     conn.commit()
     conn.close()
+
+def setup_fts_search(db_path):
+    conn = sqlite3.connect(db_path)
+    cursor = conn.cursor()
+    cursor.execute("DROP TABLE IF EXISTS chapter_6_fts")
+    # Добавляем id UNINDEXED для связи с векторами FAISS
+    cursor.execute('''
+        CREATE VIRTUAL TABLE chapter_6_fts USING fts5(
+            id UNINDEXED,
+            page_number,
+            content,
+            tokenize='unicode61 remove_diacritics 1'
+        )
+    ''')
+    cursor.execute("INSERT INTO chapter_6_fts (id, page_number, content) SELECT id, page_number, content FROM chapter_6")
+    conn.commit()
+    conn.close()
+
 
 def generate_trainer_data(db_path):
     conn = sqlite3.connect(db_path)
@@ -188,22 +217,55 @@ def generate_trainer_data(db_path):
     added_questions = 0
 
     for term, page in terms:
-        clean_term = term.split('(')[0].strip()
-        if len(clean_term) < 3 or "Страница" in clean_term or "?" in clean_term:
+        # Вытягиваем только кириллицу
+        ru_words = re.findall(r'[А-Яа-яЁё\-]+', term)
+        
+        # 1. Убиваем повисшие одиночные буквы в конце
+        while ru_words and len(ru_words[-1]) == 1:
+            ru_words.pop()
+            
+        # === 2. НОВЫЙ ФИЛЬТР ОТ "ФРАНКЕНШТЕЙНОВ" ===
+        # Если в термине больше 3 слов — это склейка из-за кривого PDF. Жестко отбраковываем!
+        if len(ru_words) > 3 or not ru_words:
             continue
-        if re.match(r'^[a-zA-Z\s\-]+$', clean_term):
+            
+        # 3. Делаем порядок слов естественным (Способность пропускная -> Пропускная способность)
+        if len(ru_words) >= 2:
+            adj_endings = ('ая', 'яя', 'ое', 'ее', 'ий', 'ый', 'ой', 'ые', 'ие')
+            if ru_words[-1].lower().endswith(adj_endings):
+                adj = ru_words.pop()
+                ru_words.insert(0, adj.capitalize())
+                if len(ru_words) > 1:
+                    ru_words[1] = ru_words[1].lower() 
+                
+        clean_term = " ".join(ru_words).strip()
+        
+        # Отсекаем мелкий мусор
+        if len(clean_term) < 4 or "Страница" in clean_term or "?" in clean_term:
             continue
 
+        # Пробуем взять текст прямо с нужной страницы
         cursor.execute('''
             SELECT content FROM chapter_6
-            WHERE page_number = ? AND is_key_fragment = 1 
+            WHERE page_number = ? 
             LIMIT 1
         ''', (page,))
         row = cursor.fetchone()
 
+        # Если на странице нет нормального текста, ищем термин по всей базе
+        if not row:
+            first_word = ru_words[0] if ru_words else clean_term
+            search_word = first_word[:-1] if len(first_word) > 4 else first_word
+            cursor.execute('''
+                SELECT content FROM chapter_6
+                WHERE content LIKE ?
+                LIMIT 1
+            ''', (f'%{search_word}%',))
+            row = cursor.fetchone()
+
         if row:
             content = row[0]
-            clean_reference = content[:300].replace('\n', ' ') + "..."
+            clean_reference = content[:350].replace('\n', ' ') + "..."
             question = f"Дайте определение или опишите понятие: «{clean_term}»"
             cursor.execute('''
                 INSERT INTO trainer_questions (question, reference_text, page_number)
@@ -212,8 +274,8 @@ def generate_trainer_data(db_path):
             added_questions += 1
 
     conn.commit()
+    print(f"Сгенерировано вопросов для тренажера: {added_questions}") # Добавили принт для проверки!
     conn.close()
-
 if __name__ == "__main__":
     os.makedirs("data/clean", exist_ok=True)
 
