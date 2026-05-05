@@ -59,6 +59,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ question: query })
                 });
+                if (!response.ok) {
+                    throw new Error(`Backend returned status ${response.status}`);
+                }
                 responseData = await response.json();
             }
 
@@ -94,11 +97,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 };
             } else {
                 const response = await fetch(API_URLS.getQuestion);
+                if (!response.ok) {
+                    throw new Error(`Backend returned status ${response.status}`);
+                }
                 data = await response.json();
             }
             
-            currentQuestionId = data.question_id;
-            trainerQuestionElement.textContent = data.text;
+            currentQuestionId = data.question_id ?? data.id ?? null;
+            trainerQuestionElement.textContent = data.text ?? data.question ?? "Не удалось получить текст вопроса";
+
+            if (currentQuestionId === null) {
+                throw new Error('Question id is missing in backend response');
+            }
         } catch (error) {
             console.error("Ошибка при загрузке вопроса:", error);
             trainerQuestionElement.textContent = "Не удалось загрузить вопрос. Попробуйте обновить страницу.";
@@ -140,6 +150,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         answer: studentAnswer 
                     })
                 });
+                if (!response.ok) {
+                    throw new Error(`Backend returned status ${response.status}`);
+                }
                 result = await response.json();
             }
 
