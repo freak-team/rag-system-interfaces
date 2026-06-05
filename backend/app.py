@@ -40,6 +40,7 @@ def resolve_path(raw_path: str) -> str:
 
 DB_PATH = resolve_path("data/clean/knowledge_base.db")
 INDEX_PATH = resolve_path("data/clean/faiss_index.bin")
+ONTOLOGY_FILE_PATH = resolve_path("data/clean/ontology_terms.txt")
 MODEL_PATH = resolve_path("local_model")
 SIMILARITY_THRESHOLD = 0.65
 
@@ -247,11 +248,40 @@ def fetch_ontology_pages(cursor: sqlite3.Cursor, query: str) -> set[int]:
     query_lower = query.lower()
     matched_pages = set()
 
-    cursor.execute("SELECT term, page_number FROM ontology")
-    for row in cursor.fetchall():
-        term = row["term"].split("(")[0].strip().lower()
-        if len(term) >= 4 and term in query_lower:
-            matched_pages.add(int(row["page_number"]))
+    # Считываем из таблицы ontology (если есть)
+    try:
+        cursor.execute("SELECT term, page_number FROM ontology")
+        for row in cursor.fetchall():
+            term = row["term"].split("(")[0].strip().lower()
+            if len(term) >= 4 and term in query_lower:
+                matched_pages.add(int(row["page_number"]))
+    except Exception:
+        # Таблица может отсутствовать — продолжаем
+        pass
+
+    # Считываем из файла ontology_terms.txt (опционально)
+    try:
+        ontology_path = Path(ONTOLOGY_FILE_PATH)
+        if ontology_path.exists():
+            with ontology_path.open("r", encoding="utf-8") as fh:
+                for raw in fh:
+                    line = raw.strip()
+                    if not line or "->" not in line:
+                        continue
+                    term_part, page_part = line.split("->", maxsplit=1)
+                    term_part = re.sub(r"^(?:\[[^\]]+\]\s*)+", "", term_part).strip().lower()
+                    page_part = page_part.strip()
+                    if not term_part or len(term_part) < 4:
+                        continue
+                    try:
+                        page_num = int(re.search(r"\d+", page_part).group(0))
+                    except Exception:
+                        continue
+
+                    if term_part in query_lower or query_lower in term_part:
+                        matched_pages.add(page_num)
+    except Exception:
+        pass
 
     return matched_pages
 
