@@ -23,7 +23,7 @@ n-ка (n-tuple), 158
 собственная (proper), 678
 тождества (of identity), 1103
 формальной теории (of formal theory),
-
+677
 Аксиоматизируемость
 (axiomatizability),
 683, 741
@@ -33,26 +33,27 @@ n-ка (n-tuple), 158
 Ли (Lie), 468
 Линденбаума Тарского
 (Lindenbaum Tarski), 552
+1676 / 1738
 
 [Страница 1677]
 булева (boolean), 493
 булевых функций (of boolean functions),
-
+550
 высказываний
 (propositional
 algebra),
-
+661
 конечно-порожденная (finitely generated),
-
+326
 многоосновная (multi-based), 322
 над полем (over a field), 472
 подмножеств (of subsets), 103, 323
 свободная (free), 327
 термов свободная (free algebra of terms),
-
+328
 универсальная (universal), 321
 Алгоритм (algorithm), 748
-A (A-star), 1405
+A* (A-star), 1405
 Беллмана Форда (Bellman Ford), 1378
 Дейкстры (Dijkstra), 1381
 Джонсона (Jonson), 1399
@@ -66,10 +67,10 @@ A (A-star), 1405
 Фано (Fano), 1077
 Флойда Уоршалла
 (Floyd Warshall),
-
+1395
 Хаффмена (Huffman), 1086
 Эдмондса (Edmonds), 1325
-восстановления упорядоченного ордере
+восстановления упорядоченного ордере1677 / 1738
 
 [Страница 1678]
 ва по коду (of construction of ordered
@@ -82,7 +83,7 @@ insertion in sorting tree), 1490
 different), 775
 выделения компонент сильной связности
 (finding strongly connectivity component),
-
+1356
 вычисления значения функции по сокращённому дереву решений (evaluation of
 function using the decision tree), 629
 вычисления номера кортежа в установленном порядке (evaluation of tuple s
@@ -115,6 +116,7 @@ subtraction), 410
 детерминированный (deterministic), 770
 жадный (greedy), 317, 511
 интерпретации (interpretation), 538, 777
+1678 / 1738
 
 [Страница 1679]
 линейный (linear), 511
@@ -127,10 +129,10 @@ technique), 820
 нахождения максимального потока (for
 maximum flow problem), 1337
 недетерминированный (non-deterministic),
-
+770
 неэффективный (inefficient), 1613
 нормальный Маркова (Markov normal),
-
+749
 объединения дизъюнктных итераторов
 (union of disjunctive iterators), 152
 определения расстояний от источника
@@ -165,6 +167,7 @@ perfect DNF), 593
 бинарного
 кода
 Грея
+1679 / 1738
 
 [Страница 1680]
 (generating of binary Grey code), 131
@@ -203,15 +206,17 @@ sorting), 267
 универсальный (universal), 779
 унификации (unification), 809
 условно равный (conventionally equal),
+1680 / 1738
 
 [Страница 1681]
+774
 функционально эквивалентный
 (functionally equivalent), 753
 эвристический (heuristic), 1404, 1607
 эффективный (efficient), 1613
 Алфавит (alphabet), 69
 формальной теории (of formal theory),
-
+677
 Анализ (analysis)
 дискриминантный (discriminant), 307
 комбинаторный (combinatorial), 829
@@ -236,14 +241,15 @@ sorting), 267
 орграфа (of digraph), 1363
 Базис (basis)
 векторного пространства (of vector space),
-
+457
 матроида (of matroid), 504
+1681 / 1738
 
 [Страница 1682]
 пространства коциклов (of cocyclic space),
-
+1567
 пространства циклов (of cycle space),
-
+1567
 Беспорядок (disorder), 946
 Биграф (bigraph), 1212
 Биекция (bijection), 215
@@ -265,7 +271,7 @@ sorting), 267
 вершины
 (vertex
 valence),
-
+1184
 Вектор (vector), 68, 236, 452, 466
 двоичный (binary), 116
 циклический (cyclic vector), 1561
@@ -275,6 +281,7 @@ valence),
 Вероятность
 условная, 1039
 Вероятность (probability), 984, 985, 988
+1682 / 1738
 
 [Страница 1683]
 апостериорная (posterior), 996, 1040
@@ -300,15 +307,16 @@ binomial), 995
 Вес (weight)
 дуги (of arc), 1368
 Ветвь ордерева (branch of directed tree),
-
+1429
 Включение (inclusion)
 множеств (of sets), 77
 мультимножеств (of multisets), 305
 Вложение (injection)
 множества (of set), 79
 Вместимость отношения (arity of relation),
-
+169
 Вхождение (occurrence), 69
+1683 / 1738
 
 [Страница 1684]
 определяющее (defining), 40
@@ -345,6 +353,7 @@ population), 836
 Гиперграф (hypergraph), 1172
 Гипердуга (hyperarc), 1172
 Гиперорграф (hyperorgraph), 1172
+1684 / 1738
 
 [Страница 1685]
 Гиперребро (hyperedge), 1172
@@ -370,7 +379,7 @@ n-связный (n-connected), 1285
 ациклический (acyclic), 1188, 1413
 взвешенный (weighted), 1368
 вполне несвязный (totally disconnected),
-
+1190
 гамильтонов (hamiltonian), 1580
 генеалогический (genealogical), 1429
 геодезический (geodesic), 1192
@@ -379,6 +388,7 @@ n-связный (n-connected), 1285
 полный (complete), 1212
 двусвязный (biconnected), 1287
 древочисленный (tree-numerical), 1413
+1685 / 1738
 
 [Страница 1686]
 звёздный (star), 1216
@@ -394,7 +404,7 @@ n-связный (n-connected), 1285
 полный (complete), 1210
 полугамильтонов
 (semi-hamiltonian),
-
+1580
 полуэйлеров (semi-eulerian), 1571
 помеченный (labeled), 1166, 1172
 пустой (empty), 1210
@@ -414,6 +424,7 @@ n-связный (n-connected), 1285
 компактная (compact), 619
 избыточная (excess), 625
 максимальная (maximal), 620
+1686 / 1738
 
 [Страница 1687]
 перестановок (of permutations), 383, 385
@@ -437,10 +448,10 @@ n-связный (n-connected), 1285
 правый (right), 395
 Делится на (divisible by), 410
 Дельта-окрестность (delta neighborhood),
-
+1106
 Дерево (tree), 1413
 m-ичное (m-ary), 1437
-И ИЛИ (and-or), 1263
+И/ИЛИ (and-or), 1263
 АВЛ-дерево (AVL-tree), 1508
 бинарное (binary), 1032, 1436
 полное (full), 1506
@@ -448,6 +459,7 @@ m-ичное (m-ary), 1437
 выровненное (aligned tree), 1505
 двоичное (binary), 1436
 заполненное (thick), 1505
+1687 / 1738
 
 [Страница 1688]
 игровое (game), 1263
@@ -456,7 +468,7 @@ m-ичное (m-ary), 1437
 кодовое (coding), 1032
 корневое (rooted), 1425
 кратчайших путей (of shortest paths),
-
+1376
 ориентированное (directed), 1425
 отрезков (of segments), 1527
 подровненное (balanced), 1508
@@ -485,9 +497,10 @@ balanced), 1508
 (Riemann zeta-function), 880
 Диагональ (diagonal)
 прямого произведения (of direct product),
-
+169
 Диаграмма (diagram), 44
 Вейча (Veitch), 607
+1688 / 1738
 
 [Страница 1689]
 Венна (John Venn), 95
@@ -522,6 +535,7 @@ flow), 1054
 кодирования (of coding)), 1074
 кратчайшего пути (of shortest path), 1368
 маршрута (of walk), 1192
+1689 / 1738
 
 [Страница 1690]
 набора (of tuple), 159
@@ -559,6 +573,8 @@ NP-полная (NP-complete), 1583
 коммивояжёра
 (travelling
 salesman),
+1583
+1690 / 1738
 
 [Страница 1691]
 минимизации
@@ -601,6 +617,7 @@ inference rule), 679
 Запись (record), 1470
 Зашифровка (enciphering), 1143
 Значение (value)
+1691 / 1738
 
 [Страница 1692]
 истинностное (truth value), 654
@@ -641,6 +658,7 @@ linear ordered sets), 281
 графа (of graph), 1175
 Инверсия (inversion), 858
 Инвертирование (inversing), 116
+1692 / 1738
 
 [Страница 1693]
 Инволютивность (involutivity)
@@ -654,7 +672,7 @@ predicate
 calculus), 727
 представления (of implementation), 1370
 формальной теории (of formal theory),
-
+681
 формулы (of formula), 658
 Инфимум (infimum), 270
 Информация (information), 1016
@@ -672,7 +690,7 @@ intelligence)
 Бернулли (Bernoulli), 990
 Истина (truth), 784
 Истинностное значение (truth value), 290,
-
+523
 Источник (source), 1219
 двоичный (binary), 1030
 информации (of information)
@@ -680,6 +698,7 @@ intelligence)
 Исход (outcome), 984, 985
 Исчисление (calculus)
 высказываний (propositions calculus), 688
+1693 / 1738
 
 [Страница 1694]
 предикатов (predicates calculus), 720
@@ -720,13 +739,14 @@ anti-symmetric), 356
 (existence and uniqueness), 668
 Китайская теорема об остатках (chinese
 remainder theorem), 440
+1694 / 1738
 
 [Страница 1695]
 Класс (class), 62
 алгоритмов (of algorithm)
 представительный (representative), 776
 вычетов по модулю (of residue modulo),
-
+435
 замкнутый (closed), 636
 множеств (of sets)
 арифметических (arithmetic), 793
@@ -756,6 +776,7 @@ memory), 1470
 Код (code)
 Грея (Gray), 131
 левый зеркальный (left mirror), 134
+1695 / 1738
 
 [Страница 1696]
 Прюфера (Pr ufer), 1441
@@ -782,19 +803,20 @@ decimal), 1061
 помехоустойчивое (antinoise), 1093
 равномерное (uniform), 1075
 с исправлением ошибок (error correction),
-
+1093
 с
 минимальной
 избыточностью
 (with
 minimal redundancy), 1075
 самокорректирующееся (self-correcting),
-
+1093
 цена (price), 1074
 Кодирование (encoding)
 систематическое (systematic), 1119
 Кодовое слово (code word), 1031, 1061
 Количество (amount)
+1696 / 1738
 
 [Страница 1697]
 информации (of information), 1025
@@ -804,7 +826,7 @@ minimal redundancy), 1075
 Коллинеарность (co-linear), 236
 Кольцо (ring), 392
 вырожденный случай (degenerate case),
-
+394
 коммутативное (commutative), 392
 с единицей (with identity), 392
 целых чисел (of integer numbers), 323
@@ -820,7 +842,7 @@ minimal redundancy), 1075
 Компонента (component)
 связности (of connectivity), 1190
 сильной связности (of strong connectivity),
-
+1355
 Конденсация
 орграфа
 (condensation
@@ -830,8 +852,9 @@ digraph), 1355
 Константа (constant), 792
 предметная (object), 720
 Конституента единицы (unit constituent),
-
+566
 Контекст (context), 1614
+1697 / 1738
 
 [Страница 1698]
 Контрадикторность (contradictory), 669
@@ -845,7 +868,7 @@ digraph), 1355
 Координаты (coordinates), 457
 декартовы (Cartesian), 1017
 Корень ордерева (root of directed tree),
-
+1425
 Корень уравнения (root of equation), 276
 Кортеж (tuple), 158, 169
 Коцикл (cocycle), 1562
@@ -861,17 +884,18 @@ digraph), 1355
 Лес (forest), 1413
 остовный (spanning), 1539
 Линейная комбинация (linear combination),
-
+455
 Линия (line), 47
 Лист ордерева (leaf of directed tree), 1429
 Литерал (literal), 724
 контрарный (contrary), 807
+1698 / 1738
 
 [Страница 1699]
 Логика (logic)
 нечёткая (fuzzy), 296
 Логическое отрицание (logical negation),
-
+116
 Лупа (loop), 375
 Магма (magma), 352
 Макстерм (maxterm), 567
@@ -902,6 +926,7 @@ value), 1000
 перестановочная (of permutation), 387
 переходных вероятностей, 1046
 подстановки (of substitution), 387
+1699 / 1738
 
 [Страница 1700]
 порождающая (generator), 1117
@@ -909,7 +934,7 @@ value), 1000
 проверочная (parity check), 1118
 смежности (adjacency), 1239
 смежности рёбер (adjacency of edges),
-
+1229
 стохастическая (stochastic), 1045
 транспонирование (transposition), 184
 умножение (multiplication), 184
@@ -936,6 +961,7 @@ value), 1000
 Метрика (metric), 1103
 Минтерм (minterm), 566
 Многозначная ассоциация (multimap), 1472
+1700 / 1738
 
 [Страница 1701]
 Множество (set), 61
@@ -945,7 +971,7 @@ value), 1000
 бесконечное (infinite), 64, 82
 вершин (of vertex)
 внешне устойчивое (externally stable),
-
+1621
 внутренне
 устойчивое
 (internally
@@ -956,11 +982,11 @@ stable), 1595
 вполне
 упорядоченное
 (well-ordered),
-
+280
 зависимое (dependent), 498
 заданное (defined by)
 перечислением элементов (enumeration)
-
+63
 порождающей процедурой (generating
 procedure), 63
 характеристическим
@@ -977,6 +1003,8 @@ incidence), 1168
 арифметики (of arithmetic), 793
 конечное (finite), 64, 82
 линейно зависимое (linearly dependent),
+456
+1701 / 1738
 
 [Страница 1702]
 линейно независимое
@@ -1001,7 +1029,7 @@ ordered), 257
 независимое (independent), 1567
 рёбер (of edges)
 внешне устойчивое (externally stable),
-
+1622
 доминирующее (dominating), 1622
 независимое (independent), 1301, 1596
 разделяющее (separate), 1293
@@ -1013,6 +1041,7 @@ ordered), 257
 независимое (independent), 1624
 порождающее (generative), 1363
 уровня (level), 242
+1702 / 1738
 
 [Страница 1703]
 характеристик (of characteristics), 289
@@ -1024,11 +1053,11 @@ ordered), 257
 ordered), 257
 Модель (model), 321
 множества формул (of a set of formulas),
-
+681
 множества формул (of set of formulas),
-
+729
 формальной теории (of formal theory),
-
+681
 Модуль (module), 466
 левый (left), 467
 правый (right), 467
@@ -1052,12 +1081,13 @@ ordered), 257
 делитель
 (greatest
 common divisor), 415
+1703 / 1738
 
 [Страница 1704]
 Наименьшее общее кратное (least common
 multiple), 420
 Направленный отрезок (directed interval),
-
+236
 Нат, 1026
 Натуральное
 отображение
@@ -1080,9 +1110,9 @@ representation), 240
 треугольника (triangle), 1103
 Нечёткое множество (fuzzy set), 296
 абсолютная разность (absolute difference),
-
+314
 алгебраическая сумма (algebraic sum),
-
+314
 алгебраическое
 умножение
 (algebraic
@@ -1090,6 +1120,7 @@ multiplication), 314
 Нильпотентность (nilpotency), 468
 Носитель (support), 74, 321
 интерпретации (of interpretation), 727
+1704 / 1738
 
 [Страница 1705]
 мультимножества (of multiset), 67
@@ -1098,7 +1129,7 @@ multiplication), 314
 решётки (lattice identity), 480
 Нуль-вектор (nill vector), 452
 Нумерация множества (numbering of set),
-
+93
 Область (domain)
 интерпретации (of interpretation), 681
 целостности (integral), 396
@@ -1128,6 +1159,7 @@ quantifier), 724
 внутренний (inorder), 1462
 инфиксный (inorder), 1462
 концевой (postorder), 1462
+1705 / 1738
 
 [Страница 1706]
 левый (preorder), 1462
@@ -1158,14 +1190,15 @@ cвойство (property), 147
 Оператор (statement)
 возврата (return), 227
 структурного перехода (structural go to),
-
+150
 Операция (operation), 74
 n-арная (n-ary), 321
+1706 / 1738
 
 [Страница 1707]
 антикоммутативная
 (anticommutativе),
-
+468
 ассоциативная (associative), 329
 билинейная (bilinear), 468
 вариаргументная (varyadic), 545
@@ -1174,7 +1207,7 @@ n-арная (n-ary), 321
 групповая (group), 97, 545
 дистрибутивная (distributive), 329
 добавления элемента (of element adding),
-
+64
 идемпотентная (idempotent), 329
 коммутативная (commutative), 329
 конечноместная (finitude), 321
@@ -1198,10 +1231,11 @@ quantifier)
 сократимая (cancellation), 332
 сравнения (of comparison), 74
 сцепления (of concatenation), 70
+1707 / 1738
 
 [Страница 1708]
 удаления элемента (of element removal),
-
+64
 Опровержение
 методом
 резолюций
@@ -1217,7 +1251,7 @@ quantifier)
 формулы (formula), 604
 Ортогональная система булевых функций
 (Orthogonal system of Boolean functions),
-
+567
 Ослабление (relaxation), 1372
 Основа (base), 321, 322
 Основание (moduli set)
@@ -1234,6 +1268,7 @@ n-местное (n-place), 169
 антирефлексивное (antireflexive), 173
 антисимметричное (antisymmetric), 173
 ациклическое (acyclic), 178
+1708 / 1738
 
 [Страница 1709]
 бинарное (binary), 166
@@ -1251,7 +1286,7 @@ n-местное (n-place), 169
 антилексикографического
 (antilexicographical), 861
 лексикографического (lexicographical),
-
+861
 линейного (linear), 256
 нестрогого (non-strict), 256
 строгого (strict), 256
@@ -1268,6 +1303,7 @@ n-местное (n-place), 169
 толерантности (tolerance), 243
 транзитивное (transitive), 173
 универсальное (universal), 168
+1709 / 1738
 
 [Страница 1710]
 функциональное (functional), 212
@@ -1283,7 +1319,7 @@ n-местное (n-place), 169
 Парадокс (paradox), 65
 Кантора (Cantor), 106
 Рассела (Bertrand Arthur William Rassel),
-
+65
 дней рождения (birthday), 1478
 Параметр (parameter)
 терма (of term), 792
@@ -1302,13 +1338,15 @@ n-местное (n-place), 169
 несущественная (inessential), 526
 предметная (object), 720
 пропозициональная (propositional), 654,
+1710 / 1738
 
 [Страница 1711]
+688
 связанная (bounded), 722
 существенная (essential), 526
 фиктивная (inessential), 526
 Переписывание термов (term rewriting),
-
+362
 за один шаг (one-step), 362
 Пересечение (intersection)
 множеств (of sets), 94
@@ -1335,6 +1373,7 @@ n-местное (n-place), 169
 разрешимое (solvable), 765
 собственное (proper), 78
 Подстановка (substitution), 373, 383, 850
+1711 / 1738
 
 [Страница 1712]
 Подформула (subformula), 537
@@ -1374,13 +1413,15 @@ numbers), 323
 арифметический (arithmetic), 599
 хроматический (chromatic), 1651
 Полином Жегалкина (Zhegalkin polynomial),
+642
+1712 / 1738
 
 [Страница 1713]
 Полнота (completeness)
 системы булевых функций (of boolean
 functions set), 641
 формальной теории (of formal theory),
-
+683
 Полный перебор (exhaustive search), 1583
 Полугруппа (semi-group), 355
 свободная (free), 357
@@ -1400,7 +1441,7 @@ functions set), 641
 прямая (prefix), 1462
 Помехоустойчивость
 (noise-immunity),
-
+1020
 Порядок (order)
 группы (of group), 376
 перестановки (of permutation), 856
@@ -1411,6 +1452,7 @@ functions set), 641
 заключительно периодическая (eventially
 periodic), 224
 конечная (finite), 158
+1713 / 1738
 
 [Страница 1714]
 остаточная (residual), 1199
@@ -1439,18 +1481,19 @@ implication), 699
 вывода (inference)
 производное (derived), 699
 формальной теории (of formal theory),
-
+677
 замены (of replacement), 547
 отделения (of detachment), 689
 подстановки (of substitution), 547
 правой руки (right-hand), 469
 произведения (product), 834
+1714 / 1738
 
 [Страница 1715]
 резолюции (resolution), 807
 сечения (cut), 704
-склеивания расщепления
-(clutching splitting), 572
+склеивания/расщепления
+(clutching/splitting), 572
 сложения (addition), 834
 суммы (sum), 834
 транзитивности (of transitivity), 704
@@ -1482,6 +1525,7 @@ like
 terms), 575
 Признаки (criteria)
 делимости (divisibility), 412
+1715 / 1738
 
 [Страница 1716]
 Принадлежность (membership), 61
@@ -1518,6 +1562,7 @@ defined), 782
 информационная, 1055
 операционная, 1056
 Пропускная способность (capacity)
+1716 / 1738
 
 [Страница 1717]
 дуги (of arc), 1330
@@ -1525,10 +1570,10 @@ defined), 782
 Пространство (space)
 векторное (vector), 452
 бесконечномерное (infinite-dimensional),
-
+460
 конечномерное
 (finite-dimensional),
-
+460
 вероятностное (probabilistic), 984
 дискретное (discrete), 985
 линейное (linear), 475
@@ -1540,9 +1585,9 @@ of
 negations), 573, 803
 Противоречие (contradiction), 658
 Протокол выполнения (execution protocol),
-
+769
 Прямая сумма множеств (direct sum of sets),
-
+163
 Прямой доступ (direct access), 876
 Прямоугольник (rectangle)
 латинский (Latin), 1306
@@ -1556,6 +1601,7 @@ negations), 573, 803
 упорядоченных пар (of ordered pairs), 158
 Равновесие (equilibrium), 1006
 Равновесие Нэша, 1006
+1717 / 1738
 
 [Страница 1718]
 Радиус графа (radius of graph), 1194
@@ -1566,7 +1612,7 @@ negations), 573, 803
 (splitting of bounded variables), 804
 Размерность (dimension), 505
 векторного пространства (of vector space),
-
+460
 Размножение
 вершины
 (duplication
@@ -1584,7 +1630,7 @@ vertex), 1222
 Разрешимость (solvability)
 класса формул (for formulas class), 568
 формальной теории (of formal theory),
-
+683
 Разряд (digit)
 информационный (information), 1119
 контрольный (control), 1113, 1119
@@ -1595,13 +1641,14 @@ vertex), 1222
 конъюнкции (of conjunction), 581
 коциклический (cocycle), 1562
 множества (of a set), 501
+1718 / 1738
 
 [Страница 1719]
 циклический (cycle), 1558
 Раскраска графа (coloring of graph), 1637
 Раскрытие скобок (removal of brackets), 574
 Распознавание образов (pattern recognition),
-
+307
 Расстояние (distance), 1103, 1192
 манхэттенское (Manhatten), 1409
 Левенштейна (Levenshtein), 1104
@@ -1632,6 +1679,7 @@ function)
 Редукция (reduction)
 отношения (of relation), 189
 транзитивная (transitive), 195
+1719 / 1738
 
 [Страница 1720]
 Резольвента (resolvent), 807
@@ -1647,7 +1695,7 @@ ratio), 901
 computing), 137
 Релаксация (relaxation), 1372
 Решето Эратосфена (Sieve of Eratosthenes),
-
+426
 Решётка (lattice), 479
 дистрибутивная (distributive), 480
 ограниченная (bounded), 480
@@ -1670,6 +1718,7 @@ computing), 137
 рёберная (edge), 1285
 сильная (strong), 1353
 слабая (weak), 1353
+1720 / 1738
 
 [Страница 1721]
 Связь (link), 217
@@ -1685,7 +1734,7 @@ subsets), 104
 с потерями (lossy), 1100
 Сигнатура (signature), 321
 формальной теории (of formal theory),
-
+677
 Символ (symbol), 69
 Синдром (syndrome), 1122
 Синтаксис (syntax), 778
@@ -1697,7 +1746,7 @@ subsets), 104
 (smallest non-negative residues), 436
 образующих (generating), 326
 остаточных классов (of residue number),
-
+442
 подстановок термов (of term rewriting),
 362, 579
 конфлюэнтная (confluent), 364
@@ -1707,6 +1756,7 @@ subsets), 104
 (of
 rewriting
 rules), 362, 579
+1721 / 1738
 
 [Страница 1722]
 различных представителей (of distinct
@@ -1724,7 +1774,7 @@ representatives), 1302
 language,
 notation, numeration, number system), 124
 остаточных классов (of residual classes),
-
+124
 биномиальная (binomial), 124
 позиционная (positional), 124
 смешанная (mixed), 124
@@ -1744,6 +1794,7 @@ k-биномиальная (k-binomial), 918
 660, 682, 733
 Словарь (dictionary), 1132, 1470
 Слово (word), 69, 1132
+1722 / 1738
 
 [Страница 1723]
 машинное (machine), 116
@@ -1772,11 +1823,13 @@ k-биномиальная (k-binomial), 918
 невозможное (impossible), 987
 независимое (independent), 991, 998
 позднее время свершения (late date),
-
+1348
 раннее время свершения (early date),
-
+1348
 элементарное (elementary), 987
 Совершенный одночлен (perfect monomial),
+566
+1723 / 1738
 
 [Страница 1724]
 Содержится (contain), 77
@@ -1812,6 +1865,7 @@ correspondence), 80
 Способность (capacity)
 пропускная (сhannel), 1100
 Сравнение (comparison), 432
+1724 / 1738
 
 [Страница 1725]
 по модулю (modulo), 432
@@ -1824,14 +1878,14 @@ correspondence), 80
 функции (of function), 223
 элемента (of element), 217
 Стиль программирования (coding standard),
-
+418
 Стирание (erasing)
 символа (of symbol), 1058
 Сток (sink), 1219
 Стратегия (strategy)
 игрока (of player), 1005
 метода резолюций (of resolution method),
-
+823
 неполная (incomplete), 823
 полная (complete), 823
 насыщения уровня (level saturation), 824
@@ -1851,10 +1905,11 @@ subgraph), 1222
 Суждение (judgement), 793
 Сужение (constriction)
 поля (field), 461
+1725 / 1738
 
 [Страница 1726]
 Сужение функции (restriction of function),
-
+213
 Суперпозиция (superposition), 222
 Супремум (supremum), 270
 Схема (scheme)
@@ -1885,28 +1940,29 @@ subgraph), 1222
 алгоритма (of algorithm), 752
 Тело (skew-field), 396
 Теорема (theorem), 785
+1726 / 1738
 
 [Страница 1727]
 Гёделя (Kurt Friedrich G odel), 743, 744
 Кантора Бернштейна (Schr oder Bernstein),
-
+102
 Куратовского
 (Kazimierz
 Kuratowski),
-
+1660
 Кёнига (K onig), 1604
 Менгера (Menger), 1295
 Поста (Emil Leon Post), 644
 Радо-Эдмондса (Rado Edmonds theorem),
-
+512
 Ферма, малая (Fermat s little theorem),
-
+448
 Форда Фалкерсона
 (Ford Fulkerson),
-
+1334
 Холла (Philip Hall), 1304
 формальной теории (of formal theory),
-
+680
 Теория (theory)
 алгоритмов (of algorithms)
 наивная (naive), 750
@@ -1924,6 +1980,7 @@ Kuratowski),
 arithmetic), 737
 чисел (of numbers), 406
 элементарная (elementary), 407
+1727 / 1738
 
 [Страница 1728]
 Терм (term), 328, 362, 721, 792
@@ -1938,7 +1995,7 @@ arithmetic), 737
 Точка Штейнера (Steiner point), 1549
 Точка сочленения (articulation point), 1273
 Траектория элемента (element trajectory),
-
+380
 Трансверсаль (transversal), 1302
 частичная (partial), 516
 Транспозиция (transposition), 851
@@ -1961,11 +2018,13 @@ arithmetic), 737
 Узел (node), 1171
 Укладка графа (graph flattering), 1656
 Улучшение перебора (search improvement),
+1728 / 1738
 
 [Страница 1729]
+1614
 Умножение (multiplication)
 вектора на скаляр (of vector on scalar),
-
+452
 логическое (logical), 116
 Унар (unary algebra), 352
 Универсум (universe), 65
@@ -1996,6 +2055,7 @@ arithmetic), 737
 нормальная
 сокращённая
 (normal
+1729 / 1738
 
 [Страница 1730]
 reduced)
@@ -2032,6 +2092,7 @@ normal)
 ложная (false), 729
 невыполнимая (unsatisfiable), 658
 общезначимая (valid), 658, 682, 730
+1730 / 1738
 
 [Страница 1731]
 открытая (open), 729
@@ -2042,7 +2103,7 @@ normal)
 равносильная (equivalent), 544
 унифицируемая (unificated), 691
 формальной теории (of formal theory),
-
+677
 элементарная (elementary), 792
 Функциональный
 символ
@@ -2054,7 +2115,7 @@ k-значной логики (k-valued logic), 532
 n-местная (n-place), 214
 n аргументов (n arguments), 214
 непрерывная по Скотту (Scott-continuous),
-
+274
 Шеннона (Shannon), 1030
 Эйлера (Euler), 444
 аддитивная (additive), 444
@@ -2065,9 +2126,10 @@ n аргументов (n arguments), 214
 весовая (weight), 510
 взаимно-однозначная (one-to-one), 215
 вполне аддитивная (completely additive),
-
+445
 вполне мультипликативная (completely
 multiplicative), 445
+1731 / 1738
 
 [Страница 1732]
 вычислимая (computable), 753
@@ -2101,13 +2163,14 @@ distribution), 989
 самодвойственная (self-dual), 555
 симметрическая (symmetric), 560
 строго монотонная (strictly monotone),
-
+272
 строго монотонно возрастающая (strictly
 monotone increasing), 272
 строго монотонно убывающая (strictly
 monotone decreasing), 272
 сюръективная (surjective), 215
 тотальная (total), 213
+1732 / 1738
 
 [Страница 1733]
 универсальная (universal), 779
@@ -2117,9 +2180,9 @@ monotone decreasing), 272
 частичная (partial), 213
 Функция выигрыша, 1005
 Характеристика канала (channel characteristic),
-
+1095
 Характеристика поля (field characteristic),
-
+465
 Характеристическая функция (characteristic
 function), 289
 бинарная (binary), 289
@@ -2142,6 +2205,7 @@ function), 289
 Цепочка (string), 69
 Цепь (chain)
 гамильтонова (hamiltonian), 1580
+1733 / 1738
 
 [Страница 1734]
 Цепь (circuit), 1187
@@ -2178,6 +2242,7 @@ edge-independent), 1293
 Часть графа (section of graph), 1183
 Числа (numbers)
 Стирлинга (Stirling)
+1734 / 1738
 
 [Страница 1735]
 второго рода (of second kind), 926
@@ -2214,6 +2279,8 @@ covering), 1593
 размещений без повторений (of simple
 menage), 838
 рёберного покрытия (of edge covering),
+1594
+1735 / 1738
 
 [Страница 1736]
 совершенное (perfect), 414
@@ -2250,6 +2317,7 @@ with repetition), 845
 (logical
 equivalence), 660, 733
 Экземпляр класса (instance of class), 1225
+1736 / 1738
 
 [Страница 1737]
 Экономичность системы счисления (radix
@@ -2257,7 +2325,7 @@ efficiency), 125
 Эксцентриситет (eccentricity)
 вершины (of vertex), 1194
 Электронная подпись (digital signature),
-
+1154
 Элемент (element)
 максимальный (maximal), 266
 минимальный (minimal), 264
@@ -2268,9 +2336,9 @@ efficiency), 125
 аддитивный (additive), 452
 мультипликативный
 (multiplicative),
-
+452
 относительно операции (for operation),
-
+331
 обратный (inverse), 333
 опорный (pivot), 868
 Элиминация (elimination)
@@ -2288,6 +2356,7 @@ quantifier), 804
 Энтропия (entropy), 1027
 информационная ((information)), 1027
 совместная (joint), 1042, 1050
+1737 / 1738
 
 [Страница 1738]
 условная (conditional), 1042, 1050
@@ -2303,6 +2372,7 @@ efficiency), 1031
 Язык (language), 70
 Пролог (Prolog), 828
 формальной теории (of formal theory),
-
+677
 Ярус (tier), 1193
 дерева (of tree), 1429
+1738 / 1738

@@ -5,11 +5,16 @@ import os
 
 def clean_text(text):
     text = re.sub(r'(\w+)-\n(\w+)', r'\1\2', text)
-    text = re.sub(r'\d+\s*/\s*\d+', '', text)
-    text = re.sub(r'^\s*\d+\s*$', '', text, flags=re.MULTILINE)
-    text = re.sub(r'[^a-zA-ZА-Яа-яЁё0-9\s\.\,\?\!\-\:\;\(\)\«\»\"]', ' ', text)
+
+    text = text.replace('Σ', 'Сумма').replace('∏', 'Произведение')
+    text = text.replace('∈', ' принадлежит ').replace('∀', ' для всех ')
+    text = text.replace('∃', ' существует ').replace('→', ' следует ')
+    
+    text = re.sub(r'[^a-zA-ZА-Яа-яЁё0-9\s\.\,\!\-\:\;\(\)\[\]\{\}\=\+\*\/\<\>\^\"«»]', ' ', text)
+    
     text = re.sub(r' +', ' ', text)
     text = re.sub(r'\n\s*\n', '\n\n', text)
+    
     return text.strip()
 
 def extract_chapter(pdf_path, start_page, end_page):
