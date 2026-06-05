@@ -7,7 +7,7 @@ from typing import Any
 
 import faiss
 import numpy as np
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from sentence_transformers import SentenceTransformer
@@ -529,21 +529,34 @@ def check(request: CheckRequest):
 
 
 @app.get("/api/question")
-def get_random_question():
-    connection = sqlite3.connect(DB_PATH)
-    cursor = connection.cursor()
+def get_random_question(exclude: str = ""):
     try:
-        cursor.execute("SELECT id, question FROM trainer_questions ORDER BY RANDOM() LIMIT 1")
-        row = cursor.fetchone()
+        with get_db_connection() as connection:
+            cursor = connection.cursor()
+            
+            excluded_ids = [int(x.strip()) for x in exclude.split(",") if x.strip().isdigit()]
+            
+            if excluded_ids:
+                placeholders = ",".join(["?"] * len(excluded_ids))
+                query = f"SELECT id, question FROM trainer_questions WHERE id NOT IN ({placeholders}) ORDER BY RANDOM() LIMIT 1"
+                cursor.execute(query, excluded_ids)
+            else:
+                cursor.execute("SELECT id, question FROM trainer_questions ORDER BY RANDOM() LIMIT 1")
+                
+            row = cursor.fetchone()
+            
+            if not row and excluded_ids:
+                cursor.execute("SELECT id, question FROM trainer_questions ORDER BY RANDOM() LIMIT 1")
+                row = cursor.fetchone()
 
-        if not row:
-            raise HTTPException(status_code=404, detail="Вопросы не найдены")
-
-        return {
-            "id": row[0],
-            "question": row[1],
-        }
+            if not row:
+                raise HTTPException(status_code=404, detail="Вопросы не найдены в таблице trainer_questions")
+                
+            return {
+                "id": row["id"],
+                "question": row["question"]
+            }
+    except HTTPException as http_error:
+        raise http_error
     except Exception as error:
-        raise HTTPException(status_code=500, detail=str(error))
-    finally:
-        connection.close()
+        raise HTTPException(status_code=500, detail=f"Ошибка базы данных: {str(error)}")

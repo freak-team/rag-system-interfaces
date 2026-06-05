@@ -12,6 +12,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const tabButtons = document.querySelectorAll('.tab-btn');
     const viewSections = document.querySelectorAll('.view-section');
 
+    let recentQuestions = [];
+    const HISTORY_LIMIT = 20;
+
+    async function fetchNextQuestion() {
+        const excludeParam = recentQuestions.join(',');
+        
+        const response = await fetch(`/api/question?exclude=${excludeParam}`);
+        const data = await response.json();
+        
+        if (data.id) {
+            recentQuestions.push(data.id);
+            
+            if (recentQuestions.length > HISTORY_LIMIT) {
+                recentQuestions.shift();
+            }
+            
+            console.log("Получен вопрос:", data.question);
+        }
+    }
+
     tabButtons.forEach(button => {
         button.addEventListener('click', () => {
             tabButtons.forEach(btn => btn.classList.remove('active'));
