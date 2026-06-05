@@ -38,7 +38,7 @@ def hybrid_search(query, db_path="data/clean/knowledge_base.db", index_path="dat
     except Exception as e:
         print(f"[FTS ОШИБКА]: {e}")
 
-    model = SentenceTransformer('cointegrated/rubert-tiny2')
+    model = SentenceTransformer('./local_model')
     index = faiss.read_index(index_path)
 
     query_vector = model.encode([query], normalize_embeddings=True).astype("float32")

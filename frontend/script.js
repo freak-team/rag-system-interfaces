@@ -12,9 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const tabButtons = document.querySelectorAll('.tab-btn');
     const viewSections = document.querySelectorAll('.view-section');
 
-    let recentQuestions = [];
-    const HISTORY_LIMIT = 20;
-
     async function fetchNextQuestion() {
         const excludeParam = recentQuestions.join(',');
         
@@ -102,6 +99,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const trainerQuestionElement = document.getElementById('trainer-question');
     
+    let recentQuestions = [];
+    const HISTORY_LIMIT = 20;
+
     async function loadQuestion() {
         trainerQuestionElement.textContent = "Загружаем вопрос...";
         feedbackArea.classList.add('hidden');
@@ -116,11 +116,22 @@ document.addEventListener('DOMContentLoaded', () => {
                     text: "Что такое двудольный граф?"
                 };
             } else {
-                const response = await fetch(API_URLS.getQuestion);
+
+                const excludeParam = recentQuestions.join(',');
+                const fetchUrl = excludeParam ? `${API_URLS.getQuestion}?exclude=${excludeParam}` : API_URLS.getQuestion;
+
+                const response = await fetch(fetchUrl);
                 if (!response.ok) {
                     throw new Error(`Backend returned status ${response.status}`);
                 }
                 data = await response.json();
+
+                if (data.id) {
+                    recentQuestions.push(data.id);
+                    if (recentQuestions.length > HISTORY_LIMIT) {
+                        recentQuestions.shift();
+                    }
+                }
             }
             
             currentQuestionId = data.question_id ?? data.id ?? null;

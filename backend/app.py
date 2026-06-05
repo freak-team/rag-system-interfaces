@@ -60,8 +60,8 @@ RU_STOP_WORDS = {
     "зачем", "в", "на", "и", "или", "а", "но", "для", "по", "из", "к", "у", "о", "об",
     "от", "над", "под", "при", "ли", "же", "бы", "то", "где", "когда", "чем", "между",
     "чего", "чему", "чем", "чем", "со", "без", "надо", "нужно", "вопрос", "заключается",
+    "дайте", "определение", "опишите", "понятие", "понятия", "термин", "опиши", "расскажи"
 }
-
 
 print("Загрузка embedding-модели и индекса FAISS...")
 if not Path(MODEL_PATH).exists():
@@ -378,40 +378,61 @@ def split_sentences(text: str) -> list[str]:
 
 
 def build_extractive_answer(question: str, query_tokens: list[str], top_docs: list[dict[str, Any]]) -> tuple[str, list[str]]:
-    selected_sentences = []
-    supporting_fragments = []
+    supporting_fragments = [doc["content"] for doc in top_docs]
+    answers = []
 
+    # Идем по ВСЕМ найденным документам, а не только по первым двум
     for doc in top_docs:
         sentences = split_sentences(doc["content"])
         if not sentences:
             continue
-
-        ranked_sentences = sorted(
-            sentences,
-            key=lambda sentence: lexical_overlap_score(query_tokens, sentence),
-            reverse=True,
-        )
-
-        best_sentence = ranked_sentences[0]
-        if lexical_overlap_score(query_tokens, best_sentence) == 0 and selected_sentences:
+            
+        best_idx = 0
+        best_score = -1
+        for i, s in enumerate(sentences):
+            score = lexical_overlap_score(query_tokens, s)
+            if score > best_score:
+                best_score = score
+                best_idx = i
+        
+        if best_score <= 0:
             continue
+            
+        start_idx = best_idx
+        end_idx = min(len(sentences), best_idx + 3)
+        chunk_text = " ".join(sentences[start_idx:end_idx]).strip()
+        
+        # --- НОВЫЙ ФИЛЬТР ОТ ОГРЫЗКОВ ---
+        # Если текста меньше 60 символов, скорее всего это просто заголовок. Пропускаем!
+        if len(chunk_text) < 60:
+            continue
+            
+        # Защита от дубликатов (иногда FTS и FAISS находят один и тот же абзац)
+        if any(chunk_text[:100] in existing[:100] for existing in answers):
+            continue
+            
+        answers.append(chunk_text)
 
-        selected_sentences.append(best_sentence)
-        supporting_fragments.append(doc["content"])
-
-        if len(selected_sentences) >= ANSWER_SENTENCE_LIMIT:
+        # Как только набрали 3 хороших, длинных абзаца — останавливаемся
+        if len(answers) >= 3:
             break
 
-    if not selected_sentences:
-        return (
-            "По вашему запросу в базе знаний не найдено достаточного количества релевантных фрагментов.",
-            [],
-        )
+    # Фолбэк, если ничего не подошло
+    if not answers and top_docs:
+        for doc in top_docs:
+            if len(doc["content"]) > 60:  # Ищем хотя бы один не-огрызок
+                fallback_sentences = split_sentences(doc["content"])[:3]
+                answers.append(" ".join(fallback_sentences))
+                break
+                
+    if not answers:
+        return "По вашему запросу в базе знаний не найдено достаточного количества релевантных фрагментов.", []
 
-    intro = f"По материалам главы 6 по запросу «{question.strip()}» можно сформулировать следующее:"
-    points = [f"{index}. {sentence}" for index, sentence in enumerate(selected_sentences, start=1)]
-    return f"{intro}\n" + "\n".join(points), supporting_fragments
-
+    clean_q = question.replace("Дайте определение или опишите понятие: ", "").replace("«", "").replace("»", "").strip()
+    intro = f"По материалам главы 6 по запросу «{clean_q}» можно сформулировать следующее:"
+    
+    points = [f"{i}. {ans}" for i, ans in enumerate(answers, start=1)]
+    return f"{intro}\n" + "\n\n".join(points), supporting_fragments
 
 def render_html_answer(answer_text: str) -> str:
     paragraphs = [segment.strip() for segment in answer_text.split("\n") if segment.strip()]
@@ -466,9 +487,12 @@ def get_guardrail_response(question: str) -> str | None:
 
 @app.post("/api/search")
 def search(request: SearchRequest):
-    question = request.question.strip()
-    if not question:
+    raw_question = request.question.strip()
+    if not raw_question:
         return {"answer": "<p>Пожалуйста, введите непустой вопрос.</p>"}
+
+    question = raw_question.replace("Дайте определение или опишите понятие:", "")
+    question = re.sub(r'["«»\']', '', question).strip()
 
     guardrail_response = get_guardrail_response(question)
     if guardrail_response is not None:

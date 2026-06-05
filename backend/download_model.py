@@ -1,7 +1,7 @@
 from pathlib import Path
 from sentence_transformers import SentenceTransformer
 
-MODEL_NAME = "cointegrated/rubert-tiny2"
+MODEL_NAME = 'sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2'
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 LOCAL_SAVE_PATH = PROJECT_ROOT / "local_model"
 
