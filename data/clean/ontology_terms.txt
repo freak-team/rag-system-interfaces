@@ -10,17 +10,9 @@
 Битовая шкала (bit scale) ошибок (of error) -> 1122
 Блок (block) сообщения (code) -> 1095
 Вероятность условная -> 1039
-Вероятность апостериорная (posterior) -> 1040
-Вероятность априорная (prior) -> 1040
-Гамма шифр (cypher gamma) -> 1145
 Декодирование (decoding) -> 1019
-АВЛ-дерево (AVL-tree) бинарное (binary) -> 1032
 классификации (classification) кодовое (coding) -> 1032
-Дешифрация (decoding) -> 1143
 Дешифрование (decoding) -> 1143
-Дистанция (distance) редактирования (edit) -> 1104
-Длина (length) кодирования (of coding) -> 1074
-Достоверность декодирования (decoding fidelity) -> 1100
 Зашифровка (enciphering) -> 1143
 Избыточность источника -> 1029
 Избыточность относительная -> 1029
@@ -29,16 +21,12 @@
 Информация (information) условная (conditional) -> 1041
 Источник (source) двоичный (binary) -> 1030
 Источник (source) информации (of information) дискретный (discrete) -> 1024
-Канал (channel) двоичный симметричный (binary symmetric) -> 1099
 Код Хэмминга (Hamming) -> 1122
 Код Хэмминга (Hamming) сообщения (of message) -> 1019
-Код Хэмминга (Hamming) элементарный (elementary) -> 1061
 Кодирование (coding) -> 1019
 Кодирование (coding) m-ичное (m-ary) -> 1019
 Схема (scheme) -> 1031
 Цена (price) -> 1074
-Кодирование (encoding) систематическое (systematic) -> 1119
-Кодовое слово (code word) -> 1031
 Количество (quantaty) информации (of information) -> 1017
 Координаты (coordinates) декартовы (Cartesian) -> 1017
 Безу (Bezout) сжатия (of compression) -> 1131
@@ -46,27 +34,21 @@
 Криптостойкость (cryptostability) -> 1144
 Матрица (matrix) переходных вероятностей -> 1046
 Матрица порождающая (generator) -> 1117
-Матрица проверочная (parity check) -> 1118
 Матрица стохастическая (stochastic) -> 1045
-Медиана (median) множества (of set) -> 1077
 Метрика (metric) -> 1103
 Мощность (power) кодирования (of encoding) -> 1110
 Нат -> 1026
-Неравенство Крафта (Kraft McMillan) -> 1034
 Неравенство Макмиллана (Kraft McMillan) -> 1034
 Неравенство Макмиллана (Kraft McMillan) -> 1065
 Неравенство треугольника (triangle) -> 1103
 Окрестность (neighborhood) метрическая (metric) -> 1103
 Окрестность (neighborhood) ошибок (of errors) -> 1097
-Передатчик (transmitter) -> 1046
-Поиск (search) полнотекстовый (full text) -> 1133
 Приёмник (receiver) -> 1046
 Пропускная способность информационная -> 1055
 Пропускная способность операционная -> 1056
 Разряд (digit) информационный (information) -> 1119
 Разряд (digit) контрольный (control) -> 1113
 Разряд (digit) контрольный (control) -> 1119
-Разряд (digit) проверочный (check) -> 1119
 Расстояние (distance) -> 1103
 Расстояние Левенштейна (Levenshtein) -> 1104
 Расстояние Хэмминга (Hamming) -> 1106
@@ -79,7 +61,6 @@
 Сжатие (compression) с потерями (lossy) -> 1100
 Синдром (syndrome) -> 1122
 Система счисления (number system) позиционная (positional) десятичная (decimal) -> 1017
-Словарь (dictionary) -> 1132
 Слово (word) -> 1132
 Событие (event) -> 1024
 Сообщение (message) -> 1019
@@ -96,7 +77,6 @@
 Схема (scheme) разделимая (separable) -> 1062
 Кэли (Cayley) кодов (of codes) -> 1061
 Тайнопись (cryptogram) -> 1144
-Теория (theory) алгоритмов (of algorithms) информации (of information) -> 1016
 Упаковка (packing) -> 1131
 Утечка (leak) информации (of information) -> 1054
 Цена кодирования (price of coding) -> 1031
