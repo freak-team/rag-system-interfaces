@@ -46,7 +46,7 @@ SIMILARITY_THRESHOLD = 0.65
 
 TOP_K_VECTOR = 16
 TOP_K_FTS = 20
-TOP_K_FINAL = 5
+TOP_K_FINAL = 8
 ANSWER_SENTENCE_LIMIT = 4
 
 LOCAL_LLM_ENABLED = os.getenv("LOCAL_LLM_ENABLED", "false").lower() == "true"
@@ -429,7 +429,7 @@ def build_extractive_answer(question: str, query_tokens: list[str], top_docs: li
             continue
             
         start_idx = best_idx
-        end_idx = min(len(sentences), best_idx + 3)
+        end_idx = min(len(sentences), best_idx + 6)
         chunk_text = " ".join(sentences[start_idx:end_idx]).strip()
         
         # --- НОВЫЙ ФИЛЬТР ОТ ОГРЫЗКОВ ---
