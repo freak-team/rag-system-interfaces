@@ -12,6 +12,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const tabButtons = document.querySelectorAll('.tab-btn');
     const viewSections = document.querySelectorAll('.view-section');
 
+    async function fetchNextQuestion() {
+        const excludeParam = recentQuestions.join(',');
+        
+        const response = await fetch(`/api/question?exclude=${excludeParam}`);
+        const data = await response.json();
+        
+        if (data.id) {
+            recentQuestions.push(data.id);
+            
+            if (recentQuestions.length > HISTORY_LIMIT) {
+                recentQuestions.shift();
+            }
+            
+            console.log("Получен вопрос:", data.question);
+        }
+    }
+
     tabButtons.forEach(button => {
         button.addEventListener('click', () => {
             tabButtons.forEach(btn => btn.classList.remove('active'));
@@ -59,6 +76,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ question: query })
                 });
+                if (!response.ok) {
+                    throw new Error(`Backend returned status ${response.status}`);
+                }
                 responseData = await response.json();
             }
 
@@ -79,6 +99,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const trainerQuestionElement = document.getElementById('trainer-question');
     
+    let recentQuestions = [];
+    const HISTORY_LIMIT = 20;
+
     async function loadQuestion() {
         trainerQuestionElement.textContent = "Загружаем вопрос...";
         feedbackArea.classList.add('hidden');
@@ -93,12 +116,30 @@ document.addEventListener('DOMContentLoaded', () => {
                     text: "Что такое двудольный граф?"
                 };
             } else {
-                const response = await fetch(API_URLS.getQuestion);
+
+                const excludeParam = recentQuestions.join(',');
+                const fetchUrl = excludeParam ? `${API_URLS.getQuestion}?exclude=${excludeParam}` : API_URLS.getQuestion;
+
+                const response = await fetch(fetchUrl);
+                if (!response.ok) {
+                    throw new Error(`Backend returned status ${response.status}`);
+                }
                 data = await response.json();
+
+                if (data.id) {
+                    recentQuestions.push(data.id);
+                    if (recentQuestions.length > HISTORY_LIMIT) {
+                        recentQuestions.shift();
+                    }
+                }
             }
             
-            currentQuestionId = data.question_id;
-            trainerQuestionElement.textContent = data.text;
+            currentQuestionId = data.question_id ?? data.id ?? null;
+            trainerQuestionElement.textContent = data.text ?? data.question ?? "Не удалось получить текст вопроса";
+
+            if (currentQuestionId === null) {
+                throw new Error('Question id is missing in backend response');
+            }
         } catch (error) {
             console.error("Ошибка при загрузке вопроса:", error);
             trainerQuestionElement.textContent = "Не удалось загрузить вопрос. Попробуйте обновить страницу.";
@@ -140,6 +181,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         answer: studentAnswer 
                     })
                 });
+                if (!response.ok) {
+                    throw new Error(`Backend returned status ${response.status}`);
+                }
                 result = await response.json();
             }
 

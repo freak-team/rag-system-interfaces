@@ -39,6 +39,36 @@ uvicorn app:app --reload --host 127.0.0.1 --port 8000
 python tests/automated/qa_rag_runner.py --insecure-local-ssl --include-answers
 ```
 
+### Опционально: локальная LLM для улучшения формулировок
+
+LLM используется только для переформулировки уже извлеченных фрагментов и не должна добавлять новые факты.
+
+**1. Установить зависимости для LLM**
+```bash
+cd backend
+pip install -r requirements_llm.txt
+cd ..
+```
+
+**2. Скачать локальную модель (рекомендуется Qwen2.5-7B Q4_K_M, ~4.7 GB)**
+```bash
+cd backend
+python download_local_llm.py
+cd ..
+```
+
+**3. Включить LLM-переформулировку через переменные окружения**
+```bash
+set LOCAL_LLM_ENABLED=true
+set LOCAL_LLM_MODEL_PATH=./local_llm/qwen2.5-7b-instruct-q4_k_m.gguf
+```
+
+Для PowerShell (если запуск из папки backend):
+```powershell
+$env:LOCAL_LLM_ENABLED="true"
+$env:LOCAL_LLM_MODEL_PATH="../local_llm/qwen2.5-7b-instruct-q4_k_m.gguf"
+```
+
 ### Docker контейнеры
 
 ```bash
@@ -48,6 +78,8 @@ docker-compose up --build
 # Сервис будет доступен на http://localhost
 ```
 
+Примечание: при первой сборке Docker-образа backend автоматически скачает веса модели, если они отсутствуют в папке local_model. Для первого запуска нужен доступ в интернет.
+
 ## 📁 Структура проекта
 
 ```
@@ -55,6 +87,7 @@ rag-system-interfaces/
 ├── backend/                          # FastAPI сервер и утилиты
 │   ├── app.py                        # Основной API с 3 эндпоинтами
 │   ├── download_model.py             # Загрузка embedding модели
+│   ├── download_local_llm.py          # Загрузка локальной LLM (GGUF)
 │   ├── build_vector_index.py         # Построение FAISS индекса
 │   └── requirements.txt               # Python зависимости
 │
@@ -78,6 +111,8 @@ rag-system-interfaces/
 │   └── data_scripts/
 │
 ├── local_model/                       # Предзагруженная модель
+│   └── ...
+├── local_llm/                         # Локальная GGUF LLM (опционально)
 │   └── ...
 │
 ├── Dockerfile                         # Docker образ

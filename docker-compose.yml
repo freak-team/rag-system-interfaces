@@ -4,8 +4,10 @@ services:
   backend:
     build: .
     container_name: rag_backend_api
-    expose:
-      - "8000"
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data
 
   nginx:
     image: nginx:alpine
